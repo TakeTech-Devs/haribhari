@@ -13,7 +13,8 @@ router.post(
     authController.signUp,
 );
 
-router.put('/verifyotp/:id', authValidator.otpValidator, authController.verifyOtp);
+router.put('/verifyotp/:id', authValidator.otpValidator,
+    authController.verifyOtp);
 
 router.get('/resendotp/:id', authController.resendOtp);
 

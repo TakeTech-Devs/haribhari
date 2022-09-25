@@ -7,14 +7,17 @@ const moment = require('moment');
 
 exports.signUp = async (req, res, next) => {
   try {
+    // eslint-disable-next-line
     const {name, email, password, confirm_password} = req.body;
     const emailuser = await User.findOne({email: email});
     if (!emailuser) {
+      // eslint-disable-next-line
       if (password == confirm_password) {
         const user = new User({
           name: name,
           email: email,
           password: password,
+          // eslint-disable-next-line
           confirm_password: confirm_password,
         });
         const otp = await user.generateOTP();
@@ -40,7 +43,12 @@ exports.signUp = async (req, res, next) => {
         logger.error('Password Mismatched');
       }
     } else {
-      res.status(404).json({success: false, errors: {error: 'User Already Exists'}});
+      res.status(404).json({
+        success: false,
+        errors: {
+          error: 'User Already Exists',
+        },
+      });
       logger.error('User Already Exists');
     }
   } catch (error) {
@@ -53,16 +61,26 @@ exports.verifyOtp = async (req, res, next) => {
     const _id = req.params.id;
     const otp = req.body.otp;
     const otpInfo = await Otp.findOne({user_id: _id}).sort({'createdAt': -1});
-    console.log(otpInfo);
     if (otpInfo && otp === otpInfo.OTP &&
       moment().format('hh:mm:ss')<=otpInfo.expairAt) {
-      await User.findByIdAndUpdate({_id: _id}, {email_verified: true}).sort({'createdAt': -1});
+      await User.findByIdAndUpdate({_id: _id}, {email_verified: true})
+          .sort({'createdAt': -1});
       await Otp.updateOne({user_id: _id, OTP: otpInfo.OTP},
           {expairAt: moment(new Date()).format('hh:mm:ss')});
-      res.status(200).json({success: true, info: {message: 'Signup Successfully'}});
+      res.status(200).json({
+        success: true,
+        info: {
+          message: 'Signup Successfully',
+        },
+      });
       logger.info('Signup Successfully');
     } else {
-      res.status(404).json({success: false, errors: {error: 'Your OTP is Invalid'}});
+      res.status(404).json({
+        success: false,
+        errors: {
+          error: 'Your OTP is Invalid',
+        },
+      });
       logger.error('Your OTP is Invalid.');
     }
   } catch (error) {
@@ -75,10 +93,14 @@ exports.resendOtp = async (req, res, next) => {
   try {
     const _id = req.params.id;
     const user = await User.findById({_id: _id});
-    console.log(user);
     if (user) {
       if (user.email_verified) {
-        res.status(400).json({success: false, errors: {error: 'Your account is already verified'}});
+        res.status(400).json({
+          success: false,
+          errors: {
+            error: 'Your account is already verified',
+          },
+        });
       } else {
         const otp = await user.generateOTP();
         await new Otp({
@@ -86,7 +108,12 @@ exports.resendOtp = async (req, res, next) => {
           OTP: otp,
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
-        res.status(200).json({success: true, info: {messaage: `OTP Sent To ${user.email}`}});
+        res.status(200).json({
+          success: true,
+          info: {
+            messaage: `OTP Sent To ${user.email}`,
+          },
+        });
       }
     } else {
       res.status(404).json({success: false, errors: {error: 'User Not found'}});
@@ -119,7 +146,7 @@ exports.logIn = async (req, res, next) => {
           res.status(400)
               .json({
                 success: false,
-                errors: {error: 'Invalid Credientials'}
+                errors: {error: 'Invalid Credientials'},
               });
           logger.error('Invalid Credientials');
         }
@@ -127,7 +154,7 @@ exports.logIn = async (req, res, next) => {
         res.status(400)
             .json({
               success: false,
-              errors: {error: 'Please Veriry Your Account'}
+              errors: {error: 'Please Veriry Your Account'},
             });
         logger.error('Please Veriry Your Account');
       }
@@ -164,14 +191,19 @@ exports.sendUserPasswordReset = async (req, res, next) => {
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
         res.setHeader('id', user._id);
-        res.status(200).json({success: true, info: {messaage: `OTP Sent To ${user.email}`}});
+        res.status(200).json({
+          success: true,
+          info: {
+            messaage: `OTP Sent To ${user.email}`,
+          },
+        });
         logger.info(`OTP Sent To ${user.email}`);
       } else {
         res.status(400).send({message: 'Email doesn\'t exists'});
         logger.error('Email doesn\'t exists');
       }
     } else {
-      res.send({success: false,errors: {error: 'Email Field is Required'}});
+      res.send({success: false, errors: {error: 'Email Field is Required'}});
     }
   } catch (error) {
     logger.error('Something Wrong');
@@ -189,10 +221,20 @@ exports.userPasswordResetOtp = async (req, res, next) => {
       await User.findByIdAndUpdate({_id: _id}, {email_verified: true});
       await Otp.updateOne({user_id: _id, OTP: otpInfo.OTP},
           {expairAt: moment(new Date()).format('hh:mm:ss')});
-      res.status(200).json({success: true, info: {message: 'OTP verified Successfully'}});
+      res.status(200).json({
+        success: true,
+        info: {
+          message: 'OTP verified Successfully',
+        },
+      });
       logger.info('OTP verified Successfully');
     } else {
-      res.status(404).json({success: false, errors: {error: 'Your OTP is Invalid'}});
+      res.status(404).json({
+        success: false,
+        errors: {
+          error: 'Your OTP is Invalid',
+        },
+      });
       logger.error('Your OTP is Invalid.');
     }
   } catch (error) {
@@ -201,11 +243,14 @@ exports.userPasswordResetOtp = async (req, res, next) => {
 };
 
 exports.userPasswordReset = async (req, res, next) => {
+  // eslint-disable-next-line
   const {password, confirm_password} = req.body;
   const id = req.params.id;
   const user = await User.findById(id);
   try {
+    // eslint-disable-next-line
     if (password && confirm_password) {
+      // eslint-disable-next-line
       if (password !== confirm_password) {
         return res.json({
           message: 'New Password and Confirm New Password doesn\'t match',
@@ -241,7 +286,10 @@ exports.changeUserPassword = async (req, res, next) => {
         if (password !== confirmPassword) {
           res.send({
             success: false,
-           errors: { error: 'New Password and Confirm New Password doesn\'t match',}
+            errors:
+            {error:
+              'New Password and Confirm New Password doesn\'t match',
+            },
           });
         } else {
           const salt = await bcrypt.genSalt(process.env.SALT);
@@ -254,7 +302,7 @@ exports.changeUserPassword = async (req, res, next) => {
           );
           res.send({
             success: true,
-            info: {success: 'Password changed succesfully',}
+            info: {success: 'Password changed succesfully'},
           });
         }
       } else {
@@ -286,7 +334,7 @@ exports.updateProfile = async (req, res, next)=>{
     res.status(200)
         .json({
           success: true,
-          info: {message: 'Profile Updated Successfully'}
+          info: {message: 'Profile Updated Successfully'},
         });
   } catch (error) {
     next(error);
