@@ -13,7 +13,6 @@ function dbConnect() {
     console.log('Connection Successfully');
   }).catch((e)=>{
     console.log('connection error');
-    console.log(e);
   });
 }
 

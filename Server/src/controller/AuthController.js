@@ -27,20 +27,20 @@ exports.signUp = async (req, res, next) => {
         res.setHeader('id', user._id);
         res.status(201)
             .json({
-              status: true,
-              message: `OTP Sent To ${user.email}`,
+              success: true,
+              info: {message: `OTP Sent To ${user.email}}`},
             });
         logger.info(`OTP Sent To ${user.email}`);
       } else {
         res.status(400)
             .json({
-              status: false,
-              message: 'Password Mismatched',
+              success: false,
+              errors: {error: 'Password Mismatched'},
             });
         logger.error('Password Mismatched');
       }
     } else {
-      res.status(404).json({status: false, message: 'User Already Exists'});
+      res.status(404).json({success: false, errors: {error: 'User Already Exists'}});
       logger.error('User Already Exists');
     }
   } catch (error) {
@@ -59,10 +59,10 @@ exports.verifyOtp = async (req, res, next) => {
       await User.findByIdAndUpdate({_id: _id}, {email_verified: true}).sort({'createdAt': -1});
       await Otp.updateOne({user_id: _id, OTP: otpInfo.OTP},
           {expairAt: moment(new Date()).format('hh:mm:ss')});
-      res.status(200).json({status: true, message: 'Signup Successfully'});
+      res.status(200).json({success: true, info: {message: 'Signup Successfully'}});
       logger.info('Signup Successfully');
     } else {
-      res.status(404).json({status: false, message: 'Your OTP is Invalid'});
+      res.status(404).json({success: false, errors: {error: 'Your OTP is Invalid'}});
       logger.error('Your OTP is Invalid.');
     }
   } catch (error) {
@@ -78,7 +78,7 @@ exports.resendOtp = async (req, res, next) => {
     console.log(user);
     if (user) {
       if (user.email_verified) {
-        res.status(400).json({status: false, info: {messaage: 'Your account is already verified'}});
+        res.status(400).json({success: false, errors: {error: 'Your account is already verified'}});
       } else {
         const otp = await user.generateOTP();
         await new Otp({
@@ -86,10 +86,10 @@ exports.resendOtp = async (req, res, next) => {
           OTP: otp,
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
-        res.status(200).json({status: true, info: {messaage: `OTP Sent To ${user.email}`}});
+        res.status(200).json({success: true, info: {messaage: `OTP Sent To ${user.email}`}});
       }
     } else {
-      res.status(404).json({status: false, errors: {error: 'User Not found'}});
+      res.status(404).json({success: false, errors: {error: 'User Not found'}});
     }
   } catch (error) {
     logger.error(error);
@@ -109,30 +109,30 @@ exports.logIn = async (req, res, next) => {
           res
               .status(200)
               .json({
-                status: true,
-                message: 'Login Successfully',
-                token: token,
+                success: true,
+                info: {message: 'Login Successfully',
+                  token: token},
               });
           logger.info('Login Successfully');
           next();
         } else {
           res.status(400)
               .json({
-                status: false,
-                message: 'Invalid Credientials',
+                success: false,
+                errors: {error: 'Invalid Credientials'}
               });
           logger.error('Invalid Credientials');
         }
       } else {
         res.status(400)
             .json({
-              status: false,
-              message: 'Please Veriry Your Account',
+              success: false,
+              errors: {error: 'Please Veriry Your Account'}
             });
         logger.error('Please Veriry Your Account');
       }
     } else {
-      res.json({status: false, error: 'User Not Exists'});
+      res.json({success: false, errors: {error: 'User Not Exists'}});
       logger.error('User Not Exists');
     }
   } catch (error) {
@@ -164,14 +164,14 @@ exports.sendUserPasswordReset = async (req, res, next) => {
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
         res.setHeader('id', user._id);
-        res.status(200).json({status: true, info: {messaage: `OTP Sent To ${user.email}`}});
+        res.status(200).json({success: true, info: {messaage: `OTP Sent To ${user.email}`}});
         logger.info(`OTP Sent To ${user.email}`);
       } else {
         res.status(400).send({message: 'Email doesn\'t exists'});
         logger.error('Email doesn\'t exists');
       }
     } else {
-      res.send({message: 'Email Field is Required'});
+      res.send({success: false,errors: {error: 'Email Field is Required'}});
     }
   } catch (error) {
     logger.error('Something Wrong');
@@ -189,10 +189,10 @@ exports.userPasswordResetOtp = async (req, res, next) => {
       await User.findByIdAndUpdate({_id: _id}, {email_verified: true});
       await Otp.updateOne({user_id: _id, OTP: otpInfo.OTP},
           {expairAt: moment(new Date()).format('hh:mm:ss')});
-      res.status(200).json({status: true, info: {message: 'OTP verified Successfully'}});
+      res.status(200).json({success: true, info: {message: 'OTP verified Successfully'}});
       logger.info('OTP verified Successfully');
     } else {
-      res.status(404).json({status: false, message: 'Your OTP is Invalid'});
+      res.status(404).json({success: false, errors: {error: 'Your OTP is Invalid'}});
       logger.error('Your OTP is Invalid.');
     }
   } catch (error) {
@@ -240,8 +240,8 @@ exports.changeUserPassword = async (req, res, next) => {
       if (password && confirmPassword) {
         if (password !== confirmPassword) {
           res.send({
-            status: false,
-            message: 'New Password and Confirm New Password doesn\'t match',
+            success: false,
+           errors: { error: 'New Password and Confirm New Password doesn\'t match',}
           });
         } else {
           const salt = await bcrypt.genSalt(process.env.SALT);
@@ -253,16 +253,16 @@ exports.changeUserPassword = async (req, res, next) => {
               },
           );
           res.send({
-            status: true,
-            message: 'Password changed succesfully',
+            success: true,
+            info: {success: 'Password changed succesfully',}
           });
         }
       } else {
-        res.send({status: 'failed', message: 'All Fields are Required'});
+        res.send({success: false, message: 'All Fields are Required'});
       }
     } else {
       res.status(400).send({
-        status: false,
+        success: false,
         errors: {error: 'Current Password doesnot match',
         }});
     }
@@ -286,7 +286,7 @@ exports.updateProfile = async (req, res, next)=>{
     res.status(200)
         .json({
           success: true,
-          message: 'Profile Updated Successfully',
+          info: {message: 'Profile Updated Successfully'}
         });
   } catch (error) {
     next(error);
@@ -296,7 +296,7 @@ exports.updateProfile = async (req, res, next)=>{
 exports.viewProfile = async (req, res, next)=>{
   try {
     const user = await User.findById(req.user._id);
-    res.status(200).json({status: true, info: user});
+    res.status(200).json({success: true, info: user});
   } catch (error) {
     next(error);
   }
