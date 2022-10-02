@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const categorySchema= new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  slug: {
-    type: String,
-  },
-  parent_category: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Category',
-  },
+    name: {
+        type: String,
+        required: true,
+    },
+    slug: {
+        type: String,
+    },
+    parent_category: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Category',
+    },
 }, {
-  timestamps: true,
+    timestamps: true,
 });
 
 // eslint-disable-next-line

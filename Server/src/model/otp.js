@@ -7,20 +7,20 @@ const moment = require('moment');
 // console.log(moment().isBefore(moment().add(10, "minutes")));
 
 const otpSchema = new mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  OTP: {
-    type: Number,
-    required: true,
-  },
-  expairAt: {
-    type: String,
-    default: moment().add(10, 'minutes').format('hh:mm:ss'),
-  },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    OTP: {
+        type: Number,
+        required: true,
+    },
+    expairAt: {
+        type: String,
+        default: moment().add(10, 'minutes').format('hh:mm:ss'),
+    },
 }, {
-  timestamps: true,
+    timestamps: true,
 });
 
 // eslint-disable-next-line

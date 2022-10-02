@@ -1,105 +1,105 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  actual_price: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  price: {
-    type: Number,
-    required: true,
-    default: 0.0,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  disclaimer: {
-    type: String,
-    required: true,
-  },
-  shelf_life: {
-    type: String,
-    required: true,
-  },
-  customer_care: [
-    {
-      email: {
+    name: {
         type: String,
-      },
-      phone: {
-        type: String,
-      },
+        required: true,
     },
-  ],
-  expary_date: {
-    type: String,
+    actual_price: {
+        type: Number,
+        required: true,
+        default: 0.0,
+    },
+    price: {
+        type: Number,
+        required: true,
+        default: 0.0,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    disclaimer: {
+        type: String,
+        required: true,
+    },
+    shelf_life: {
+        type: String,
+        required: true,
+    },
+    customer_care: [
+        {
+            email: {
+                type: String,
+            },
+            phone: {
+                type: String,
+            },
+        },
+    ],
+    expary_date: {
+        type: String,
     // required: true
-  },
-  // ratings: {
-  //   type: Number,
-  //   default: 0,
-  // },
-  // images: [
-  //     {
-  //         public_id: {
-  //             type: String,
-  //             required: true
-  //         },
-  //         url: {
-  //             type: String,
-  //             required: true
-  //         },
-  //     }
-  // ],
-  category: {
-    type: String,
-    required: true,
-  },
-  stock: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  numOfReviews: {
-    type: Number,
-    default: 0,
-  },
-  // reviews: [
-  //   {
-  //     user: {
-  //       type: mongoose.Schema.ObjectId,
-  //       ref: 'User',
-  //       required: true,
-  //     },
-  //     name: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     rating: {
-  //       type: Number,
-  //       required: true,
-  //     },
-  //     comment: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   },
-  // ],
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+    },
+    // ratings: {
+    //   type: Number,
+    //   default: 0,
+    // },
+    // images: [
+    //     {
+    //         public_id: {
+    //             type: String,
+    //             required: true
+    //         },
+    //         url: {
+    //             type: String,
+    //             required: true
+    //         },
+    //     }
+    // ],
+    category: {
+        type: String,
+        required: true,
+    },
+    stock: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    numOfReviews: {
+        type: Number,
+        default: 0,
+    },
+    // reviews: [
+    //   {
+    //     user: {
+    //       type: mongoose.Schema.ObjectId,
+    //       ref: 'User',
+    //       required: true,
+    //     },
+    //     name: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     rating: {
+    //       type: Number,
+    //       required: true,
+    //     },
+    //     comment: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //   },
+    // ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 module.exports = mongoose.model('Product', productSchema);

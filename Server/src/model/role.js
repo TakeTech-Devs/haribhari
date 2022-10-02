@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
 const roleSchema= new mongoose.Schema({
-  role_id: {
-    type: Number,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  slug: {
-    type: String,
-  },
+    role_id: {
+        type: Number,
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    slug: {
+        type: String,
+    },
 }, {
-  timestamps: true,
+    timestamps: true,
 });
 
 // eslint-disable-next-line
