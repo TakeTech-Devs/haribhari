@@ -13,9 +13,9 @@ try {
 
     categories = new Category();
     categories.name = 'Frozen Veges';
-    categories.slug = 'frozen-veges';
+    categories.slug = 'frozen veges';
 
-    category = await Category.find({'slug': 'frozen-veges'});
+    category = await Category.find({'slug': 'frozen veges'});
     if (category.length === 0) {
       categories.save();
     }
@@ -28,8 +28,6 @@ try {
     if (category.length === 0) {
       categories.save();
     }
-
-    
   };
   run();
 } catch (error) {

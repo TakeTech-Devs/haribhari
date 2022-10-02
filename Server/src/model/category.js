@@ -10,8 +10,8 @@ const categorySchema= new mongoose.Schema({
   },
   parent_category: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Category'
-  }
+    ref: 'Category',
+  },
 }, {
   timestamps: true,
 });

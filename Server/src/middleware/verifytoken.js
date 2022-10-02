@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user._id === req.params.id || req.user.role_id===1) {
+    if (req.user._id === req.params.id || req.user.role==='admin') {
       next();
     } else {
       res.status(403)
@@ -33,7 +33,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.role_id===1) {
+    if (req.user.role==='admin') {
       next();
     } else {
       res.status(403)

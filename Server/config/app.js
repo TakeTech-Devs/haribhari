@@ -17,10 +17,12 @@ app.use(function(req, res, next) {
 });
 
 // Router
-const UserRouter=require('../src/router/authRoute');
+const UserRouter=require('../src/router/AuthRoute');
+const ProductRouter=require('../src/router/ProcuctRoute');
 
 
 app.use('/auth/', UserRouter);
+app.use('/product/', ProductRouter);
 app.use(pageNotFound);
 app.use(errorHandler);
 

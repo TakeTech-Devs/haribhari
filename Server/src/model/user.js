@@ -61,7 +61,7 @@ UserSchema.methods.generateAuthToken = async function() {
   try {
     const token = jwt.sign({
       _id: this._id,
-      role_id: this.role_id,
+      role: this.role,
     },
     secretKey,
     {expiresIn: '1h'});
