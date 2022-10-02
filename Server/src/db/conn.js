@@ -10,8 +10,10 @@ function dbConnect() {
     useUnifiedTopology: true,
     // useFindAndModify:false,
   }).then(()=>{
+    // eslint-disable-next-line
     console.log('Connection Successfully');
   }).catch((e)=>{
+    // eslint-disable-next-line
     console.log('connection error');
   });
 }

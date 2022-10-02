@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const {salt, secretKey} = require('../../config/bootstrap');
 
 const UserSchema = new mongoose.Schema({
-  role_id: {
-    type: Number,
-    default: 2,
+  role: {
+    type: String,
+    default: 'user',
   },
   name: {
     type: String,

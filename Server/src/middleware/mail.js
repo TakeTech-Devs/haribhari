@@ -14,9 +14,10 @@ const mailTransporter = nodemailer.createTransport({
 const sendMail = (mailOptions)=>{
   mailTransporter.sendMail(mailOptions, function(err, data) {
     if (err) {
+      // eslint-disable-next-line
       console.log('Error Occurs');
-      console.log(err);
     } else {
+      // eslint-disable-next-line
       console.log('Email sent successfully');
     }
   });

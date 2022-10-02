@@ -14,16 +14,17 @@ try {
 
     roles = new Role();
     roles.role_id = 2;
-    roles.name = 'Author';
-    roles.slug = 'author';
+    roles.name = 'User';
+    roles.slug = 'user';
 
-    role = await Role.find({'slug': 'author'});
+    role = await Role.find({'slug': 'user'});
     if (role.length === 0) {
       roles.save();
     }
   };
   run();
 } catch (error) {
+  // eslint-disable-next-line
   console.log(error);
 }
 

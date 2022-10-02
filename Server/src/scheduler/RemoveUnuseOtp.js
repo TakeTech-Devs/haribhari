@@ -12,10 +12,12 @@ exports.otpCron = cron.schedule('* * * * *', async () => {
           createdAt: {$lte: new Date(new Date(previousTime).toISOString())},
         });
     if (otp.deletedCount > 0) {
+      // eslint-disable-next-line
       console.log(otp.deletedCount + ' OTP deleted');
       logger.info(otp.deletedCount + ' OTP deleted');
     }
   } catch (error) {
+    // eslint-disable-next-line
     console.log(error);
   }
 });
