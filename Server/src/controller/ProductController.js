@@ -76,13 +76,12 @@ exports.getProduct = async (req, res, next) => {
       const similarProduct = await Product.find(
           {
             $and:
-            [
-              {category: product.category},
-              {name: {$nin: product.name}},
-            ],
-          },{_id:0, name: 1, price: 1, description: 1}
-        ).limit(4);
-          console.log(similarProduct);
+                        [
+                          {category: product.category},
+                          {name: {$nin: product.name}},
+                        ],
+          }, {_id: 0, name: 1, price: 1, description: 1},
+      ).limit(4);
       res.status(200).json({
         success: true,
         info: product,
