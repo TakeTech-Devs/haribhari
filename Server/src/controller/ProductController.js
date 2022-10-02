@@ -80,7 +80,9 @@ exports.getProduct = async (req, res, next) => {
               {category: product.category},
               {name: {$nin: product.name}},
             ],
-          }).limit(4);
+          },{_id:0, name: 1, price: 1, description: 1}
+        ).limit(4);
+          console.log(similarProduct);
       res.status(200).json({
         success: true,
         info: product,

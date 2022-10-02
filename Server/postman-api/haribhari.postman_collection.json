@@ -51,7 +51,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/resendotp/633046c26d2ddee66ed4c4a0",
+					"raw": "{{host}}:{{port}}/auth/resendotp/6330563e41cbea74715fc4fd",
 					"host": [
 						"{{host}}"
 					],
@@ -59,7 +59,7 @@
 					"path": [
 						"auth",
 						"resendotp",
-						"633046c26d2ddee66ed4c4a0"
+						"6330563e41cbea74715fc4fd"
 					]
 				}
 			},
@@ -72,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"otp\":125020\n}",
+					"raw": "{\n    \"otp\":513750\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,7 +80,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/verifyotp/633046c26d2ddee66ed4c4a0",
+					"raw": "{{host}}:{{port}}/auth/verifyotp/6339a17f3aab0ac4d705bdb9",
 					"host": [
 						"{{host}}"
 					],
@@ -88,7 +88,7 @@
 					"path": [
 						"auth",
 						"verifyotp",
-						"633046c26d2ddee66ed4c4a0"
+						"6339a17f3aab0ac4d705bdb9"
 					]
 				}
 			},
@@ -101,7 +101,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@123456\"\n}",
+					"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -316,6 +316,82 @@
 						"auth",
 						"resetpassword",
 						"632ff154fddc88f04e30ce2c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"begun\",\r\n    \"actual_price\": 10,\r\n    \"price\": 6,\r\n    \"description\":\"description4\",\r\n    \"disclaimer\":\"disclaimer4\",\r\n    \"category\":\"Vegetables\",\r\n    \"customer_care_email\":\"info@info.com\",\r\n    \"customer_care_phone\":\"7777777777\",\r\n    \"expary_date\":\"27-03-2075\",\r\n    \"shelf_life\":\"14 month\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/product/6339b2f9c81292bd85eca18d",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product",
+						"6339b2f9c81292bd85eca18d"
 					]
 				}
 			},
