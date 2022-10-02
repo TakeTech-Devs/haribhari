@@ -3,11 +3,11 @@ const router = new express.Router();
 router.use(express.json({}));
 const productController=require('../controller/ProductController');
 const {validateResult} = require('../middleware/ValidateResult');
-const {verifyToken, verifyTokenAndAdmin} = require('../middleware/verifytoken');
+const {verifyToken, verifyTokenAndSeller} = require('../middleware/verifytoken');
 
 router.post(
     '',
-    verifyTokenAndAdmin,
+    verifyTokenAndSeller,
     validateResult,
     productController.createProduct,
 );

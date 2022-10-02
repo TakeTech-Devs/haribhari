@@ -48,6 +48,20 @@ const verifyTokenAndAdmin = (req, res, next) => {
     });
 };
 
+const verifyTokenAndSeller = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.role==='admin' || req.user.role==='seller') {
+            next();
+        } else {
+            res.status(403)
+                .json({
+                    'status': false,
+                    'message': 'You are not alowed to do that!!!!!!',
+                });
+        }
+    });
+};
+
 
 module.exports = {verifyToken, verifyTokenAndAuthorization,
-    verifyTokenAndAdmin};
+    verifyTokenAndAdmin, verifyTokenAndSeller};
