@@ -93,16 +93,17 @@ exports.getProduct = async (req, res, next) => {
     }
 };
 
-exports.findAllProductById = async (req, res, next) => {
+exports.findAllProductByCategory = async (req, res, next) => {
     try {
-        const products = await Product.find();
-        if (products.length === 0) {
+        const category = req.params.category;
+        const procuctByCategory = await Product.find({category: category});
+        if (procuctByCategory.length === 0) {
             res.status(400).json({
                 success: false,
                 errors: {error: 'Product not found'},
             });
         } else {
-            res.status(200).json({success: true, info: products});
+            res.status(200).json({success: true, info: procuctByCategory});
         }
     } catch (error) {
         next(error);

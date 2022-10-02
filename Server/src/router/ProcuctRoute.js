@@ -25,4 +25,11 @@ router.get(
     productController.getProduct,
 );
 
+router.get(
+    '/find/:category',
+    verifyToken,
+    validateResult,
+    productController.findAllProductByCategory,
+);
+
 module.exports = router;

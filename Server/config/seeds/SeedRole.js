@@ -3,7 +3,6 @@ const Role = require('../../src/model/role');
 try {
     const run = async () =>{
         let roles = new Role();
-        roles.role_id = 1;
         roles.name = 'Admin';
         roles.slug = 'admin';
 
@@ -13,11 +12,19 @@ try {
         }
 
         roles = new Role();
-        roles.role_id = 2;
         roles.name = 'User';
         roles.slug = 'user';
 
         role = await Role.find({'slug': 'user'});
+        if (role.length === 0) {
+            roles.save();
+        }
+
+        roles = new Role();
+        roles.name = 'Seller';
+        roles.slug = 'seller';
+
+        role = await Role.find({'slug': 'seller'});
         if (role.length === 0) {
             roles.save();
         }
