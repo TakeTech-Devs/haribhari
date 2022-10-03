@@ -1,5 +1,6 @@
 const Product = require('../model/product');
 const Category = require('../model/category');
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.createProduct = async (req, res, next) => {
     try {
@@ -49,7 +50,9 @@ exports.createProduct = async (req, res, next) => {
 
 exports.findAllProduct = async (req, res, next) => {
     try {
-        const products = await Product.find();
+        const resPerPage = req.query.limit;
+        const apiFeatures = new APIFeatures(Product.find(), req.query).pagination(resPerPage);
+        const products = await apiFeatures.query;
         if (products.length === 0) {
             res.status(400).json({
                 success: false,
