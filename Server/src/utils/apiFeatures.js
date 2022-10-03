@@ -1,4 +1,12 @@
+/**
+ * @class
+ */
 class APIFeatures {
+    /**
+     * @constructor
+     * @param {*} query
+     * @param {*} queryStr
+     */
     constructor(query, queryStr) {
         this.query = query;
         this.queryStr = queryStr;
@@ -26,13 +34,19 @@ class APIFeatures {
 
     //     // Advance filter for price, ratings etc
     //     let queryStr = JSON.stringify(queryCopy)
-    //     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
+    //     queryStr = queryStr
+    // .replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
 
 
     //     this.query = this.query.find(JSON.parse(queryStr));
     //     return this;
     // }
 
+    /**
+     * pagination
+     * @param {Number} resultPerPage
+     * @return{*}
+     */
     pagination(resultPerPage = 10) {
         const currentPage = Number(this.queryStr.page) || 1;
         const skip = resultPerPage * (currentPage - 1);
@@ -41,4 +55,4 @@ class APIFeatures {
     }
 }
 
-module.exports = APIFeatures
+module.exports = APIFeatures;

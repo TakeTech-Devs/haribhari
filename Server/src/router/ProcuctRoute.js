@@ -3,7 +3,8 @@ const router = new express.Router();
 router.use(express.json({}));
 const productController=require('../controller/ProductController');
 const {validateResult} = require('../middleware/ValidateResult');
-const {verifyToken, verifyTokenAndSeller} = require('../middleware/verifytoken');
+const {verifyToken, verifyTokenAndSeller} =
+ require('../middleware/verifytoken');
 
 router.post(
     '',
