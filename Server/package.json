@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development node ./src/index.js",
+    "prestart": "NODE_ENV=development node ./config/seeds/seed.js",
     "start": "NODE_ENV=development nodemon ./src/index.js",
     "seed": "NODE_ENV=development node ./config/seeds/seed.js",
     "lint": "./node_modules/.bin/eslint ./src/index.js ./src/**/**.js ./config/**.js ./config/seeds/**.js",
