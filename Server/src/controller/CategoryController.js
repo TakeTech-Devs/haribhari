@@ -40,10 +40,10 @@ exports.create = async (req, res, next) => {
 exports.findAllCategory = async (req, res, next) => {
     try {
         const resPerPage = req.query.limit;
-        const category = Category.find().populate("parent_category");
+        const category = Category.find().populate('parent_category');
         const apiFeatures = new APIFeatures(category, req.query)
-                .search()
-                .pagination(resPerPage);
+            .search()
+            .pagination(resPerPage);
         const categories = await apiFeatures.query;
         if (categories.length === 0) {
             res.status(400).json({

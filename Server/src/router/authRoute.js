@@ -14,12 +14,12 @@ router.post(
 );
 
 router.put('/verifyotp/:id', authValidator.otpValidator,
-    authController.verifyOtp);
+    validateResult, authController.verifyOtp);
 
 router.get('/resendotp/:id', authController.resendOtp);
 
-router.post('/login', authValidator.logInValidator, authController.logIn,
-    authController.currentSignInAt);
+router.post('/login', authValidator.logInValidator, validateResult,
+    authController.logIn, authController.currentSignInAt);
 
 router.post('/forgotpassword', authValidator.forgotPasswordValidator,
     validateResult, authController.sendUserPasswordReset);

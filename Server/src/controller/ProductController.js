@@ -53,8 +53,8 @@ exports.findAllProduct = async (req, res, next) => {
         const resPerPage = req.query.limit;
         const product = Product.find();
         const apiFeatures = new APIFeatures(product, req.query)
-                .search()
-                .pagination(resPerPage);
+            .search()
+            .pagination(resPerPage);
         const products = await apiFeatures.query;
         if (products.length === 0) {
             res.status(400).json({
