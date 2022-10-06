@@ -15,6 +15,7 @@ function dbConnect() {
     }).catch((e)=>{
     // eslint-disable-next-line
     console.log('connection error');
+        process.exit(1);
     });
 }
 

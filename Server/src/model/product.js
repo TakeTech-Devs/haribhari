@@ -39,12 +39,8 @@ const productSchema = new mongoose.Schema({
     ],
     expary_date: {
         type: String,
-    // required: true
+        required: true,
     },
-    // ratings: {
-    //   type: Number,
-    //   default: 0,
-    // },
     // images: [
     //     {
     //         public_id: {
@@ -70,27 +66,6 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    // reviews: [
-    //   {
-    //     user: {
-    //       type: mongoose.Schema.ObjectId,
-    //       ref: 'User',
-    //       required: true,
-    //     },
-    //     name: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //     rating: {
-    //       type: Number,
-    //       required: true,
-    //     },
-    //     comment: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //   },
-    // ],
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
