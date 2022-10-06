@@ -13,11 +13,12 @@ router.post(
     categoryController.create,
 );
 
-// router.get(
-//     '',
-//     validateResult,
-//     productController.findAllProduct,
-// );
+router.get(
+    '',
+    verifyTokenAndAdmin,
+    validateResult,
+    categoryController.findAllCategory,
+);
 
 // router.get(
 //     '/:id',

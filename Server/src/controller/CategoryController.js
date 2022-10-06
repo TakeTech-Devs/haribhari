@@ -1,4 +1,5 @@
 const Category = require('../model/category');
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.create = async (req, res, next) => {
     try {
@@ -30,6 +31,27 @@ exports.create = async (req, res, next) => {
                 success: false,
                 errors: {error: 'Category Already Exists'},
             });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.findAllCategory = async (req, res, next) => {
+    try {
+        const resPerPage = req.query.limit;
+        const category = Category.find().populate("parent_category");
+        const apiFeatures = new APIFeatures(category, req.query)
+                .search()
+                .pagination(resPerPage);
+        const categories = await apiFeatures.query;
+        if (categories.length === 0) {
+            res.status(400).json({
+                success: false,
+                errors: {error: 'Category not found'},
+            });
+        } else {
+            res.status(200).json({success: true, info: categories});
         }
     } catch (error) {
         next(error);
