@@ -334,7 +334,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"begun\",\r\n    \"actual_price\": 10,\r\n    \"price\": 6,\r\n    \"description\":\"description4\",\r\n    \"disclaimer\":\"disclaimer4\",\r\n    \"category\":\"Vegetables\",\r\n    \"customer_care_email\":\"info@info.com\",\r\n    \"customer_care_phone\":\"7777777777\",\r\n    \"expary_date\":\"27-03-2075\",\r\n    \"shelf_life\":\"14 month\"\r\n}",
+					"raw": "{\r\n    \"name\": \"apple\",\r\n    \"actual_price\": 100,\r\n    \"price\": 69,\r\n    \"description\":\"description5\",\r\n    \"disclaimer\":\"disclaimer5\",\r\n    \"category\":\"fruits\",\r\n    \"customer_care_email\":\"info@info.com\",\r\n    \"customer_care_phone\":\"7777777777\",\r\n    \"expary_date\":\"27-03-2075\",\r\n    \"shelf_life\":\"14 month\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -367,6 +367,23 @@
 					"port": "{{port}}",
 					"path": [
 						"product"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": "apple",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -392,6 +409,106 @@
 					"path": [
 						"product",
 						"6339b2f9c81292bd85eca18d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find product by category",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/product/find/vegetables",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product",
+						"find",
+						"vegetables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"leaf sheaths\",\r\n    \"parent_category\":\"Leaves\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/category",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/category",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"category"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": "Leave",
+							"disabled": true
+						}
 					]
 				}
 			},
