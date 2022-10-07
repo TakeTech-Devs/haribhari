@@ -79,6 +79,8 @@ exports.getProduct = async (req, res, next) => {
                 errors: {error: 'Product not found'},
             });
         } else {
+            // eslint-disable-next-line
+            const discount = ((product.actual_price-product.price)/product.actual_price) * 100;
             const similarProduct = await Product.find(
                 {
                     $and:
@@ -91,6 +93,7 @@ exports.getProduct = async (req, res, next) => {
             res.status(200).json({
                 success: true,
                 info: product,
+                discount: Math.round(discount),
                 similarProduct: similarProduct,
             });
         }
