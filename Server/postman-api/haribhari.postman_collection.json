@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6b2e2229-84fe-449f-9811-1ef860d37713",
+		"_postman_id": "84f75c3d-a535-4b7a-88ae-b64bb01d0f9b",
 		"name": "haribhari",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19768888"
 	},
 	"item": [
 		{
@@ -333,13 +334,29 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"apple\",\r\n    \"actual_price\": 100,\r\n    \"price\": 69,\r\n    \"description\":\"description5\",\r\n    \"disclaimer\":\"disclaimer5\",\r\n    \"category\":\"fruits\",\r\n    \"customer_care_email\":\"info@info.com\",\r\n    \"customer_care_phone\":\"7777777777\",\r\n    \"expary_date\":\"27-03-2075\",\r\n    \"shelf_life\":\"14 month\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "apple",
+							"type": "text"
+						},
+						{
+							"key": "actual_price",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "69",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description6",
+							"type": "text"
 						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{host}}:{{port}}/product",
