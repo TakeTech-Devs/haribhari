@@ -40,10 +40,10 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     images: {
-    // public_id: {
-    //   type: String,
-    //   required: true,
-    // },
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            //   required: true,
+        },
         url: {
             type: String,
             //   required: true,
