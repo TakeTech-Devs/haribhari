@@ -1,9 +1,11 @@
+const fs = require('fs');
 const Product = require('../model/product');
 const Category = require('../model/category');
 const APIFeatures = require('../utils/apiFeatures');
 
 exports.createProduct = async (req, res, next) => {
     try {
+        const imagePath = [];
         const name = req.body.name;
         const actualPrice = req.body.actual_price;
         const price = req.body.price;
@@ -17,6 +19,9 @@ exports.createProduct = async (req, res, next) => {
         const customerCareEmail = req.body.customer_care_email;
         const customerCarePhone = req.body.customer_care_phone;
         if (getCategory.length === 0) {
+            req.files.forEach((element) => {
+                fs.unlinkSync(element.path);
+            });
             return res.status(404)
                 .json({success: false, errors: {error: 'Category Not Exists'}});
         }
@@ -24,6 +29,9 @@ exports.createProduct = async (req, res, next) => {
             email: customerCareEmail,
             phone: customerCarePhone,
         };
+        req.files.forEach((element) => {
+            imagePath.push(element.path);
+        });
         const product = new Product({
             name: name,
             actual_price: actualPrice,
@@ -35,6 +43,7 @@ exports.createProduct = async (req, res, next) => {
             shelf_life: shelfLife,
             expary_date: exparyDate,
             customer_care: customerCare,
+            images: imagePath,
         });
         await product.save();
         res.status(201).json({
@@ -44,6 +53,9 @@ exports.createProduct = async (req, res, next) => {
             },
         });
     } catch (error) {
+        req.files.forEach((element) => {
+            fs.unlinkSync(element.path);
+        });
         next(error);
     }
 };

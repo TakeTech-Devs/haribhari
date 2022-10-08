@@ -39,16 +39,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    images: {
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            //   required: true,
-        },
-        url: {
+    images: [
+        {
             type: String,
-            //   required: true,
+            required: true,
         },
-    },
+    ],
     category: {
         type: String,
         required: true,
@@ -56,10 +52,6 @@ const productSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: true,
-        default: 0,
-    },
-    numOfReviews: {
-        type: Number,
         default: 0,
     },
     user: {

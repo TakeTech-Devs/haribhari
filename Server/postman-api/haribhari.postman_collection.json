@@ -389,10 +389,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": [
-								"/home/dipronil/Pictures/images1.jpeg",
-								"/home/dipronil/Pictures/images.jpeg"
-							]
+							"src": "/home/dipronil/Pictures/Screenshot from 2022-07-05 13-29-58.png"
 						}
 					]
 				},
