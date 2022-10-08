@@ -27,32 +27,28 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    customer_care: [
-        {
-            email: {
-                type: String,
-            },
-            phone: {
-                type: String,
-            },
+    customer_care: {
+        email: {
+            type: String,
         },
-    ],
+        phone: {
+            type: String,
+        },
+    },
     expary_date: {
         type: String,
         required: true,
     },
-    // images: [
-    //     {
-    //         public_id: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         url: {
-    //             type: String,
-    //             required: true
-    //         },
-    //     }
-    // ],
+    images: {
+    // public_id: {
+    //   type: String,
+    //   required: true,
+    // },
+        url: {
+            type: String,
+            //   required: true,
+        },
+    },
     category: {
         type: String,
         required: true,
