@@ -338,7 +338,7 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "apple",
+							"value": "orange",
 							"type": "text"
 						},
 						{
@@ -355,6 +355,44 @@
 							"key": "description",
 							"value": "description6",
 							"type": "text"
+						},
+						{
+							"key": "disclaimer",
+							"value": "disclaimer6",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "fruits",
+							"type": "text"
+						},
+						{
+							"key": "customer_care_email",
+							"value": "info@info.com",
+							"type": "text"
+						},
+						{
+							"key": "customer_care_phone",
+							"value": "7777777777",
+							"type": "text"
+						},
+						{
+							"key": "expary_date",
+							"value": "27-03-2075",
+							"type": "text"
+						},
+						{
+							"key": "shelf_life",
+							"value": "6 ",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": [
+								"/home/dipronil/Pictures/images1.jpeg",
+								"/home/dipronil/Pictures/images.jpeg"
+							]
 						}
 					]
 				},
