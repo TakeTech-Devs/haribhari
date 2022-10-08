@@ -36,7 +36,7 @@ exports.createProduct = async (req, res, next) => {
             expary_date: exparyDate,
         });
         product.customer_care.push(customerCare);
-        await product.save();
+        // await product.save();
         res.status(201).json({
             success: true,
             info: {
