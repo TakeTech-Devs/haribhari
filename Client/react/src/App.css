@@ -1,0 +1,137 @@
+.navbar .container{
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-dark {
+  background-color: #fff;
+}
+.elements{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-link span{
+  padding: 3px 25px;
+  font-size: 20px;
+}
+
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
+
+.row-content {
+  margin:0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height:400px;
+}
+
+.nav-link{
+  background: rgba(157, 230, 1, 1);
+  color: white;
+  margin: 0px;
+  padding: 2px 25px;
+  border-radius: 8px;
+  font-size: 20px;
+
+}
+.searchIcon {
+  height: 33.5px;
+  width: 30px;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  color: rgba(157, 230, 1, 1);
+  float: right;
+  padding-right: 3px;
+  border-right: 1.8px solid black;
+  border-top: 1.8px solid black;
+  border-bottom: 1.8px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.searchInput input{
+  border: 1.8px solid black;
+  border-right: none;
+  width: 450px;
+  padding: 3px 25px;
+  border-radius: 15px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: none;
+  outline: none;
+  align-items: center;
+}
+.searchInput input::placeholder{
+  font-size: 13px;
+  text-align: left;
+}
+.vendor select{
+  border: 3px solid rgba(157, 230, 1, 1);
+  border-radius: 8px;
+  outline: none;
+  padding: 5px 10px;
+}
+.vendor select option{
+  color: grey;
+  font-size: 15px;
+  margin: 3px;
+  padding: 5px;
+}
+.bannerHolder{
+  width: 100%;
+  height: 100vh;
+  width: 100%;
+  background: url('../public/assets/images/banner.webp');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover; 
+}
+.UpperFooter{
+  /* text-align: center; */
+}
+.UpperFooter span{
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background-color: rgba(157, 230, 1, 1);
+  opacity: .2;
+  z-index: -1;
+  overflow-x: hidden;
+}
+.UpperFooter span.firstCircle{
+  transform: translate(150%,-30%);
+  overflow: hidden;
+}
+.UpperFooter span.secondCircle{
+  transform: translate(-180%,40%);
+}
+.UpperFooter span.firstCircle{
+  transform: translate(180%,-50%);
+}
+.footer{
+  width: 100%;
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.87),rgba(0, 0, 0, 0.87)
+  ), url('../public/assets/images/goc.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+}
+.footer .contact{
+  text-align: center;
+}
+.call a{
+  text-decoration: none;
+  color: white;
+}
