@@ -7,6 +7,7 @@ const {verifyToken, verifyTokenAndSeller} =
  require('../middleware/verifytoken');
 const {imageValidateMultiple}=
  require('../middleware/MultipleImageValidator');
+const ProductValidator = require('../validator/ProductValidation');
 
 const multer = require('multer');
 let upload = multer({dest: './asset/image/product/'});
@@ -29,6 +30,7 @@ upload = multer({
 router.post(
     '',
     verifyTokenAndSeller, upload.array('image', 4),
+    ProductValidator.createCategoryValidator,
     validateResult,
     imageValidateMultiple,
     productController.createProduct,

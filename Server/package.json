@@ -8,8 +8,8 @@
     "prestart": "NODE_ENV=development node ./config/seeds/seed.js",
     "start": "NODE_ENV=development nodemon ./src/index.js",
     "seed": "NODE_ENV=development node ./config/seeds/seed.js",
-    "lint": "./node_modules/.bin/eslint ./src/index.js ./src/**/**.js ./config/**.js ./config/seeds/**.js",
-    "lint-fix": "./node_modules/.bin/eslint ./src/index.js ./src/**/**.js ./config/**.js ./config/seeds/**.js --fix",
+    "lint": "eslint ./src/index.js ./src/**/**.js ./config/**.js ./config/seeds/**.js",
+    "lint-fix": "eslint ./src/index.js ./src/**/**.js ./config/**.js ./config/seeds/**.js --fix",
     "prod": "NODE_ENV=development pm2 start ./src/index.js --name blog --watch"
   },
   "author": "",

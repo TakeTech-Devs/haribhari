@@ -5,12 +5,12 @@ const categoryController=require('../controller/CategoryController');
 const {validateResult} = require('../middleware/ValidateResult');
 const {verifyTokenAndAdmin} =
  require('../middleware/verifytoken');
-const categoryValidation = require('../validator/CategoryValidation')
+const categoryValidation = require('../validator/CategoryValidation');
 
 
 router.post(
     '',
-    verifyTokenAndAdmin,categoryValidation.createCategoryValidator,
+    verifyTokenAndAdmin, categoryValidation.createCategoryValidator,
     validateResult,
     categoryController.create,
 );
