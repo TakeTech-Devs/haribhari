@@ -28,7 +28,7 @@ upload = multer({
 
 router.post(
     '',
-    verifyTokenAndSeller, upload.array('image', 12),
+    verifyTokenAndSeller, upload.array('image', 4),
     validateResult,
     imageValidateMultiple,
     productController.createProduct,
