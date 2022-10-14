@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "84f75c3d-a535-4b7a-88ae-b64bb01d0f9b",
+		"_postman_id": "4ae82b53-a211-4e6d-a842-f0785c0044af",
 		"name": "haribhari",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19768888"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -81,7 +80,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/verifyotp/6339a17f3aab0ac4d705bdb9",
+					"raw": "{{host}}:{{port}}/auth/verifyotp/63444d9086a81825c8cd7921",
 					"host": [
 						"{{host}}"
 					],
@@ -89,7 +88,7 @@
 					"path": [
 						"auth",
 						"verifyotp",
-						"6339a17f3aab0ac4d705bdb9"
+						"63444d9086a81825c8cd7921"
 					]
 				}
 			},
@@ -338,7 +337,7 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "orange",
+							"value": "apple",
 							"type": "text"
 						},
 						{
@@ -355,41 +354,6 @@
 							"key": "description",
 							"value": "description6",
 							"type": "text"
-						},
-						{
-							"key": "disclaimer",
-							"value": "disclaimer6",
-							"type": "text"
-						},
-						{
-							"key": "category",
-							"value": "fruits",
-							"type": "text"
-						},
-						{
-							"key": "customer_care_email",
-							"value": "info@info.com",
-							"type": "text"
-						},
-						{
-							"key": "customer_care_phone",
-							"value": "7777777777",
-							"type": "text"
-						},
-						{
-							"key": "expary_date",
-							"value": "27-03-2075",
-							"type": "text"
-						},
-						{
-							"key": "shelf_life",
-							"value": "6 ",
-							"type": "text"
-						},
-						{
-							"key": "image",
-							"type": "file",
-							"src": "/home/dipronil/Pictures/Screenshot from 2022-07-05 13-29-58.png"
 						}
 					]
 				},
@@ -561,6 +525,147 @@
 							"value": "Leave",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"receiver_name\": \"Dipronil Das\",\r\n    \"resident_no\": \"180\",\r\n    \"resident_name\":\"adisaptagram\",\r\n    \"address_type\": \"home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/address",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view all address for user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/address",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get address by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"address",
+						"6348bb3ee79921e53da0d61b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit address",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"resident_no\": \"35/1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"address",
+						"6348bb3ee79921e53da0d61b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete address ",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"address",
+						"6348bb3ee79921e53da0d61b"
 					]
 				}
 			},

@@ -9,14 +9,32 @@ router.post(
     '',
     verifyToken,
     validateResult,
-    addressController.addAddress
+    addressController.addAddress,
 );
 
 router.get(
     '',
     verifyToken,
+    addressController.viewAddress,
+);
+
+router.get(
+    '/:id',
+    verifyToken,
+    addressController.getAddress,
+);
+
+router.put(
+    '/:id',
+    verifyToken,
     validateResult,
-    addressController.viewAddress
+    addressController.editAddress,
+);
+
+router.delete(
+    '/:id',
+    verifyToken,
+    addressController.deleteAddress,
 );
 
 module.exports = router;

@@ -21,12 +21,12 @@ const addressSchema= new mongoose.Schema({
     address_type: {
         type: String,
         enum: ['home', 'work'],
-        default: 'home', 
+        default: 'home',
     },
-    pin:{
+    pin: {
         type: String,
         // required: true,
-    }
+    },
 }, {
     timestamps: true,
 });
