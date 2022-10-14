@@ -39,7 +39,6 @@ function Footer (props){
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>Powered by Alibhiya Softwares</p>
                     <p>© Copyright 2022 Company</p>
                 </div>
             </div>
