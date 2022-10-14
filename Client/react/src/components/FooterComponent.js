@@ -28,12 +28,12 @@ function Footer (props){
                         </div>
                     </div>
                     <div className="text-center mt-5">
-                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/facebook 1.png" alt="" /></a>
-                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/Whatsapp 1.png" alt="" /></a>
-                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/twitter 1.png" alt="" /></a>
-                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/gmail 1.png" alt="" /></a>
-                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/instagram 1.png" alt="" /></a>
-                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/linkedin 1.png" alt="" /></a>
+                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/facebook.png" alt="" /></a>
+                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/whatsapp.png" alt="" /></a>
+                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/twitter.png" alt="" /></a>
+                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/gmail.png" alt="" /></a>
+                        <a className="btn btn-social-icon m-3" href=""><img src="assets/images/icons/instagram.png" alt="" /></a>
+                        <a className="btn btn-social-icon " href=""><img src="assets/images/icons/linkedin.png" alt="" /></a>
                     </div>
                 </div>
             </div>
