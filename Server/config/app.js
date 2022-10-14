@@ -20,11 +20,12 @@ app.use(function(req, res, next) {
 const UserRouter=require('../src/router/AuthRoute');
 const ProductRouter=require('../src/router/ProcuctRoute');
 const CategoryRouter = require('../src/router/CategoryRoute');
-
+const AddressRoute = require('../src/router/AddressRoute');
 
 app.use('/auth/', UserRouter);
 app.use('/product/', ProductRouter);
 app.use('/category/', CategoryRouter);
+app.use('/address/', AddressRoute);
 app.use(pageNotFound);
 app.use(errorHandler);
 

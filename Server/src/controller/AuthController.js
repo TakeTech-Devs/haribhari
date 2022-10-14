@@ -332,11 +332,9 @@ exports.updateProfile = async (req, res, next)=>{
         const user = await User.findById(req.user._id);
         const name = req.body.name || user.name;
         const phone = req.body.phone || user.phone;
-        const address = req.body.address || user.address;
         const updateProfile = {
             name: name,
             phone: phone,
-            address: address,
         };
         await User.findByIdAndUpdate({_id: req.user._id}, updateProfile);
         res.status(200)

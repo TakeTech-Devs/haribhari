@@ -31,11 +31,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    address: [
-        {
-            type: String,
-        },
-    ],
     current_sign_in_at: {
         type: Date,
     },
