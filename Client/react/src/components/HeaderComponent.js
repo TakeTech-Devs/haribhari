@@ -1,63 +1,58 @@
-import React, { Component } from "react";
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Placeholder } from 'reactstrap';
-import {NavLink} from 'react-router-dom';
-import SearchBar from "./SearchBarComponent";
-// import ProductData from "../data.json";
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+	Navbar,
+	NavItem,
+	NavbarToggler,
+	Collapse,
+	NavLink,
+	Nav,
+	NavbarBrand
+} from 'reactstrap';
+import SearchBar from './SearchBarComponent';
 
-class Header extends Component{
+function App() {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            isNavOpen : false
-        };
-        this.toggleNav = this.toggleNav.bind(this);
-    }
+	// Collapse isOpen State
+	const [isOpen, setIsOpen] = React.useState(false);
 
-    toggleNav(){
-        this.setState({
-            isNavOpen: !this.state.isNavOpen
-        });
-    }
-
-    render(){
-        return(
-            <>
-                <Navbar className="headerNavbar" dark expand="md">
-                    <div className="container">
-                        <NavbarToggler dark onClick={this.toggleNav} /> 
-                        <NavbarBrand className="mr-auto" href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="HariBHari" />
-                        </NavbarBrand>
-                        <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar className="elements">
-                                <NavItem className="link">
-                                    <NavLink className="nav-lin" to="">
-                                    <SearchBar placeholder="Search for products"/>  {/* add  data={ProductData} after placeholder for search design  */}
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem className="vendor">
-                                    <select name="vendor" id="">
-                                        <option value="#" default selected>Select Vendor</option>
-                                        <option value="Retail" >Retail</option>
-                                        <option value="Wholesaler" >Wholesaler</option>
-                                    </select>
-                                </NavItem>
-                                <NavItem className="link">
-                                    <NavLink className="nav-link" to="#"><span className="fa fa-sign-in">Login</span></NavLink>
-                                </NavItem>
-                                <NavItem className="link">
-                                    <NavLink className="nav-link" to="#"><span className="fa fa-map-marker">Location</span></NavLink>
-                                </NavItem>
-                                <NavItem className="link">
-                                    <NavLink className="nav-link" to="#"><span className="fa fa-shopping-cart">Add to cart</span></NavLink>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
-                    </div>
-                </Navbar>
-            </>
-        );
-    }
+	return (
+		<div style={{
+			display: 'block', padding: 30
+		}}>
+			<Navbar color="white fixed-top" light expand="md">
+				<NavbarBrand className="ms-5"href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="haribhari" /></NavbarBrand>
+				<NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
+				<Collapse isOpen={isOpen} navbar>
+					<Nav className="justify-content-around align-items-center mr-auto mx-auto" navbar>
+						<NavItem>
+							{/* <NavLink className='searchBar' href="#"> */}
+                                    <SearchBar placeholder="Search for products"/>  {/* add  data={ProductData} after placeholder for search design */} 
+                                
+                            {/* </NavLink> */}
+						</NavItem>
+                        <NavItem className="vendor my-1">
+                            <select name="vendor" id="">
+                                <option value="#" default selected>Select Vendor</option>
+                                <option value="Retail" >Retail</option>
+                                <option value="Wholesaler" >Wholesaler</option>
+                            </select>
+                        </NavItem>
+                                
+						<NavItem className='me-2'>
+							<NavLink href="#" className='px-5 my-1'> Login</NavLink>
+						</NavItem>
+						<NavItem className='me-2'>
+							<NavLink href="#" className='px-5 my-1'> Location<span className="fa fa-map-marker"></span></NavLink>
+						</NavItem>
+                        <NavItem className='me-2'>
+							<NavLink href="#" className='px-5 my-1'> Add to Cart<span className="fa fa-shopping-cart"></span></NavLink>
+						</NavItem>
+					</Nav>
+				</Collapse>
+			</Navbar>
+		</div >
+	);
 }
 
-export default Header; 
+export default App;
