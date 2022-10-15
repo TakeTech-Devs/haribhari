@@ -45,7 +45,7 @@ exports.createProduct = async (req, res, next) => {
             customer_care: customerCare,
             images: imagePath,
         });
-        await product.save();
+        // await product.save();
         res.status(201).json({
             success: true,
             info: {
