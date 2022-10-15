@@ -24,4 +24,18 @@ exports.createCategoryValidator=[
         .isAlpha().withMessage('Category name should be alphabetic')
         .isLength({min: 2, max: 30})
         .withMessage('Category name maximum 30 character'),
+    body('expary_date')
+        .notEmpty().withMessage('Expary date should not be empty')
+        .isDate().withMessage('Expary date must be a date')
+        .toDate().custom((date, {req}) => {
+            const currentDate = new Date();
+            if (currentDate.getTime() >= req.body.expary_date.getTime()) {
+                throw new Error('Expary date must be before current date');
+            }
+            return true;
+        }),
+    body('customer_care_email').isEmail()
+        .withMessage('Please Enter a valid Email')
+        .normalizeEmail({gmail_remove_dots: false})
+        .notEmpty().withMessage('Customer care email should not be empty!'),
 ];
