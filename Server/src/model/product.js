@@ -23,10 +23,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    shelf_life: {
-        type: String,
-        required: true,
-    },
     customer_care: {
         email: {
             type: String,
@@ -36,8 +32,9 @@ const productSchema = new mongoose.Schema({
         },
     },
     expary_date: {
-        type: String,
+        type: Date,
         required: true,
+        // min: new Date()
     },
     images: [
         {

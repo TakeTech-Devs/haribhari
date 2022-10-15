@@ -2,6 +2,7 @@ const fs = require('fs');
 const Product = require('../model/product');
 const Category = require('../model/category');
 const APIFeatures = require('../utils/apiFeatures');
+const moment = require('moment');
 
 exports.createProduct = async (req, res, next) => {
     try {
@@ -14,7 +15,6 @@ exports.createProduct = async (req, res, next) => {
         const user = req.user._id;
         const category = req.body.category.toLowerCase();
         const getCategory = await Category.find({slug: category});
-        const shelfLife = req.body.shelf_life;
         const exparyDate = req.body.expary_date;
         const customerCareEmail = req.body.customer_care_email;
         const customerCarePhone = req.body.customer_care_phone;
@@ -40,12 +40,11 @@ exports.createProduct = async (req, res, next) => {
             disclaimer: disclaimer,
             category: category,
             user: user,
-            shelf_life: shelfLife,
             expary_date: exparyDate,
             customer_care: customerCare,
             images: imagePath,
         });
-        // await product.save();
+        await product.save();
         res.status(201).json({
             success: true,
             info: {
@@ -93,6 +92,7 @@ exports.getProduct = async (req, res, next) => {
         } else {
             // eslint-disable-next-line
             const discount = ((product.actual_price-product.price)/product.actual_price) * 100;
+            const shelfLife = moment(product.expary_date, 'YYYYMMDD').fromNow();
             const similarProduct = await Product.find(
                 {
                     $and:
@@ -102,10 +102,14 @@ exports.getProduct = async (req, res, next) => {
                         ],
                 }, {_id: 0, name: 1, price: 1, description: 1},
             ).limit(4);
+            const metaData = {
+                discount: Math.round(discount),
+                shelfLife: shelfLife,
+            };
             res.status(200).json({
                 success: true,
                 info: product,
-                discount: Math.round(discount),
+                metaData: metaData,
                 similarProduct: similarProduct,
             });
         }
