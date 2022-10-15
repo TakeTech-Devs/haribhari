@@ -28,6 +28,15 @@ try {
         if (role.length === 0) {
             roles.save();
         }
+
+        roles = new Role();
+        roles.name = 'Delivery';
+        roles.slug = 'delivery';
+
+        role = await Role.find({'slug': 'delivery'});
+        if (role.length === 0) {
+            roles.save();
+        }
     };
     run();
 } catch (error) {
