@@ -9,9 +9,9 @@ const verifyToken = (req, res, next) => {
         jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
             if (err) {
                 return res.status(403)
-                    .json({'success': false, 
-                    errors: {'error': 'token is not valid'}
-                });
+                    .json({'success': false,
+                        'errors': {'error': 'token is not valid'},
+                    });
             }
             req.user = user;
             next();
@@ -19,8 +19,8 @@ const verifyToken = (req, res, next) => {
     } else {
         return res.status(401)
             .json({
-                'success': false, 
-                errors:{'error': 'You are not authenticated'}
+                'success': false,
+                'errors': {'error': 'You are not authenticated'},
             });
     }
 };
@@ -33,7 +33,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    errors:{'error': 'You are not alowed to do that'},
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
@@ -47,7 +47,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    errors: {'error': 'You are not alowed to do that'},
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
@@ -61,7 +61,7 @@ const verifyTokenAndSeller = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    errors:{'error': 'You are not alowed to do that'},
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
