@@ -561,6 +561,31 @@
 			"response": []
 		},
 		{
+			"name": "delete category by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/category/633d01c6769e568ae3b5f72d",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"category",
+						"633d01c6769e568ae3b5f72d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add address",
 			"request": {
 				"method": "POST",
