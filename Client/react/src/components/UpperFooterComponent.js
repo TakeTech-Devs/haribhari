@@ -15,7 +15,7 @@ function UpperFooter(props) {
         <div className="container">
             <div className="row justify-content-around mt-5 ">
                 <div className="col-12 col-sm" >
-                  <img src="assets/images/smartphone-call.png" alt="" />
+                  <img src="assets/images/smartphone-call.png" alt="" className="w-75"/>
                 </div>
                 <div className="col-12 col-sm mt-3">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br />
