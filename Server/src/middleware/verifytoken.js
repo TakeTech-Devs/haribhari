@@ -9,7 +9,9 @@ const verifyToken = (req, res, next) => {
         jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
             if (err) {
                 return res.status(403)
-                    .json({'success': false, 'message': 'token is not valid'});
+                    .json({'success': false, 
+                    errors: {'error': 'token is not valid'}
+                });
             }
             req.user = user;
             next();
