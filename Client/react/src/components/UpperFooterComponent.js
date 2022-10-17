@@ -4,7 +4,7 @@ function UpperFooter(props) {
     return (
       <div className="UpperFooter">
         <div className="container">
-            <div className="row justify-content-center mt-5">
+            <div className="row justify-content-center mt-5 col-sm-12">
                 <h1 className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
                 <h4 className="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
                 {/* <span className="firstCircle"></span>

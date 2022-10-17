@@ -21,7 +21,7 @@ function App() {
 			display: 'block', padding: 30
 		}}>
 			<Navbar color="white fixed-top" light expand="md">
-				<NavbarBrand className="ms-5"href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="haribhari" /></NavbarBrand>
+				<NavbarBrand className="col-12 col-sm-1"href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="haribhari" /></NavbarBrand>
 				<NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="justify-content-around align-items-center mr-auto mx-auto" navbar>
