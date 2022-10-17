@@ -58,3 +58,37 @@ exports.findAllCategory = async (req, res, next) => {
     }
 };
 
+exports.deleteCategory = async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const findCategory = await Category.findOne({_id: _id});
+        // console.log(findCategory);return
+        if (!findCategory) {
+            res.status(400).json({
+                success: false,
+                errors: {error: 'Category not found'},
+            });
+        } else {
+            const childCategory = await Category
+                .find({parent_category: findCategory._id});
+            if (childCategory) {
+                await Category.deleteMany({parent_category: findCategory._id});
+            }
+            const deleteCategoy = await Category.findByIdAndDelete({_id: _id});
+            if (deleteCategoy) {
+                res.status(200).json({
+                    success: true,
+                    info: {message: 'Category delete successfully'},
+                });
+            } else {
+                res.status(400).json({
+                    success: false,
+                    errors: {error: 'No Category found'},
+                });
+            }
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+

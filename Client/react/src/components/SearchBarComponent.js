@@ -6,8 +6,9 @@ function SearchBarComponent({placeholder, data}) {
   return (
     <div className='search'>
         <div className="searchInput">
+            <span className="fa fa-search searchIcon"></span>
             <input type="text" placeholder= {placeholder}/>
-            <div className="searchIcon"><span className="fa fa-search"></span></div>
+            {/* <div className="searchIcon"><span className="fa fa-search"></span></div> */}
         </div>
         <div className="dataResult">
 

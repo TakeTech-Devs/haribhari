@@ -25,29 +25,35 @@ function App() {
 				<NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className="justify-content-around align-items-center mr-auto mx-auto" navbar>
-						<NavItem>
+						<NavItem className="me-2">
 							{/* <NavLink className='searchBar' href="#"> */}
                                     <SearchBar placeholder="Search for products"/>  {/* add  data={ProductData} after placeholder for search design */} 
                                 
                             {/* </NavLink> */}
 						</NavItem>
-                        <NavItem className="vendor my-1">
-                            <select name="vendor" id="">
-                                <option value="#" default selected>Select Vendor</option>
-                                <option value="Retail" >Retail</option>
-                                <option value="Wholesaler" >Wholesaler</option>
-                            </select>
-                        </NavItem>
-                                
-						<NavItem className='me-2'>
-							<NavLink href="#" className='px-5 my-1'> Login</NavLink>
-						</NavItem>
-						<NavItem className='me-2'>
-							<NavLink href="#" className='px-5 my-1'> Location<span className="fa fa-map-marker"></span></NavLink>
-						</NavItem>
-                        <NavItem className='me-2'>
-							<NavLink href="#" className='px-5 my-1'> Add to Cart<span className="fa fa-shopping-cart"></span></NavLink>
-						</NavItem>
+						<div className="nav-btns">
+							<div>
+								<NavItem className="vendor my-1 me-2">
+									<select name="vendor" id="">
+										<option value="#" default selected>Select Vendor</option>
+										<option value="Retail" >Retail</option>
+										<option value="Wholesaler" >Wholesaler</option>
+									</select>
+								</NavItem>
+										
+								<NavItem className='me-2'>
+									<NavLink href="#" className='px-md-5 my-1'> Login</NavLink>
+								</NavItem>
+							</div>
+							<div>
+								<NavItem className='me-2'>
+									<NavLink href="#" className='px-md-5 my-1'> Location<span className="fa fa-map-marker"></span></NavLink>
+								</NavItem>
+								<NavItem className='me-2'>
+									<NavLink href="#" className='px-md-5 my-1'> Add to Cart<span className="fa fa-shopping-cart"></span></NavLink>
+								</NavItem>
+							</div>
+						</div>
 					</Nav>
 				</Collapse>
 			</Navbar>

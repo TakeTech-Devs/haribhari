@@ -127,7 +127,6 @@ exports.deleteAddress = async (req, res, next) =>{
                     errors: {error: 'No address found'},
                 });
             }
-            res.status(200).json({success: true, info: address});
         }
     } catch (error) {
         next(error);

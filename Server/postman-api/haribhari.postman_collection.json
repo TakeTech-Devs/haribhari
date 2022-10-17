@@ -352,8 +352,38 @@
 						},
 						{
 							"key": "description",
-							"value": "description6",
+							"value": "description",
 							"type": "text"
+						},
+						{
+							"key": "disclaimer",
+							"value": "disclaimer",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "fruits",
+							"type": "text"
+						},
+						{
+							"key": "expary_date",
+							"value": "2022/10/17",
+							"type": "text"
+						},
+						{
+							"key": "customer_care_email",
+							"value": "info@info.com",
+							"type": "text"
+						},
+						{
+							"key": "customer_care_phone",
+							"value": "9999999999",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/image/img7.jpg"
 						}
 					]
 				},
@@ -417,14 +447,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/product/6339b2f9c81292bd85eca18d",
+					"raw": "{{host}}:{{port}}/product/634af9e2897f9eb4d0404bbe",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
 						"product",
-						"6339b2f9c81292bd85eca18d"
+						"634af9e2897f9eb4d0404bbe"
 					]
 				}
 			},
@@ -531,6 +561,31 @@
 			"response": []
 		},
 		{
+			"name": "delete category by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/category/633d01c6769e568ae3b5f72d",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"category",
+						"633d01c6769e568ae3b5f72d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add address",
 			"request": {
 				"method": "POST",
@@ -599,14 +654,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"raw": "{{host}}:{{port}}/address/634bf3a36785d64944311e0f",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
 						"address",
-						"6348bb3ee79921e53da0d61b"
+						"634bf3a36785d64944311e0f"
 					]
 				}
 			},

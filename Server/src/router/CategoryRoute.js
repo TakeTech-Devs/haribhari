@@ -36,4 +36,10 @@ router.get(
 //     productController.findAllProductByCategory,
 // );
 
+router.delete(
+    '/:id',
+    verifyTokenAndAdmin,
+    categoryController.deleteCategory,
+);
+
 module.exports = router;
