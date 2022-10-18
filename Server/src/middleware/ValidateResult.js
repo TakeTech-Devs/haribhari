@@ -9,8 +9,8 @@ exports.validateResult=(req, res, next)=>{
         //         fs.unlinkSync(element.path);
         //     });
         // }
-        if(req.files){
-            console.log("AA");
+        if (req.files) {
+            console.log('AA');
             req.files.forEach((element) => {
                 fs.unlinkSync(element.path);
             });
