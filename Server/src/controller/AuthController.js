@@ -31,7 +31,7 @@ exports.signUp = async (req, res, next) => {
                 res.status(201)
                     .json({
                         success: true,
-                        info: {message: `OTP Sent To ${user.email}}`},
+                        info: {message: `OTP Sent To ${user.email}`},
                     });
                 logger.info(`OTP Sent To ${user.email}`);
             } else {
