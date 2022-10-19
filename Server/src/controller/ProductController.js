@@ -38,7 +38,7 @@ exports.createProduct = async (req, res, next) => {
             price: price,
             description: description,
             disclaimer: disclaimer,
-            category: category,
+            category: getCategory[0]._id,
             user: user,
             expary_date: exparyDate,
             customer_care: customerCare,

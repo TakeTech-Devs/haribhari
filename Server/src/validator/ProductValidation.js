@@ -1,8 +1,8 @@
 const {body} = require('express-validator');
 
 exports.createCategoryValidator=[
-    body('name').notEmpty().withMessage('Category name should not be empty!')
-        .isAlpha().withMessage('Category name should be alphabetic')
+    body('name').notEmpty().withMessage('Product name should not be empty!')
+        .isString().withMessage('Product name should be alphabetic')
         .isLength({min: 2, max: 30})
         .withMessage('Category name maximum 30 character'),
     body('actual_price').notEmpty()
@@ -12,18 +12,13 @@ exports.createCategoryValidator=[
         .isNumeric().withMessage('Price should be alphabetic'),
     body('description')
         .notEmpty().withMessage('Description should not be empty!')
-        .isAlpha().withMessage('Description should be alphabetic')
+        .isString().withMessage('Description should be alphabetic')
         .isLength({min: 2, max: 100})
         .withMessage('Description maximum 100 character'),
     body('disclaimer').notEmpty().withMessage('Disclaimer should not be empty!')
-        .isAlpha().withMessage('Disclaimer should be alphabetic')
+        .isString().withMessage('Disclaimer should be alphabetic')
         .isLength({min: 2, max: 100})
         .withMessage('Disclaimer maximum 100 character'),
-    body('category')
-        .notEmpty().withMessage('Category name should not be empty!')
-        .isAlpha().withMessage('Category name should be alphabetic')
-        .isLength({min: 2, max: 30})
-        .withMessage('Category name maximum 30 character'),
     body('expary_date')
         .notEmpty().withMessage('Expary date should not be empty')
         .isDate().withMessage('Expary date must be a date')
