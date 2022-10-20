@@ -34,7 +34,6 @@ const productSchema = new mongoose.Schema({
     expary_date: {
         type: Date,
         required: true,
-        // min: new Date()
     },
     images: [
         {
@@ -43,7 +42,8 @@ const productSchema = new mongoose.Schema({
         },
     ],
     category: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: 'Category',
         required: true,
     },
     stock: {

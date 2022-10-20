@@ -2,7 +2,7 @@ const {body} = require('express-validator');
 
 exports.signInValidator=[
     body('name').notEmpty().withMessage('Name should not be empty!')
-        .isAlpha().withMessage('Name should be alphabetic')
+        .isString().withMessage('Name should be alphabetic')
         .isLength({min: 2, max: 15})
         .withMessage('Name maximum 15 character'),
     body('email').isEmail().withMessage('Please Enter a valid Email')

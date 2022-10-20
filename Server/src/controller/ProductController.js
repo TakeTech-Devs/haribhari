@@ -38,7 +38,7 @@ exports.createProduct = async (req, res, next) => {
             price: price,
             description: description,
             disclaimer: disclaimer,
-            category: category,
+            category: getCategory[0]._id,
             user: user,
             expary_date: exparyDate,
             customer_care: customerCare,
@@ -100,7 +100,7 @@ exports.getProduct = async (req, res, next) => {
                             {category: product.category},
                             {name: {$nin: product.name}},
                         ],
-                }, {_id: 0, name: 1, price: 1, description: 1},
+                }, {name: 1, price: 1, description: 1},
             ).limit(4);
             const metaData = {
                 discount: Math.round(discount),

@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const imageValidateMultiple = (req, res, next) => {
-    const expectedFileType = ['png', 'jpg', 'jpeg'];
+    const expectedFileType = ['png', 'jpg', 'jpeg', 'webp'];
     if (req.files.length === 0) {
         return res.status(400).json({
             success: false,
