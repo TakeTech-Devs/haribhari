@@ -6,7 +6,7 @@ import UpperFooter from './UpperFooterComponent';
 import Login from './LoginComponent';
 import Footer from './FooterComponent';
 
-import {Switch, Route, Redirect} from  'react-router-dom';
+import {Route} from  'react-router-dom';
 
 
 class Main extends React.Component {

@@ -154,6 +154,21 @@
   text-decoration: none;
   color: white;
 }
+.category{
+  width: 100%;
+  background: linear-gradient(316.32deg, rgba(157, 230, 1, 0.7) 9.72%, #FFFFFF 87.72%);
+
+}
+.category .card{
+  background: transparent;
+}
+.category .container{
+  max-width: 100%;
+  margin: 0px auto;
+}
+.category .card-title{
+  font-weight: bold;
+}
 @media screen and (max-width:1230px) {
   .bannerHolder{
     margin-top: 7%;
