@@ -138,8 +138,8 @@
 .footer{
   width: 100%;
   background:linear-gradient(
-    rgba(0, 0, 0, 0.87),rgba(0, 0, 0, 0.87)
-  ), url('../public/assets/images/goc.jpg');
+    rgba(0, 0, 0, 0.77),rgba(0, 0, 0, 0.87)
+  ), url('./images/goc.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

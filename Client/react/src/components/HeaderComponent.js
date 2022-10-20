@@ -42,7 +42,7 @@ function App() {
 								</NavItem>
 										
 								<NavItem className='me-2'>
-									<NavLink href="#" className='px-md-5 my-1'> Login</NavLink>
+									<NavLink to="/login" className='px-md-5 my-1'> Login</NavLink>
 								</NavItem>
 							</div>
 							<div>
