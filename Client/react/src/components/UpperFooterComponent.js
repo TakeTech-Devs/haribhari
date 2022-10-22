@@ -81,6 +81,18 @@ function UpperFooter(props) {
                     
                 </div>
             </div>
+            <marquee behavior="rotation" direction="right" loop="2" scrollamount="20" className="my-5">
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+                <img src="assets/images/brand-image.png" alt="" />
+            </marquee>
       </div>
     )
 }
