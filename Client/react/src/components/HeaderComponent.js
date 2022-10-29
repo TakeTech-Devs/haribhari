@@ -81,12 +81,13 @@ class Header extends Component {
 											<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 												<ModalBody>
 													<Button>Login</Button>
+													
 													<div className="or">
 														<span></span>
 														<p>or</p>
 														<span></span>
 													</div>
-													<NavLink>Signup with Email</NavLink>
+													<NavLink href="">Signup with Email</NavLink>
 												</ModalBody>
 											</Modal>
 										</div>

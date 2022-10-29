@@ -161,6 +161,56 @@ marquee img{
 .category .card-title{
   font-weight: bold;
 }
+
+.products{
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.53),rgba(0, 0, 0, 0.53)
+  ), url('./images/bg2.jfif') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.products .row{
+  width: 20%;
+  height: 280px;
+  border-radius: 0px;
+}
+.products .row .card{
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 320px;
+}
+.products .row .card-img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+  object-fit: cover;
+
+}
+
+.products span p{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: larger;
+  background-color: rgba(157, 230, 1, 1);
+  cursor: pointer;
+}
+.products span p:hover{
+  background-color: rgba(100, 141, 11, 1);
+}
+
+.products Button{
+  background-color: rgba(157, 230, 1, 1);
+}
+.products Button:hover{
+  background-color: rgba(157, 230, 1, 0.7);
+}
+
+
 Button.px-md-5{
   background-color: rgba(157, 230, 1, 1);
   border: none;
@@ -195,6 +245,9 @@ Button.px-md-5:hover{
   border: none;
   outline: none;
 }
+.modal-content button:hover{
+  background-color: rgba(100, 141, 11, 1);
+}
 .modal-content .or{
   display: flex;
   align-items: center;
@@ -212,6 +265,7 @@ Button.px-md-5:hover{
 .modal-content .nav-link{
   background-color: transparent;
 }
+
 @media screen and (max-width:1230px) {
   .bannerHolder{
     margin-top: 7%;
