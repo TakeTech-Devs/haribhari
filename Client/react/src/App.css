@@ -228,11 +228,8 @@ Button.px-md-5:hover{
   
 }
 .modal-content{
-  width: 350px;
-  left: 15%;
   background: rgba(120, 166, 21, 1);
   border-radius: 15px;
-  margin-top: 50%;
   padding: 45px 25px;
   text-align: center;
 }
