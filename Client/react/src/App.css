@@ -171,8 +171,7 @@ marquee img{
 }
 
 .products .row{
-  width: 20%;
-  height: 280px;
+  width: 25%;
   border-radius: 0px;
 }
 .products .row .card{
@@ -187,6 +186,10 @@ marquee img{
   border-radius: 0px;
   object-fit: cover;
 
+}
+.products .row .card-body-bottom{
+  margin-top: -80px;
+  padding: 0 12px;
 }
 
 .products span p{
