@@ -7,13 +7,14 @@ function UpperFooter(props) {
             <div className="row justify-content-center mt-5 col-sm-12">
                 <h1 className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
                 <h4 className="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-                {/* <span className="firstCircle"></span>
-                <span className='secondCircle'></span>
-                <span className='thirdCircle'></span> */}
             </div>
-        </div>
-        <div className="container">
-            <div className="row justify-content-around mt-5 ">
+                <div className="circle circle-1"></div>
+                <div className="circle circle-2"></div>
+                <div className="circle circle-3"></div>
+                <div className="circle circle-4"></div>
+        {/* </div>
+        <div className="container"> */}
+            <div className="row mainPart justify-content-around ">
                 <div className="col-12 col-sm" >
                   <img src="assets/images/smartphone-call.png" alt="" className="w-75"/>
                 </div>

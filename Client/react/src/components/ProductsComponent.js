@@ -6,7 +6,7 @@ class Products extends Component {
   render() {
     return (
       <div className="products">
-        <div className="vegetable mx-4 align-items-center">
+        <div className="vegetable mx-4">
           <div className="buttons d-flex justify-content-between mt-5">
             <Button className="mt-5">Vegetables</Button>
             <Button className="mt-5">See More</Button>
@@ -19,7 +19,7 @@ class Products extends Component {
                     src="assets/images/products/tomato.png"
                     class="card-img-top"
                     alt="..."
-                  />
+                    />
                   <div className="card-body-bottom">
                     <CardTitle className="text-left">
                       Lorem ipsum dolor sit amet.
@@ -101,16 +101,16 @@ class Products extends Component {
         </div>
 
         <div className="snacks mx-4">
-          <div className="buttons d-flex justify-content-between">
+          <div className="buttons d-flex justify-content-between mt-5">
             <Button>Snacks</Button>
             <Button>See More</Button>
           </div>
-          <div className="container d-flex flex-wrap align-items-center justify-content-start pt-2 m-auto">
-            <div className="row m-auto">
+          <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
+            <div className="row ">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
-                    src="assets/images/products/vegetables.png"
+                    src="assets/images/products/maida.webp"
                     class="card-img-top"
                     alt="..."
                   />
@@ -127,58 +127,68 @@ class Products extends Component {
               </Card>
             </div>
 
-            <div className="row m-auto">
+            <div className="row ">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Fish.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/eggo.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row ">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Breakfast.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/cornflakes.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+               
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row ">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Snacks.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/lays.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
             <div className="ShiftButton">
@@ -190,81 +200,91 @@ class Products extends Component {
         </div>
 
         <div className="cookies mx-4">
-          <div className="buttons d-flex justify-content-between">
+          <div className="buttons d-flex justify-content-between mt-5">
             <Button>Biscuits & Cookies</Button>
             <Button>See More</Button>
           </div>
-          <div className="container d-flex flex-wrap align-items-center justify-content-start pt-2 m-auto">
-            <div className="row m-auto">
+          <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/vegetables.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/hershey-kisses.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Fish.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/oreo.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Breakfast.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/grocery.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Snacks.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/PastsNoodles.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
             <div className="ShiftButton">
@@ -276,81 +296,91 @@ class Products extends Component {
         </div>
 
         <div className="homeEssentials mx-4">
-          <div className="buttons d-flex justify-content-between">
+          <div className="buttons d-flex justify-content-between mt-5">
             <Button>Home & Office Essentials</Button>
             <Button>See More</Button>
           </div>
-          <div className="container d-flex flex-wrap align-items-center justify-content-start pt-2 m-auto pb-5">
-            <div className="row m-auto">
+          <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto pb-5">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/vegetables.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/move.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Fish.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/stayfree.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Breakfast.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/handwash.webp"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">                
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
-            <div className="row m-auto">
+            <div className="row">
               <Card style={{ border: "none" }}>
-                <CardImg
-                  src="assets/images/products/Snacks.png"
-                  class="card-img-top"
-                  alt="..."
-                />
                 <CardBody>
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet.
-                  </CardTitle>
+                  <CardImg
+                    src="assets/images/products/mask.jpg"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body-bottom">
+              
+                    <CardTitle className="text-left">
+                      Lorem ipsum dolor sit amet.
+                    </CardTitle>
+                    <div className="amount  d-flex justify-content-between align-items-bottom">
+                      <p>$20</p>
+                      <Button>Add</Button>
+                    </div>
+                  </div>
                 </CardBody>
-                <div className="amount  d-flex justify-content-between align-items-bottom">
-                  <p>$20</p>
-                  <Button>Add</Button>
-                </div>
               </Card>
             </div>
             <div className="ShiftButton">

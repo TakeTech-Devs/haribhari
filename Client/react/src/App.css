@@ -115,7 +115,29 @@
   height: 150px;
   margin-top: 50px;
 }
-
+.circle{
+  width: 550px;
+  height: 550px;
+  background: rgba(157, 230, 1, 0.18);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 1;
+}
+.circle-1{
+  transform: translate(155%, -30%);
+}
+.circle-2{
+  transform: translate(-40%, -80%);
+}
+.circle-3{
+  transform: translate(125%, -110%);
+}
+.circle-4{
+  transform: translate(-25%, -118%);
+}
+.mainPart{
+  margin-top: -165%;
+}
 marquee{
   width: 100%;
   height: 80px;
@@ -161,6 +183,9 @@ marquee img{
 .category .card-title{
   font-weight: bold;
 }
+.w-75{
+  z-index: 111111;
+}
 
 .products{
   background: linear-gradient(
@@ -174,22 +199,44 @@ marquee img{
   width: 25%;
   border-radius: 0px;
 }
-.products .row .card{
+
+.products .row .card {
   background-color: transparent;
-  border: none;
   width: 100%;
   height: 320px;
+  border: 1px solid white;
 }
 .products .row .card-img{
   width: 100%;
   height: 100%;
   border-radius: 0px;
+  /* padding: 0px; */
   object-fit: cover;
-
 }
+.products .card-body{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+.products .card-body::before{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.73) 100%);
+}
+
 .products .row .card-body-bottom{
   margin-top: -80px;
   padding: 0 12px;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+  z-index: 1111;
+  opacity: 0.9;
 }
 
 .products span p{
@@ -299,8 +346,10 @@ Button.px-md-5:hover{
   }
 }
 @media screen and (max-width:569px) {
+
   .bannerHolder{
     margin-top: 16%;
+    height: 50vw;
   }
   .speciality .Round {
     width: 200px;
@@ -310,5 +359,6 @@ Button.px-md-5:hover{
     width: 70%;
     height: auto;
     margin-top: 13%;
-}
+  }
+
 }

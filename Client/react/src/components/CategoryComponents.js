@@ -7,7 +7,7 @@ class Category extends Component {
         return(
             <div className="category">
             <div className="container d-flex flex-wrap d-block justify-content-start pt-5 m-auto">
-                <div className="row m-auto m-auto">
+                <div className="row m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/vegetables.png" class="card-img-top" alt="..." />
                         <CardBody>

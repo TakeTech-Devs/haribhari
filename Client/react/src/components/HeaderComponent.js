@@ -41,8 +41,8 @@ class Header extends Component {
 				display: 'block', padding: 30
 			}}>
 				<Navbar color="white fixed-top" light expand="md">
-					<NavbarBrand className="col-12 col-sm-1"href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="haribhari" /></NavbarBrand>
-					<NavbarToggler onClick={this.toggleNav}></NavbarToggler>
+					<NavbarBrand href="/"><img src="assets/images/Logo 1st.png" height="100" width="100" alt="haribhari" /></NavbarBrand>
+					<NavbarToggler  onClick={this.toggleNav}></NavbarToggler>
 					<Collapse isOpen={this.state.isNavOpen} navbar>
 						<Nav className="justify-content-around align-items-center mr-auto mx-auto" navbar>
 							<NavItem className="me-2">
