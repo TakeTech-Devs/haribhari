@@ -6,7 +6,7 @@ class Category extends Component {
     render(){
         return(
             <div className="category">
-            <div className="container d-flex flex-wrap d-block justify-content-start pt-5 m-auto">
+            <div className="container d-flex flex-wrap justify-content-start pt-5 m-auto">
                 <div className="row m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/vegetables.png" class="card-img-top" alt="..." />
@@ -127,7 +127,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-2">
+                <div className="row mx-md-2 m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/babyCare.png" class="card-img-top" alt="..." />
                         <CardBody>
@@ -135,7 +135,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-2">
+                <div className="row mx-md-2 m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Home.png" class="card-img-top" alt="..." />
                         <CardBody>
@@ -143,7 +143,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-2">
+                <div className="row mx-md-2 m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Cleaning.png" class="card-img-top" alt="..." />
                         <CardBody>

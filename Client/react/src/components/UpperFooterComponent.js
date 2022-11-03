@@ -33,7 +33,7 @@ function UpperFooter(props) {
         </div>
         <div className="row  justify-content-center align-items-center mx-5 mt-5">
             <div className="col-12 col-sm mx-5 speciality ">
-                <div className="Round">
+                <div className="Round m-auto">
                     <img src="assets/images/basket.png" alt="basket" />
                 </div> 
 
@@ -41,14 +41,14 @@ function UpperFooter(props) {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, officiis! </p>
             </div>
             <div className="col-12 col-sm mx-5 speciality">
-                <div className="Round">
+                <div className="Round m-auto">
                     <img src="assets/images/fast-delivery.png" alt="delivery" />
                 </div> 
                 <h2>Lorem ipsum dolor</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, officiis! </p>
             </div>
             <div className="col-12 col-sm mx-5 speciality">
-                <div className="Round">
+                <div className="Round m-auto">
                     <img src="assets/images/best-price.png" alt="pricing" />
                 </div> 
                 <h2>Lorem ipsum dolor</h2>

@@ -73,6 +73,18 @@ class Header extends Component {
 													<NavLink href="">Signup with Email</NavLink>
 												</ModalBody>
 											</Modal>
+											{/* <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+												<ModalBody>
+													<Button>Signup</Button>
+													
+													<div className="or">
+														<span></span>
+														<p>or</p>
+														<span></span>
+													</div>
+													<NavLink href="">Login with Email</NavLink>
+												</ModalBody>
+											</Modal> */}
 										</div>
 									</NavItem>
 								</div>

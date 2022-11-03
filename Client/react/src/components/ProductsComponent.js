@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 // import { Link } from 'react-router-dom';
 
+
+
 class Products extends Component {
   render() {
     return (
@@ -12,7 +14,12 @@ class Products extends Component {
             <Button className="mt-5">See More</Button>
           </div>
           <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
-            <div className="row">
+              <div className="ShiftButton">
+                <span>
+                  <p>&#60;</p>
+                </span>
+              </div>
+            <div className="row active">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
@@ -106,7 +113,12 @@ class Products extends Component {
             <Button>See More</Button>
           </div>
           <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
-            <div className="row ">
+            <div className="ShiftButton">
+              <span>
+                <p>&#60;</p>
+              </span>
+            </div>
+            <div className="row active">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
@@ -205,7 +217,12 @@ class Products extends Component {
             <Button>See More</Button>
           </div>
           <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
-            <div className="row">
+            <div className="ShiftButton">
+              <span>
+                <p>&#60;</p>
+              </span>
+            </div>
+            <div className="row active">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
@@ -301,7 +318,12 @@ class Products extends Component {
             <Button>See More</Button>
           </div>
           <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto pb-5">
-            <div className="row">
+            <div className="ShiftButton">
+              <span>
+                <p>&#60;</p>
+              </span>
+            </div>
+            <div className="row active">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
