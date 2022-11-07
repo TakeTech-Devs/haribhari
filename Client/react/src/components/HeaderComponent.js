@@ -1,38 +1,53 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, NavItem, NavbarToggler, Collapse, NavLink, Nav, NavbarBrand, Button,  Modal, ModalBody } from 'reactstrap';
+import { Navbar, NavItem, NavbarToggler, Collapse, NavLink, Nav, NavbarBrand, Button,  Modal, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import SearchBar from './SearchBarComponent';
-import Login from './LoginComponent';
-import Signup from './SignupComponent';
-import OTP from './OtpComponent';
-import ForgetPassword from './ForgetPasswordComponent';
+
 
 class Header extends Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 			isNavOpen : false
-        };
-
-        this.toggleNav = this.toggleNav.bind(this);
-		this.state = {
-			modal:false
 		};
-		this.toggle = this.toggle.bind(this);
-	}
+		this.toggleNav = this.toggleNav.bind(this);
+	
+		this.state = {
+		  	dd1: false,
+		  	login: false,
+		  	login1: false,
+			signup: false,
+			forget: false,
+			otp: false,
+			newPass: false
+			// successMessage: false
 
-	toggle(){
+		};
+		this.dropdownToggle = this.dropdownToggle.bind(this);
+	  }
+
+	  toggleNav(){
+			this.setState({
+				isNavOpen: !this.state.isNavOpen
+			});
+		}
+	  
+	  dropdownToggle() {
 		this.setState({
-			modal: !this.state.modal
+		  dd1: !this.state.dd1
 		});
-	}
-
-	toggleNav(){
-        this.setState({
-            isNavOpen: !this.state.isNavOpen
-        });
-	}
+	  }
+	  closeModal(tabId) {
+		this.setState({
+		  [tabId]: false
+		});
+	  }
+	  showModal(modal) {
+		this.setState({
+		  [modal]: true
+		});
+	  }
 
 	render(){
 
@@ -60,29 +75,121 @@ class Header extends Component {
 											
 									<NavItem className='me-2'>
 										<div>
-											<Button className='px-md-5 my-1' onClick={this.toggle}>Login</Button>
-											<Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+											<Button className='px-md-5 my-1' onClick={this.showModal.bind(this, 'login')}>Login</Button>
+											
+											
+											<Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.login} toggle={this.closeModal.bind(this, 'login')}>
 												<ModalBody>
-													<Button>Login</Button>
+													<Button  onClick={this.showModal.bind(this, 'login1')}>Login</Button>
 													
 													<div className="or">
 														<span></span>
 														<p>or</p>
 														<span></span>
 													</div>
-													<NavLink href="">Signup with Email</NavLink>
+													<Button className='signup' onClick={this.showModal.bind(this, 'signup')} >Signup with Email</Button>
 												</ModalBody>
 											</Modal>
-											{/* <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+											
+											
+											<Modal size='md' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.login1} toggle={this.closeModal.bind(this, 'login1')}>
 												<ModalBody>
-													<Button>Signup</Button>
-													
-													<div className="or">
-														<span></span>
-														<p>or</p>
-														<span></span>
-													</div>
-													<NavLink href="">Login with Email</NavLink>
+													<Form>
+														<FormGroup className='text-left'>
+															<Label for="exampleEmail" className='text-left'>Email</Label>
+															<Input type="email" name="email" id="exampleEmail"/>
+														</FormGroup>
+														<FormGroup>
+															<Label for="examplePassword" className='text-left'>Password</Label>
+															<Input type="password" name="password" id="examplePassword" />
+														</FormGroup>
+														<FormGroup check>
+															<Label check>
+																<Input type="checkbox" />{' '}
+																Remember Me
+															</Label>
+														</FormGroup>
+														<Button className='m-3' >Login</Button><br />
+
+														
+														<Button className='forget' onClick={this.showModal.bind(this, 'forget')} >Forget Password</Button>
+												
+													</Form>
+												</ModalBody>
+											</Modal>
+
+											<Modal size='md' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.signup} toggle={this.closeModal.bind(this, 'signup')}>
+												<ModalBody>
+													<Form className='signupForm'>
+														<FormGroup>
+															<Label for="Name">Name</Label>
+															<Input type="text" name="name" id="Name" />
+														</FormGroup>
+														<FormGroup>
+															<Label for="Email">Email</Label>
+															<Input type="email" name="email" id="Email"/>
+														</FormGroup>
+														<FormGroup>
+															<Label for="Password">Password</Label>
+															<Input type="password" name="password" id="Password" />
+														</FormGroup>
+														<FormGroup>
+															<Label for="ConfirmPassword">Confirm Password</Label>
+															<Input type="password" name="confPassword" id="confPassword"/>
+														</FormGroup>
+														
+														<Button onClick={this.showModal.bind(this, 'otp')}>Next</Button>
+													</Form>
+												</ModalBody>
+											</Modal>
+
+
+											<Modal className='forgetPassword' size='md' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.forget} toggle={this.closeModal.bind(this, 'forget')}>
+												<ModalBody>
+													<Form>
+														<FormGroup>
+															<Label for="Email">Enter Your Email</Label>
+															<Input type="email" name="email" id="Email"/>
+														</FormGroup>
+														<Button onClick={this.showModal.bind(this, 'otp')}>Send OTP</Button>
+													</Form>
+												</ModalBody>
+											</Modal>
+
+
+
+											<Modal className='OTPpage' size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.otp} toggle={this.closeModal.bind(this, 'otp')}>
+												<ModalBody>
+													<Form>
+														<FormGroup>
+															<Label for="OTP">Enter OTP</Label>
+															<Input type="number" name="otp" id="OTP" />
+														</FormGroup>
+														<Button>Submit</Button>
+													</Form>
+												</ModalBody>
+											</Modal>
+
+											<Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.newPass} toggle={this.closeModal.bind(this, 'newPass')}>
+												<ModalBody>
+													<Form>
+														<FormGroup>
+															<Label for="OTP">New Password</Label>
+															<Input type="password" name="newPass" id="OTP" />
+														</FormGroup>
+														<FormGroup>
+															<Label for="OTP">Confirm Password</Label>
+															<Input type="password" name="confiPass" id="OTP" />
+														</FormGroup>
+														<Button>Reset Password</Button>
+													</Form>
+												</ModalBody>
+											</Modal>
+
+
+											{/* <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.successMessage} toggle={this.closeModal.bind(this, 'successMessage')}>
+												<ModalBody>
+													Success!!!!
 												</ModalBody>
 											</Modal> */}
 										</div>

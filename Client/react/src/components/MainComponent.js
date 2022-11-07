@@ -5,7 +5,6 @@ import Category from './CategoryComponents';
 import Products from './ProductsComponent';
 import UpperFooter from './UpperFooterComponent';
 import Footer from './FooterComponent';
-// import Login from './LoginComponent';
 // import {Route} from  'react-router-dom';
 
 

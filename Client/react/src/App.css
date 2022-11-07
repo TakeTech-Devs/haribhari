@@ -124,7 +124,7 @@
   opacity: 1;
 }
 .circle-1{
-  transform: translate(155%, -30%);
+  transform: translate(120%, -30%);
 }
 .circle-2{
   transform: translate(-40%, -80%);
@@ -151,6 +151,8 @@ marquee img{
   /* border: 1px solid; */
   margin: 0px 25px;
 }
+
+
 
 .footer{
   width: 100%;
@@ -277,7 +279,7 @@ Button.px-md-5:hover{
 }
 
 .modal{
-  background-color: rgba(0, 0, 0, 0.73);
+  background-color: rgba(0, 0, 0, 0.33);
   
 }
 .modal-content{
@@ -314,6 +316,40 @@ Button.px-md-5:hover{
 }
 .modal-content .nav-link{
   background-color: transparent;
+}
+
+button.forget{
+  text-decoration: underline;
+}
+button.signup, button.forget{
+  border: none;
+  background: transparent;
+  color: white;
+  font-weight: 500;
+}
+button.signup:hover, button.forget:hover{
+  background-color: transparent;
+  color: rgb(224, 223, 223);
+}
+.form-group input{
+  background: transparent;
+  background: linear-gradient(0deg, rgba(217, 217, 217, 0.47), rgba(217, 217, 217, 0.47)),
+linear-gradient(0deg, #FFFFFF, #FFFFFF);
+
+}
+form label{
+  width: 100%;
+  text-align: left;
+  color: white;
+  font-weight: 500;
+}
+.forgetPassword input, .OTPpage input, .signupForm input{
+  width: 90%;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  outline: none;
+  border-bottom: 1.3px solid white;
 }
 
 @media screen and (max-width:1230px) {
@@ -380,7 +416,7 @@ Button.px-md-5:hover{
 @media screen and (max-width:569px) {
 
   .searchInput input{
-    width: 350px;
+    width: 255px;
   }
   .bannerHolder{
     margin-top: 16%;
