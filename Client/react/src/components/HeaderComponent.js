@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, NavItem, NavbarToggler, Collapse, NavLink, Nav, NavbarBrand, Button,  Modal, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import SearchBar from './SearchBarComponent';
-
+import axios from 'axios';
 
 class Header extends Component {
 
@@ -11,6 +11,10 @@ class Header extends Component {
 		this.state = {
 			isNavOpen : false
 		};
+		this.loginState = {
+			email: '',
+			password: ''
+		  };
 		this.toggleNav = this.toggleNav.bind(this);
 	
 		this.state = {
@@ -25,6 +29,19 @@ class Header extends Component {
 
 		};
 		this.dropdownToggle = this.dropdownToggle.bind(this);
+	  }
+	  onChange = (e) => this.setLoginState({ [e.target.name]: e.target.value });
+
+	  login = () => {
+		axios.post('http://localhost:4000/auth/login', {
+			email: this.loginState.email,
+			password: this.loginState.password
+		}).then((res) => {
+			alert('login successfully')
+		}).catch((err) => {
+			alert('error')
+			console.log(err);
+		})
 	  }
 
 	  toggleNav(){
@@ -109,7 +126,7 @@ class Header extends Component {
 																Remember Me
 															</Label>
 														</FormGroup>
-														<Button className='m-3' >Login</Button><br />
+														<Button className='m-3' disabled={this.state.email == '' && this.state.password == ''} onClick={this.login} >Login</Button><br />
 
 														
 														<Button className='forget' onClick={this.showModal.bind(this, 'forget')} >Forget Password</Button>
