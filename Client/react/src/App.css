@@ -169,6 +169,25 @@ marquee img{
 .footer .contact{
   text-align: center;
 }
+.footer h4{
+  color: rgba(120, 166, 21, 1);
+  font-size: 18px;
+  font-weight: 500;
+}
+.footer ul{
+  list-style: none;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.footer ul li a{
+  text-decoration: none;
+  color: white;  
+}
+.footer ul li:hover a{
+  color: rgba(157, 230, 1, 0.51);
+}
 .call a{
   text-decoration: none;
   color: white;
@@ -350,6 +369,12 @@ form label{
   border-radius: 0px;
   outline: none;
   border-bottom: 1.3px solid white;
+}
+
+.content-container{
+  border: 1px solid transparent;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 .heading h1{
   font-size: 28px;

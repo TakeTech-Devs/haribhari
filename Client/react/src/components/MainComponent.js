@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './HomeComponent';
 import About from './AboutComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import Disclaimer from './DisclaimerComponent';
 import FAQ from './FaqComponent';
 import Grievance from './GrievanceComponent';
@@ -21,6 +23,7 @@ class Main extends React.Component {
   render(){
     return (
       <>
+        <Header/>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
@@ -32,6 +35,7 @@ class Main extends React.Component {
             <Route path="/quality" element={<Quality/>}/>
             <Route path="/vision" element={<Vision/>}/>
           </Routes>
+        <Footer/>
       </>   
     );
   }

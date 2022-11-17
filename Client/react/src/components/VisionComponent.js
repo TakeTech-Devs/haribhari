@@ -3,7 +3,7 @@ import React from "react";
 
 function Vision(props){
         return(
-            <div className="container">
+            <div className="container content-container">
                 <div className="heading">
                     <h1 className="text-center mt-5 mb-3 text-uppercase">Our Vision & Purpose</h1>
                     <h2>Vision :</h2>

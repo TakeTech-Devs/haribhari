@@ -3,7 +3,7 @@ import React from "react";
 
 function Grievance(props){
         return(
-            <div className="container">
+            <div className="container content-container">
                 <div className="heading">
                     <h1 className="text-center mt-5 mb-3 text-uppercase">Grievance Officer</h1>
                     <p>In accordance with Information Technology Act and rules made there under, the name and Contact details of the Grievance Officer are provided below: </p>

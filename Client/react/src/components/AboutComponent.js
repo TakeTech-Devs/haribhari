@@ -3,7 +3,7 @@ import React from "react";
 
 function About(props){
         return(
-            <div className="container">
+            <div className="container content-container">
                 <div className="heading">
                     <h1 className="text-center mt-5 mb-3 text-uppercase">About Us</h1>
                     <p>Hari Bhari would be pioneering food destinations present through physical retail stores, online portal and a mobile application. Our dream is to extend our services to all Asian countries with a diverse product portfolio ranging from fresh fruits and vegetables, Spices, fish and meat, artisanal breads, FMCG and staples.</p>
