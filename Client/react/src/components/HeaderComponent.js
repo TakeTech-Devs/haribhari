@@ -58,8 +58,7 @@ class Header extends Component {
         alert(res.data.info.message);
       })
       .catch((err) => {
-        alert("error");
-        console.log(err);
+        alert(err.response.data.errors.error);
       });
   };
 
