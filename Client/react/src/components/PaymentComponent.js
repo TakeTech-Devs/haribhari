@@ -1,30 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 // import { Link } from 'react-router-dom';
 
 function Payment(props){
         return(
             <div className="container">
                 <div className="heading">
-                    <h1>Payment Policy</h1>
+                    <h1 className="text-center mt-5 mb-3 text-uppercase">Payment Policy</h1>
                     <h2>Payment, Delivery, Returns/Online Purchase Policy</h2>
                     <p>Welcome to www.hari-bhari.com, an online shopping portal of Hari Bhari for the range of retailed products and brands. The terms and conditions contained herein along with the Privacy Policy and Agreement regulating our relationship with regard to the use of www.hari-bhari.com by you.</p>
-                    <br />
+                    
                     <p>You are advised to read this Agreement carefully before entering into a transaction on www.hari-bhari.com. If you accept this agreement, it will be a legally binding agreement between you and HB (for shopping on www.hari-bhari.com).</p>
-                    <br />
+                    
                     <p>Your visit to this website is subject to this Payment, Delivery and Returns Policy and Terms and Conditions and our Privacy Policy available here on this website.</p>
-                    <br />
+                    
                     <p>This website www.hari-bhari.com is operated by Hari Bhari, an ------ based company incorporated under the ------  Companies Act of ---- . The policy is issued by ‘HB’. By placing an order on this site you are entering into a purchase/sale transaction with Hari Bhari---.</p>
-                    <br />
+                    
                     <h2>The Terms and Conditions are enumerated as follows :</h2>
                     <h3>Definitions</h3>
                     <p>"Agreement" means the terms and conditions as detailed herein including all schedules, appendices, annexure, privacy policy and will include the references to this Agreement as amended, supplemented, varied or replaced time to time.</p>
-                    <br />
+                    
                     <p>www.hari-bhari.com or the “Site” means the online shopping portal owned and operated by HB which provides a plat to the shoppers to buy the products listed on the site.</p>
-                    <br />
+                    
                     <p>"Vendor"/"Seller"/”Affiliate” shall mean the person or any legal entity who offers for sale, sells the products or services on www.hari-bhari.com</p>
-                    <br />
+                    
                     <p>"Customer" / "Buyer" shall mean the person or any legal entity who accepts the offer for sale on site by placing an order for and or purchases any products offered for sale on the site.</p>
-                    <br />
+                    
                     <p>"User"/ "You" means and includes you and/or any person or an entity including Vendor/Seller/Affiliate using or accessing the services provided on this Site.</p>
 
                     <h3>Eligibility</h3>
@@ -55,11 +55,14 @@ function Payment(props){
 
                     <h3>Payment Options</h3>
                     <p>The following modes of payments are available:</p>
-                    <p>a) Credit Cards - Master Card, Visa, Diners</p>
-                    <p>b) Debit Cards - Master Card, Visa, Maestro and Rupay</p>
-                    <p>c) Netbanking/Direct Debit payments from select banks. A full list is available at the time of Check Out and prior to making payments for purchases</p>
-                    <p>d) Cash On Delivery. As per the government ruling </p>
-                    <p>e) Card on Delivery As prescribed by the financial institutions issuing the credit or debit cards affiliated with Visa and MasterCard you will required to submit your 16-digit credit card number, card expiry date and 3-digit CVV number (usually on the reverse of the card) when you make your online transaction using your Credit or Debit card. You should also have enrolled your Credit Card with VBV (Verified by Visa) or MSC (MasterCard Secure Code) to complete the transaction. Your credit card or debit card statements will reflect Net Distribution Services Private Limited. In case of third party statements including bank and credit card statements the merchant name may appear in an abbreviated format. To place an order you will need to complete the transaction on the website. This may or may not be assisted with a phone call with the customer service representative. By placing an order on the site or on phone, you are agreeing to the terms and conditions and payment policy published in the appropriate section of the website or affiliated websites where specifically referred to such affiliated websites. After you have made your selection and added products to your shopping cart, you will need to proceed to the checkout section.</p>
+                    <ol type="a">
+                        <li>Credit Cards - Master Card, Visa, Diners</li>
+                        <li>Debit Cards - Master Card, Visa, Maestro and Rupay</li>
+                        <li>Netbanking/Direct Debit payments from select banks. A full list is available at the time of Check Out and prior to making payments for purchases</li>
+                        <li>Cash On Delivery. As per the government ruling </li>
+                        <li>Card on Delivery As prescribed by the financial institutions issuing the credit or debit cards affiliated with Visa and MasterCard you will required to submit your 16-digit credit card number, card expiry date and 3-digit CVV number (usually on the reverse of the card) when you make your online transaction using your Credit or Debit card. You should also have enrolled your Credit Card with VBV (Verified by Visa) or MSC (MasterCard Secure Code) to complete the transaction. Your credit card or debit card statements will reflect Net Distribution Services Private Limited. In case of third party statements including bank and credit card statements the merchant name may appear in an abbreviated format. To place an order you will need to complete the transaction on the website. This may or may not be assisted with a phone call with the customer service representative. By placing an order on the site or on phone, you are agreeing to the terms and conditions and payment policy published in the appropriate section of the website or affiliated websites where specifically referred to such affiliated websites. After you have made your selection and added products to your shopping cart, you will need to proceed to the checkout section.</li>
+                    </ol>
+                    
                     <p>In this section you will be asked for address and other contact information as well as payment related information Once the payment transaction has been successfully completed, your order will be processed on receipt of the funds from the bank or Credit Card Company. It is at this stage that the sale is said to be complete. Thereafter your products will be shipped based on product availability and completion of logistics operations related to the same.</p>
 
                     <h3>Security</h3>

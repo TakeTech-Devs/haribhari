@@ -1,17 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 // import { Link } from 'react-router-dom';
 
 function FAQ(props){
         return(
             <div className="container">
                 <div className="heading">
-                    <h1>Frequently Asked Questions</h1>
+                    <h1 className="text-center mt-5 mb-3 text-uppercase">Frequently Asked Questions</h1>
                     <h2>FAQs for Deliveries</h2>
                     <br />
                     <h3>When does Hari Bhari deliver?</h3>
                     <p>Your products will be delivered upto 3 hours from the time of placing the order. At the time of checkout while placing an order online, you will be provided with option for choosing delivery from the 5 timeslots. Following are the timeslots available for selection and their respective cut off timings while placing an order with us.</p>
                     <br />
-                    <table>
+                    <table className="text-center">
                         <tr>
                             <th>Sr No</th>
                             <th>Timeslots</th>

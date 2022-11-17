@@ -351,7 +351,24 @@ form label{
   outline: none;
   border-bottom: 1.3px solid white;
 }
+.heading h1{
+  font-size: 28px;
+  color: rgba(157, 230, 1, 1);
+}
+.heading h2{
+  font-size: 23px;
+  color: rgba(120, 166, 21, 1);
+}
+.heading h3{
+  font-size: 18px;
+  color: rgba(120, 166, 21, 1);
+}
 
+.heading table{
+  width: 60%;
+  margin: 10px auto;
+  color: rgba(120, 166, 21, 1);
+}
 @media screen and (max-width:1230px) {
   .bannerHolder{
     margin-top: 7%;
