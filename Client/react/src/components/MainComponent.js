@@ -1,12 +1,15 @@
 import React from 'react';
-import Header from './HeaderComponent';
-import Index from './IndexComponent';
-import Category from './CategoryComponents';
-import Products from './ProductsComponent';
-import UpperFooter from './UpperFooterComponent';
-import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import About from './AboutComponent';
+import Disclaimer from './DisclaimerComponent';
+import FAQ from './FaqComponent';
+import Grievance from './GrievanceComponent';
+import Payment from './PaymentComponent';
+import Privacy from './PrivacyComponent';
+import Quality from './QualityComponent';
+import Vision from './VisionComponent';
 import axios from 'axios';
-// import {Route} from  'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from  'react-router-dom';
 
 
 class Main extends React.Component {
@@ -16,17 +19,20 @@ class Main extends React.Component {
     console.log(responese);
   }
   render(){
-  
     return (
-      <div>
-        <Header/>
-        <Index />
-        <Category/>
-        <Products />
-        <UpperFooter/>
-        <Footer/>
-        {/* <Login/> */}
-      </div>
+      <>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="about" element={<About/>}/>
+            <Route path="disclaimer" element={<Disclaimer/>}/>
+            <Route path="faq" element={<FAQ/>}/>
+            <Route path="grievance" element={<Grievance/>}/>
+            <Route path="payment" element={<Payment/>}/>
+            <Route path="privacy" element={<Privacy/>}/>
+            <Route path="quality" element={<Quality/>}/>
+            <Route path="vision" element={<Vision/>}/>
+          </Routes>
+      </>   
     );
   }
 }
