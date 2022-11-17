@@ -52,7 +52,6 @@ class Header extends Component {
         password: this.state.password,
       })
       .then((res) => {
-        console.log(res.data);
         const token = res.data.info.token;
         localStorage.setItem('token', token);
         alert(res.data.info.message);
