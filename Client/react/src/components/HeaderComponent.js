@@ -52,12 +52,12 @@ class Header extends Component {
         password: this.state.password,
       })
       .then((res) => {
-        console.log(res);
-        alert("login successfully");
+        const token = res.data.info.token;
+        localStorage.setItem('token', token);
+        alert(res.data.info.message);
       })
       .catch((err) => {
-        alert("error");
-        console.log(err);
+        alert(err.response.data.errors.error);
       });
   };
 
