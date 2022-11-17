@@ -8,16 +8,11 @@ import Payment from './PaymentComponent';
 import Privacy from './PrivacyComponent';
 import Quality from './QualityComponent';
 import Vision from './VisionComponent';
-import axios from 'axios';
 import {Route, Routes} from  'react-router-dom';
 
 
 class Main extends React.Component {
 
-  async componentDidMount(){
-    const responese = await axios.get('http://localhost:4000/product');
-    console.log(responese);
-  }
   render(){
     return (
       <>

@@ -147,7 +147,7 @@ exports.logIn = async (req, res, next) => {
           logger.info("Login Successfully");
           next();
         } else {
-          res.status(200).json({
+          res.status(401).json({
             success: false,
             errors: { error: "Invalid Credientials" },
           });
