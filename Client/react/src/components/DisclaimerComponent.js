@@ -3,7 +3,7 @@ import React from "react";
 
 function Disclaimer(props){
         return(
-            <div className="container">
+            <div className="container content-container">
                 <div className="heading">
                     <h1 className="text-center mt-5 mb-3 text-uppercase">Disclaimer </h1>
                     <p>Except as otherwise expressly stated with respect to our products, all contents of the site are offered on an "as is" basis without any warranty whatsoever either express or implied. Hari Bhari makes no representations, express or implied, including without limitation implied warranties of merchantability and fitness for a particular purpose.</p>

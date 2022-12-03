@@ -2,7 +2,7 @@ import React from 'react';
 
 function Privacy(props){
     return(
-        <div className="container">
+        <div className="container content-container">
             <div className="heading">
                 <h1 className="text-center mt-5 mb-3 text-uppercase">Privacy Policy</h1>
                 <h2>1. Introduction</h2>

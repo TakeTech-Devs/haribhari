@@ -3,7 +3,7 @@ import React from "react";
 
 function Quality(props){
         return(
-            <div className="container">
+            <div className="container content-container">
                 <div className="heading">
                     <h1 className="text-center mt-5 mb-3 text-uppercase">Hari Bhari Quality Policy</h1>
                     <p>Quality is a word synonymous with Hari Bhari that takes pride in our stringent quality standards. We go to great lengths and take the utmost care and precaution to ensure that each day our customers get nothing but the very best across all our products, services & interactions. Here are a few quality standards that we practice at Hari Bhari.</p>

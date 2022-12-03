@@ -1,13 +1,29 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Footer (props){
     return(
         <div className="footer">
         <div className="container">
             <div className="row justify-content-center mr-auto">         
                 <div className="col-12 col-md-4 col-sm-12 mt-4 mr-5">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h4 className=" text-center mt-4 mb-3 text-uppercase">Useful Links</h4>
+                    <div className="row">
+                        <ul className="text-center"><li><Link to='/'>Home</Link></li></ul>
+                        <div className="links-container d-flex align-items-center justify-content-between">
+                            <ul>
+                                <li><Link to='/about'>About Us</Link></li>
+                                <li><Link to='./disclaimer'>Disclaimer</Link></li>
+                                <li><Link to='/payment'>Payment Policy</Link></li>
+                                <li><Link to='/privacy'>Privacy Policy</Link></li>
+                            </ul>
+                            <ul>
+                                <li><Link to='./quality'>Quality Standards</Link></li>
+                                <li><Link to='./grievance'>Grievance Officer</Link></li>
+                                <li><Link to='./vision'>Our Vision and Purpose</Link></li>
+                                <li><Link to='/faq'>Frequently Asked Questions</Link></li>
+                            </ul>                            
+                        </div>
+                    </div>
                 </div>
                 <div className="col-12 col-md-4 col-sm-12 mt-4">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
