@@ -25,6 +25,7 @@ exports.signUp = async (req, res, next) => {
         await new Otp({
           user_id: user._id,
           OTP: otp,
+          expairAt: moment().add(10, "minutes").format("hh:mm:ss")
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
         // res.setHeader("id", user._id);
@@ -111,6 +112,7 @@ exports.resendOtp = async (req, res, next) => {
         await new Otp({
           user_id: user._id,
           OTP: otp,
+          expairAt: moment().add(10, "minutes").format("hh:mm:ss")
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
         res.status(200).json({

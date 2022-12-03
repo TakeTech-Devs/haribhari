@@ -17,7 +17,6 @@ const otpSchema = new mongoose.Schema({
     },
     expairAt: {
         type: String,
-        default: moment().add(10, "minutes").format("hh:mm:ss"),
     },
 }, {
     timestamps: true,
