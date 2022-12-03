@@ -72,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"otp\":513750\n}",
+					"raw": "{\n    \"otp\":233362\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,7 +80,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/verifyotp/63444d9086a81825c8cd7921",
+					"raw": "{{host}}:{{port}}/auth/verifyotp/634e1b313c55d279059b5c17",
 					"host": [
 						"{{host}}"
 					],
@@ -88,7 +88,7 @@
 					"path": [
 						"auth",
 						"verifyotp",
-						"63444d9086a81825c8cd7921"
+						"634e1b313c55d279059b5c17"
 					]
 				}
 			},
@@ -337,27 +337,27 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "apple",
+							"value": "Cauliflower",
 							"type": "text"
 						},
 						{
 							"key": "actual_price",
-							"value": "100",
+							"value": "50",
 							"type": "text"
 						},
 						{
 							"key": "price",
-							"value": "69",
+							"value": "42",
 							"type": "text"
 						},
 						{
 							"key": "description",
-							"value": "description",
+							"value": "description for tomato",
 							"type": "text"
 						},
 						{
 							"key": "disclaimer",
-							"value": "disclaimer",
+							"value": "disclaimer for tomato",
 							"type": "text"
 						},
 						{
@@ -367,7 +367,7 @@
 						},
 						{
 							"key": "expary_date",
-							"value": "2022/10/17",
+							"value": "2022/12/02",
 							"type": "text"
 						},
 						{
@@ -383,7 +383,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/D:/image/img7.jpg"
+							"src": "/D:/HariBhari/96898729-fresh-cauliflower-isolated-on-white-background.webp"
 						}
 					]
 				},
@@ -436,57 +436,6 @@
 			"response": []
 		},
 		{
-			"name": "get product by id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}:{{port}}/product/634af9e2897f9eb4d0404bbe",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"product",
-						"634af9e2897f9eb4d0404bbe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "find product by category",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}:{{port}}/product/find/vegetables",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"product",
-						"find",
-						"vegetables"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "create category",
 			"request": {
 				"method": "POST",
@@ -499,7 +448,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"leaf sheaths\",\r\n    \"parent_category\":\"Leaves\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Glucose and Mari\",\r\n    \"parent_category\":\"Bakery and Biscuits\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -514,6 +463,31 @@
 					"port": "{{port}}",
 					"path": [
 						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/product/634edb8be72c76d5d4490d93",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product",
+						"634edb8be72c76d5d4490d93"
 					]
 				}
 			},
@@ -613,6 +587,32 @@
 					"port": "{{port}}",
 					"path": [
 						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find product by category",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}:{{port}}/product/find/vegetables",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"product",
+						"find",
+						"vegetables"
 					]
 				}
 			},
@@ -721,6 +721,39 @@
 					"path": [
 						"address",
 						"6348bb3ee79921e53da0d61b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\":\"634edb8be72c76d5d4490d93\",\r\n    \"qty\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/cart",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cart"
 					]
 				}
 			},

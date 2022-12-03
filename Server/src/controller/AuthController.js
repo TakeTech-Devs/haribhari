@@ -27,10 +27,11 @@ exports.signUp = async (req, res, next) => {
           OTP: otp,
         }).save();
         mailTemplate.mailOtp(user.name, user.email, otp);
-        res.setHeader("id", user._id);
+        // res.setHeader("id", user._id);
         res.status(201).json({
           success: true,
           info: { message: `OTP Sent To ${user.email}` },
+          user_id: user._id
         });
         logger.info(`OTP Sent To ${user.email}`);
       } else {
