@@ -1,10 +1,10 @@
 import React from 'react';
-// import Header from './HeaderComponent';
+import Header from './HeaderComponent';
 import Index from './IndexComponent';
 import Category from './CategoryComponents';
 import Products from './ProductsComponent';
 import UpperFooter from './UpperFooterComponent';
-// import Footer from './FooterComponent';
+import Footer from './FooterComponent';
 
 
 class Home extends React.Component {
