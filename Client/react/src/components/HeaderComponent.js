@@ -37,6 +37,18 @@ class Header extends Component {
       newPass: false,
       email: null,
       password: null,
+      signUpform:{
+        name:"",
+        email:"",
+        password:"",
+        confirm_password:""
+      },
+      verifyOtp:{otp:0},
+      user_id:"",
+      loginForm:{
+        email:"",
+        password:""
+      }
       // successMessage: false
     };
     this.dropdownToggle = this.dropdownToggle.bind(this);
@@ -80,6 +92,63 @@ class Header extends Component {
   showModal(modal) {
     this.setState({
       [modal]: true,
+    });
+  }
+
+  signupHandler = (e,val) => {
+    e.preventDefault()
+    console.log(this.state.signUpform);
+
+    axios
+    .post("http://localhost:4000/auth/signup",this.state.signUpform)
+    .then((res) => {
+     console.log(res);
+     //this.showModal.bind(this, "otp")
+     this.setState({
+      otp: true,
+      user_id:res.data.user_id
+    });
+    })
+    .catch((err) => {
+     console.log(err,"error");
+    });
+  }
+  loginHandler = (e,val) => {
+    e.preventDefault()
+    console.log(this.state.signUpform);
+
+    axios
+    .post("http://localhost:4000/auth/login",this.state.loginForm)
+    .then((res) => {
+     console.log(res);
+     alert("login sussesful")
+     return res
+    })
+    .catch((err) => {
+     console.log(err,"error");
+     alert(`${err.errors.error}`)
+    });
+  }
+  verifyOtpHandler = (e,val) => {
+    e.preventDefault()
+    console.log(this.state.otp);
+
+    axios
+    .post(`http://localhost:4000/auth/verifyotp/${this.state.user_id}`,this.state.verifyOtp)
+    .then((res) => {
+     console.log(res);
+    })
+    .catch((err) => {
+     console.log(err,"error");
+    });
+  }
+  onChangeHandler=(e,formName)=>{
+    let {name,value}=e.target;
+    this.setState({
+      [formName]: {
+        ...this.state[formName],
+        [name]:value
+      },
     });
   }
 
@@ -149,6 +218,7 @@ class Header extends Component {
                           </div>
                           <Button
                             className="signup"
+                            type="submit"
                             onClick={this.showModal.bind(this, "signup")}
                           >
                             Signup with Email
@@ -164,7 +234,9 @@ class Header extends Component {
                         toggle={this.closeModal.bind(this, "login1")}
                       >
                         <ModalBody>
-                          <Form>
+                          <Form onSubmit={(e) => {
+                            this.loginHandler(e,"hello")
+                          }}>
                             {/* Login Form */}
                             <FormGroup className="text-left">
                               <Label for="exampleEmail" className="text-left">
@@ -172,10 +244,7 @@ class Header extends Component {
                               </Label>
                               <Input
                                 type="email"
-                                name="email"
-                                id={"login_email" + this.props.id}
-                                value={this.state.name}
-                                onChange={(e) => this.onInputChange(e)}
+                                name="email"  value={this.state.loginForm.email} onChange={(e)=>{this.onChangeHandler(e,"loginForm")}}
                               />
                             </FormGroup>
                             <FormGroup>
@@ -187,10 +256,7 @@ class Header extends Component {
                               </Label>
                               <Input
                                 type="password"
-                                name="password"
-                                id={"login_password" + this.props.id}
-                                value={this.state.name}
-                                onChange={(e) => this.onInputChange(e)}
+                                name="password"  value={this.state.loginForm.password} onChange={(e)=>{this.onChangeHandler(e,"loginForm")}}
                               />
                             </FormGroup>
                             <FormGroup check>
@@ -200,11 +266,7 @@ class Header extends Component {
                             </FormGroup>
                             <Button
                               className="m-3"
-                              disabled={
-                                this.state.email == "" &&
-                                this.state.password == ""
-                              }
-                              onClick={this.login}
+                             type="submit"
                             >
                               Login
                             </Button>
@@ -212,6 +274,7 @@ class Header extends Component {
 
                             <Button
                               className="forget"
+                              type="button"
                               onClick={this.showModal.bind(this, "forget")}
                             >
                               Forget Password
@@ -228,14 +291,16 @@ class Header extends Component {
                         toggle={this.closeModal.bind(this, "signup")}
                       >
                         <ModalBody>
-                          <Form className="signupForm">
+                          <Form className="signupForm" onSubmit={(e) => {
+                            this.signupHandler(e,"hello")
+                          }}>
                             <FormGroup>
                               <Label for="Name">Name</Label>
-                              <Input type="text" name="name" id="Name" />
+                              <Input type="text"id="Name"  name="name"  value={this.state.signUpform.name} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}} />
                             </FormGroup>
                             <FormGroup>
                               <Label for="Email">Email</Label>
-                              <Input type="email" name="email" id="Email" />
+                              <Input type="email" name="email" id="Email" value={this.state.signUpform.email} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}} />
                             </FormGroup>
                             <FormGroup>
                               <Label for="Password">Password</Label>
@@ -243,6 +308,7 @@ class Header extends Component {
                                 type="password"
                                 name="password"
                                 id="Password"
+                                value={this.state.signUpform.password} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}}
                               />
                             </FormGroup>
                             <FormGroup>
@@ -251,12 +317,13 @@ class Header extends Component {
                               </Label>
                               <Input
                                 type="password"
-                                name="confPassword"
+                                name="confirm_password"
                                 id="confPassword"
+                                value={this.state.signUpform.confirm_password} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}}
                               />
                             </FormGroup>
-
-                            <Button onClick={this.showModal.bind(this, "otp")}>
+                            {/* this.showModal.bind(this, "otp") */}
+                            <Button type="submit" >
                               Next
                             </Button>
                           </Form>
@@ -293,12 +360,14 @@ class Header extends Component {
                         toggle={this.closeModal.bind(this, "otp")}
                       >
                         <ModalBody>
-                          <Form>
+                          <Form  onSubmit={(e) => {
+                            this.verifyOtpHandler(e)
+                          }}>
                             <FormGroup>
-                              <Label for="OTP">Enter OTP</Label>
-                              <Input type="number" name="otp" id="OTP" />
+                              <Label for="OTP"  >Enter OTP</Label>
+                              <Input type="number"  name="otp"  value={this.state.verifyOtp.otp} onChange={(e)=>{this.onChangeHandler(e,"verifyOtp")}} id="OTP" />
                             </FormGroup>
-                            <Button>Submit</Button>
+                            <Button type="submit">Submit</Button>
                           </Form>
                         </ModalBody>
                       </Modal>
