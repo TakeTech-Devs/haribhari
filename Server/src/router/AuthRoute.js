@@ -21,6 +21,9 @@ router.get('/resendotp/:id', authController.resendOtp);
 router.post('/login', authValidator.logInValidator, validateResult,
     authController.logIn, authController.currentSignInAt);
 
+router.post('/admin/login', authValidator.logInValidator, validateResult,
+    authController.adminLogin, authController.currentSignInAt);
+
 router.post('/forgotpassword', authValidator.forgotPasswordValidator,
     validateResult, authController.sendUserPasswordReset);
 

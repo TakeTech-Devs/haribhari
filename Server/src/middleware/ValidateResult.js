@@ -10,7 +10,6 @@ exports.validateResult=(req, res, next)=>{
         //     });
         // }
         if (req.files) {
-            console.log('AA');
             req.files.forEach((element) => {
                 fs.unlinkSync(element.path);
             });

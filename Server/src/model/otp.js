@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
+// const moment = require('moment');
 // const downloadDate = moment().format("DD-MM-YYYY hh:mm:ss");
 // console.log(typeof downloadDate);
 // console.log(moment().format("hh:mm:ss"));
-console.log(moment().add(10, "minutes").format("hh:mm:ss"));
+// console.log(moment().add(10, 'minutes').format('hh:mm:ss'));
 // console.log(moment().isBefore(moment().add(10, "minutes")));
 
 const otpSchema = new mongoose.Schema({

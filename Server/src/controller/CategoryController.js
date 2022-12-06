@@ -6,20 +6,20 @@ exports.create = async (req, res, next) => {
         let parentId;
         const name = req.body.name;
         const slug = req.body.name.toLowerCase();
-        const getCategory = await Category.findOne({ slug: slug });
+        const getCategory = await Category.findOne({slug: slug});
         if (!getCategory) {
             const parentCategory = req.body.parent_category;
             if (parentCategory) {
                 const parentCategorySlug = parentCategory.toLowerCase();
                 const getParentCategory = await Category
-                    .findOne({ slug: parentCategorySlug });
+                    .findOne({slug: parentCategorySlug});
                 if (!getParentCategory) {
                     return res.status(404).json({
                         success: false,
-                        errors: { error: 'Parent category does not exists' },
+                        errors: {error: 'Parent category does not exists'},
                     });
                 } else {
-                    parentId = getParentCategory._id
+                    parentId = getParentCategory._id;
                 }
             }
             const category = new Category({
@@ -30,12 +30,12 @@ exports.create = async (req, res, next) => {
             await category.save();
             res.status(201).json({
                 success: true,
-                info: { message: 'Category Created Successfully' },
+                info: {message: 'Category Created Successfully'},
             });
         } else {
             res.status(404).json({
                 success: false,
-                errors: { error: 'Category Already Exists' },
+                errors: {error: 'Category Already Exists'},
             });
         }
     } catch (error) {
@@ -54,10 +54,10 @@ exports.findAllCategory = async (req, res, next) => {
         if (categories.length === 0) {
             res.status(400).json({
                 success: false,
-                errors: { error: 'Category not found' },
+                errors: {error: 'Category not found'},
             });
         } else {
-            res.status(200).json({ success: true, info: categories });
+            res.status(200).json({success: true, info: categories});
         }
     } catch (error) {
         next(error);
@@ -67,29 +67,29 @@ exports.findAllCategory = async (req, res, next) => {
 exports.deleteCategory = async (req, res, next) => {
     try {
         const _id = req.params.id;
-        const findCategory = await Category.findOne({ _id: _id });
+        const findCategory = await Category.findOne({_id: _id});
         // console.log(findCategory);return
         if (!findCategory) {
             res.status(400).json({
                 success: false,
-                errors: { error: 'Category not found' },
+                errors: {error: 'Category not found'},
             });
         } else {
             const childCategory = await Category
-                .find({ parent_category: findCategory._id });
+                .find({parent_category: findCategory._id});
             if (childCategory) {
-                await Category.deleteMany({ parent_category: findCategory._id });
+                await Category.deleteMany({parent_category: findCategory._id});
             }
-            const deleteCategoy = await Category.findByIdAndDelete({ _id: _id });
+            const deleteCategoy = await Category.findByIdAndDelete({_id: _id});
             if (deleteCategoy) {
                 res.status(200).json({
                     success: true,
-                    info: { message: 'Category delete successfully' },
+                    info: {message: 'Category delete successfully'},
                 });
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: { error: 'No Category found' },
+                    errors: {error: 'No Category found'},
                 });
             }
         }
