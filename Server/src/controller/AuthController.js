@@ -63,7 +63,7 @@ exports.verifyOtp = async (req, res, next) => {
     const otpInfo = await Otp.findOne({ user_id: _id }).sort({ createdAt: -1 });
     if (
       otpInfo &&
-      otp === otpInfo.OTP &&
+      otp == otpInfo.OTP &&
       moment().format("hh:mm:ss") <= otpInfo.expairAt
     ) {
       await User.findByIdAndUpdate({ _id: _id }, { email_verified: true }).sort(
