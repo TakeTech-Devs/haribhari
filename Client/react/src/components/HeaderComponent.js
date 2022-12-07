@@ -37,17 +37,17 @@ class Header extends Component {
       newPass: false,
       email: null,
       password: null,
-      signUpform:{
-        name:"",
-        email:"",
-        password:"",
-        confirm_password:""
+      signUpform: {
+        name: "",
+        email: "",
+        password: "",
+        confirm_password: ""
       },
-      verifyOtp:{otp:0},
-      user_id:"",
-      loginForm:{
-        email:"",
-        password:""
+      verifyOtp: { otp: 0 },
+      user_id: "",
+      loginForm: {
+        email: "",
+        password: ""
       }
       // successMessage: false
     };
@@ -95,64 +95,65 @@ class Header extends Component {
     });
   }
 
-  signupHandler = (e,val) => {
+  signupHandler = (e, val) => {
     e.preventDefault()
     console.log(this.state.signUpform);
 
     axios
-    .post("http://localhost:4000/auth/signup",this.state.signUpform)
-    .then((res) => {
-     console.log(res);
-     //this.showModal.bind(this, "otp")
-     this.setState({
-      otp: true,
-      user_id:res.data.user_id
-    });
-    })
-    .catch((err) => {
-     console.log(err,"error");
-    });
+      .post("http://localhost:4000/auth/signup", this.state.signUpform)
+      .then((res) => {
+        console.log(res);
+        //this.showModal.bind(this, "otp")
+        this.setState({
+          otp: true,
+          user_id: res.data.user_id
+        });
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
   }
-  loginHandler = (e,val) => {
+  loginHandler = (e, val) => {
     e.preventDefault()
     console.log(this.state.signUpform);
 
     axios
-    .post("http://localhost:4000/auth/login",this.state.loginForm)
-    .then((res) => {
-     console.log(res);
-     alert("login sussesful")
-     return res
-    })
-    .catch((err) => {
-     console.log(err,"error");
-     alert(`${err.errors.error}`)
-    });
+      .post("http://localhost:4000/auth/login", this.state.loginForm)
+      .then((res) => {
+        console.log(res);
+        alert("login sussesful")
+        return res
+      })
+      .catch((err) => {
+        console.log(err, "error");
+        alert(`${err.errors.error}`)
+      });
   }
-  verifyOtpHandler = (e,val) => {
+  verifyOtpHandler = (e, val) => {
     e.preventDefault()
     console.log(this.state.otp);
 
     axios
-    .post(`http://localhost:4000/auth/verifyotp/${this.state.user_id}`,this.state.verifyOtp)
-    .then((res) => {
-     console.log(res);
-    })
-    .catch((err) => {
-     console.log(err,"error");
-    });
+      .put(`http://localhost:4000/auth/verifyotp/${this.state.user_id}`, { otp: Number(this.state.verifyOtp.otp) })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
   }
-  onChangeHandler=(e,formName)=>{
-    let {name,value}=e.target;
+  onChangeHandler = (e, formName) => {
+    let { name, value } = e.target;
     this.setState({
       [formName]: {
         ...this.state[formName],
-        [name]:value
+        [name]: value
       },
     });
   }
 
   render() {
+    console.log(this.state, "dsfds")
     return (
       <div
         style={{
@@ -235,7 +236,7 @@ class Header extends Component {
                       >
                         <ModalBody>
                           <Form onSubmit={(e) => {
-                            this.loginHandler(e,"hello")
+                            this.loginHandler(e, "hello")
                           }}>
                             {/* Login Form */}
                             <FormGroup className="text-left">
@@ -244,7 +245,7 @@ class Header extends Component {
                               </Label>
                               <Input
                                 type="email"
-                                name="email"  value={this.state.loginForm.email} onChange={(e)=>{this.onChangeHandler(e,"loginForm")}}
+                                name="email" value={this.state.loginForm.email} onChange={(e) => { this.onChangeHandler(e, "loginForm") }}
                               />
                             </FormGroup>
                             <FormGroup>
@@ -256,7 +257,7 @@ class Header extends Component {
                               </Label>
                               <Input
                                 type="password"
-                                name="password"  value={this.state.loginForm.password} onChange={(e)=>{this.onChangeHandler(e,"loginForm")}}
+                                name="password" value={this.state.loginForm.password} onChange={(e) => { this.onChangeHandler(e, "loginForm") }}
                               />
                             </FormGroup>
                             <FormGroup check>
@@ -266,7 +267,7 @@ class Header extends Component {
                             </FormGroup>
                             <Button
                               className="m-3"
-                             type="submit"
+                              type="submit"
                             >
                               Login
                             </Button>
@@ -292,15 +293,15 @@ class Header extends Component {
                       >
                         <ModalBody>
                           <Form className="signupForm" onSubmit={(e) => {
-                            this.signupHandler(e,"hello")
+                            this.signupHandler(e, "hello")
                           }}>
                             <FormGroup>
                               <Label for="Name">Name</Label>
-                              <Input type="text"id="Name"  name="name"  value={this.state.signUpform.name} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}} />
+                              <Input type="text" id="Name" name="name" value={this.state.signUpform.name} onChange={(e) => { this.onChangeHandler(e, "signUpform") }} />
                             </FormGroup>
                             <FormGroup>
                               <Label for="Email">Email</Label>
-                              <Input type="email" name="email" id="Email" value={this.state.signUpform.email} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}} />
+                              <Input type="email" name="email" id="Email" value={this.state.signUpform.email} onChange={(e) => { this.onChangeHandler(e, "signUpform") }} />
                             </FormGroup>
                             <FormGroup>
                               <Label for="Password">Password</Label>
@@ -308,7 +309,7 @@ class Header extends Component {
                                 type="password"
                                 name="password"
                                 id="Password"
-                                value={this.state.signUpform.password} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}}
+                                value={this.state.signUpform.password} onChange={(e) => { this.onChangeHandler(e, "signUpform") }}
                               />
                             </FormGroup>
                             <FormGroup>
@@ -319,7 +320,7 @@ class Header extends Component {
                                 type="password"
                                 name="confirm_password"
                                 id="confPassword"
-                                value={this.state.signUpform.confirm_password} onChange={(e)=>{this.onChangeHandler(e,"signUpform")}}
+                                value={this.state.signUpform.confirm_password} onChange={(e) => { this.onChangeHandler(e, "signUpform") }}
                               />
                             </FormGroup>
                             {/* this.showModal.bind(this, "otp") */}
@@ -360,12 +361,12 @@ class Header extends Component {
                         toggle={this.closeModal.bind(this, "otp")}
                       >
                         <ModalBody>
-                          <Form  onSubmit={(e) => {
+                          <Form onSubmit={(e) => {
                             this.verifyOtpHandler(e)
                           }}>
                             <FormGroup>
                               <Label for="OTP"  >Enter OTP</Label>
-                              <Input type="number"  name="otp"  value={this.state.verifyOtp.otp} onChange={(e)=>{this.onChangeHandler(e,"verifyOtp")}} id="OTP" />
+                              <Input type="number" name="otp" value={this.state.verifyOtp.otp} onChange={(e) => { this.onChangeHandler(e, "verifyOtp") }} id="OTP" />
                             </FormGroup>
                             <Button type="submit">Submit</Button>
                           </Form>
