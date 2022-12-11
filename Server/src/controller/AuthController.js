@@ -140,7 +140,7 @@ exports.logIn = async (req, res, next) => {
         const {email, password} = req.body;
         const emailuser = await User.findOne({email: email});
         if (emailuser) {
-            if(emailuser.active){
+            if (emailuser.active) {
                 if (emailuser.email_verified) {
                     const isValid = await bcrypt
                         .compare(password, emailuser.password);
@@ -172,7 +172,6 @@ exports.logIn = async (req, res, next) => {
                     errors: {error: `You are Blocked. Please contact admin`},
                 });
             }
-            
         } else {
             res
                 .status(400)
@@ -380,7 +379,7 @@ exports.adminLogin = async (req, res, next) => {
         const {email, password} = req.body;
         const emailuser = await User.findOne({email: email});
         if (emailuser) {
-            if(emailuser.active){
+            if (emailuser.active) {
                 if (emailuser.email_verified) {
                     if (emailuser.role !== 'admin') {
                         return res.status(400).json({
@@ -432,7 +431,7 @@ exports.adminLogin = async (req, res, next) => {
 exports.viewUser = async (req, res, next) => {
     try {
         const getUserInfo = await User.find({role: 'user'});
-        if(getUserInfo.length === 0){
+        if (getUserInfo.length === 0) {
             res.status(404).json({
                 success: false,
                 errors: {error: 'Users not found'},
@@ -441,44 +440,129 @@ exports.viewUser = async (req, res, next) => {
             res.status(200).json({success: true, info: getUserInfo});
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
+
+exports.viewVender = async (req, res, next) => {
+    try {
+        const getVenderInfo = await User.find({role: 'vender'});
+        if (getVenderInfo.length === 0) {
+            res.status(404).json({
+                success: false,
+                errors: {error: 'Users not found'},
+            });
+        } else {
+            res.status(200).json({success: true, info: getVenderInfo});
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.viewAdmin = async (req, res, next) => {
+    try {
+        const getAdminInfo = await User.find({role: 'admin'});
+        if (getAdminInfo.length === 0) {
+            res.status(404).json({
+                success: false,
+                errors: {error: 'Users not found'},
+            });
+        } else {
+            res.status(200).json({success: true, info: getAdminInfo});
+        }
+    } catch (error) {
+        next(error);
+    }
+};
 
 exports.blockUser = async (req, res, next) => {
     try {
         const _id = req.params.id;
         const getUser = await User.findOne({_id: _id});
-        if(!getUser){
+        if (!getUser) {
             res.status(404).json({
                 success: false,
                 errors: {error: 'Users not found'},
             });
         } else {
-            const blockUser = await User.update({_id: _id}, {$set:{active: false}})
-            res.status(200).json({success: true, info: {message: 'User Blocked'}});
+            await User.update({_id: _id}, {$set: {active: false}});
+            res.status(200).json({success: true, info:
+                 {message: 'User Blocked'}});
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.unBlockUser = async (req, res, next) => {
     try {
         const _id = req.params.id;
         const getUser = await User.findOne({_id: _id});
-        if(!getUser){
+        if (!getUser) {
             res.status(404).json({
                 success: false,
                 errors: {error: 'Users not found'},
             });
         } else {
-            const blockUser = await User.update({_id: _id}, {$set:{active: true}})
-            res.status(200).json({success: true, info: {message: 'User Unblocked'}});
+            await User.update({_id: _id},
+                {$set: {active: true}});
+            res.status(200).json({success: true,
+                info: {message: 'User Unblocked'}});
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
-exports.addVender 
+exports.addVenderAdmin = async (req, res, next) => {
+    try {
+        try {
+            // eslint-disable-next-line
+            const { name, email, password, confirm_password } = req.body;
+            const role = req.body.role;
+            const unHashedPassword = password;
+            const emailuser = await User.findOne({email: email});
+            if (!emailuser) {
+                // eslint-disable-next-line
+              if (password == confirm_password) {
+                    const user = new User({
+                        name: name,
+                        email: email,
+                        password: password,
+                        role: role,
+                        email_verified: true,
+                        phone_verified: true,
+                    });
+                    await user.save();
+                    mailTemplate
+                        .createVendorAdmin(role, name, email, unHashedPassword);
+                    res.status(201).json({
+                        success: true,
+                        info: {message: `Vender Created.`},
+                        user_id: user._id,
+                    });
+                    logger.info(`Vender Created.`);
+                } else {
+                    res.status(400).json({
+                        success: false,
+                        errors: {error: 'Password Mismatched'},
+                    });
+                    logger.error('Password Mismatched');
+                }
+            } else {
+                res.status(404).json({
+                    success: false,
+                    errors: {
+                        error: 'User Already Exists',
+                    },
+                });
+                logger.error('User Already Exists');
+            }
+        } catch (error) {
+            next(error);
+        }
+    } catch (error) {
+        next(error);
+    }
+};

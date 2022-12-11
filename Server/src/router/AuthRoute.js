@@ -43,9 +43,17 @@ router.put('/updateprofile', verifyToken,
     validateResult, authController.updateProfile);
 
 router.get('/users', verifyTokenAndAdmin, authController.viewUser);
+
 router.put('/user/block/:id', verifyTokenAndAdmin, authController.blockUser);
-router.put('/user/unblock/:id', verifyTokenAndAdmin, authController.unBlockUser);
 
+router.put('/user/unblock/:id', verifyTokenAndAdmin,
+    authController.unBlockUser);
 
+router.post('/addvendoradmin', verifyTokenAndAdmin,
+    authController.addVenderAdmin);
+
+router.get('/venders', verifyTokenAndAdmin, authController.viewVender);
+
+router.get('/admins', verifyTokenAndAdmin, authController.viewAdmin);
 
 module.exports = router;

@@ -21,4 +21,14 @@ const promotedAdminNotification = (name, email) =>{
     });
 };
 
-module.exports = {mailOtp, promotedAdminNotification};
+const createVendorAdmin = (role, name, email, password) => {
+    sendMail({
+        from: emailId,
+        to: email,
+        subject: `You are, ${role}`,
+        html: `<h5>Hi ${name},</h5><p>Your login credentials,
+      email: ${email} and password: ${password}. Please Change Password.</p>`,
+    });
+};
+
+module.exports = {mailOtp, promotedAdminNotification, createVendorAdmin};
