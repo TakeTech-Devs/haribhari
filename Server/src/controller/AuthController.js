@@ -140,31 +140,39 @@ exports.logIn = async (req, res, next) => {
         const {email, password} = req.body;
         const emailuser = await User.findOne({email: email});
         if (emailuser) {
-            if (emailuser.email_verified) {
-                const isValid = await bcrypt
-                    .compare(password, emailuser.password);
-                const token = await emailuser.generateAuthToken();
-                if (isValid) {
-                    res.status(200).json({
-                        success: true,
-                        info: {message: 'Login Successfully', token: token},
-                    });
-                    logger.info('Login Successfully');
-                    next();
+            if(emailuser.active){
+                if (emailuser.email_verified) {
+                    const isValid = await bcrypt
+                        .compare(password, emailuser.password);
+                    const token = await emailuser.generateAuthToken();
+                    if (isValid) {
+                        res.status(200).json({
+                            success: true,
+                            info: {message: 'Login Successfully', token: token},
+                        });
+                        logger.info('Login Successfully');
+                        next();
+                    } else {
+                        res.status(401).json({
+                            success: false,
+                            errors: {error: 'Invalid Credientials'},
+                        });
+                        logger.error('Invalid Credientials');
+                    }
                 } else {
-                    res.status(401).json({
+                    res.status(400).json({
                         success: false,
-                        errors: {error: 'Invalid Credientials'},
+                        errors: {error: 'Please Veriry Your Account'},
                     });
-                    logger.error('Invalid Credientials');
+                    logger.error('Please Veriry Your Account');
                 }
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: {error: 'Please Veriry Your Account'},
+                    errors: {error: `You are Blocked. Please contact admin`},
                 });
-                logger.error('Please Veriry Your Account');
             }
+            
         } else {
             res
                 .status(400)
@@ -372,36 +380,43 @@ exports.adminLogin = async (req, res, next) => {
         const {email, password} = req.body;
         const emailuser = await User.findOne({email: email});
         if (emailuser) {
-            if (emailuser.email_verified) {
-                if (emailuser.role !== 'admin') {
-                    return res.status(400).json({
-                        success: false,
-                        errors: {error: 'You have not admin authorized'},
-                    });
-                }
-                const isValid = await bcrypt
-                    .compare(password, emailuser.password);
-                const token = await emailuser.generateAuthToken();
-                if (isValid) {
-                    res.status(200).json({
-                        success: true,
-                        info: {message: 'Login Successfully', token: token},
-                    });
-                    logger.info('Login Successfully');
-                    next();
+            if(emailuser.active){
+                if (emailuser.email_verified) {
+                    if (emailuser.role !== 'admin') {
+                        return res.status(400).json({
+                            success: false,
+                            errors: {error: 'You have not admin authorized'},
+                        });
+                    }
+                    const isValid = await bcrypt
+                        .compare(password, emailuser.password);
+                    const token = await emailuser.generateAuthToken();
+                    if (isValid) {
+                        res.status(200).json({
+                            success: true,
+                            info: {message: 'Login Successfully', token: token},
+                        });
+                        logger.info('Login Successfully');
+                        next();
+                    } else {
+                        res.status(401).json({
+                            success: false,
+                            errors: {error: 'Invalid Credientials'},
+                        });
+                        logger.error('Invalid Credientials');
+                    }
                 } else {
-                    res.status(401).json({
+                    res.status(400).json({
                         success: false,
-                        errors: {error: 'Invalid Credientials'},
+                        errors: {error: 'Please Veriry Your Account'},
                     });
-                    logger.error('Invalid Credientials');
+                    logger.error('Please Veriry Your Account');
                 }
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: {error: 'Please Veriry Your Account'},
+                    errors: {error: `You are Blocked. Please contact admin`},
                 });
-                logger.error('Please Veriry Your Account');
             }
         } else {
             res
@@ -413,3 +428,57 @@ exports.adminLogin = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.viewUser = async (req, res, next) => {
+    try {
+        const getUserInfo = await User.find({role: 'user'});
+        if(getUserInfo.length === 0){
+            res.status(404).json({
+                success: false,
+                errors: {error: 'Users not found'},
+            });
+        } else {
+            res.status(200).json({success: true, info: getUserInfo});
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.blockUser = async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const getUser = await User.findOne({_id: _id});
+        if(!getUser){
+            res.status(404).json({
+                success: false,
+                errors: {error: 'Users not found'},
+            });
+        } else {
+            const blockUser = await User.update({_id: _id}, {$set:{active: false}})
+            res.status(200).json({success: true, info: {message: 'User Blocked'}});
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.unBlockUser = async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const getUser = await User.findOne({_id: _id});
+        if(!getUser){
+            res.status(404).json({
+                success: false,
+                errors: {error: 'Users not found'},
+            });
+        } else {
+            const blockUser = await User.update({_id: _id}, {$set:{active: true}})
+            res.status(200).json({success: true, info: {message: 'User Unblocked'}});
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.addVender 

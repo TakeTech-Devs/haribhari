@@ -53,9 +53,9 @@ const verifyTokenAndAdmin = (req, res, next) => {
     });
 };
 
-const verifyTokenAndSeller = (req, res, next) => {
+const verifyTokenAndVender = (req, res, next) => {
     verifyToken(req, res, () => {
-        if (req.user.role==='admin' || req.user.role==='seller') {
+        if (req.user.role==='admin' || req.user.role==='vender') {
             next();
         } else {
             res.status(403)
@@ -69,4 +69,4 @@ const verifyTokenAndSeller = (req, res, next) => {
 
 
 module.exports = {verifyToken, verifyTokenAndAuthorization,
-    verifyTokenAndAdmin, verifyTokenAndSeller};
+    verifyTokenAndAdmin, verifyTokenAndVender};
