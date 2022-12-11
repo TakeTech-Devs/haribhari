@@ -8,11 +8,10 @@ exports.create = async (req, res, next) => {
         const slug = req.body.name.toLowerCase();
         const getCategory = await Category.findOne({slug: slug});
         if (!getCategory) {
-            const parentCategory = req.body.parent_category;
-            if (parentCategory) {
-                const parentCategorySlug = parentCategory.toLowerCase();
+            const parentCategoryId = req.body.parent_category;
+            if (parentCategoryId) {
                 const getParentCategory = await Category
-                    .findOne({slug: parentCategorySlug});
+                    .findOne({_id: parentCategoryId});
                 if (!getParentCategory) {
                     return res.status(404).json({
                         success: false,
@@ -63,6 +62,47 @@ exports.findAllCategory = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.categoryOne = async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const getCategory = await Category.findOne({_id: _id}).populate('parent_category');
+        if(!getCategory){
+            res.status(404).json({success: false, errors: {error: 'Category not found'}});
+        } else {
+            res.status(200).json({success: true, info: getCategory});
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.updateCategory = async (req, res, next) => {
+    try {
+        const _id = req.params.id;
+        const name = req.body.name;
+        const slug = req.body.name.toLowerCase();
+        const parentCategory = req.body.parent_category;
+        const getCategory = await Category.findOne({_id: _id});
+        if(!getCategory){
+            res.status(404).json({success: false, errors: {error: 'Category not found'}});
+        } else {
+            const categories = {
+                name:name,
+                slug:slug,
+                parent_category: parentCategory
+            }
+            await Category.update({_id: _id}, categories)
+            res.status(200).json(
+                {
+                    success: true, 
+                    info: {message: 'Category update successfully'}
+                });
+        }
+    } catch (error) {
+        next(error)
+    }
+}
 
 exports.deleteCategory = async (req, res, next) => {
     try {
