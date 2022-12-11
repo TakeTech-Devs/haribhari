@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4ae82b53-a211-4e6d-a842-f0785c0044af",
+		"_postman_id": "b83650da-d191-48c1-9070-cf15e5c2956b",
 		"name": "haribhari",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -20,11 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/signup",
+					"raw": "{{host}}/auth/signup",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"signup"
@@ -51,15 +50,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/resendotp/6330563e41cbea74715fc4fd",
+					"raw": "{{host}}/auth/resendotp/638b949dc05769402485d342",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"resendotp",
-						"6330563e41cbea74715fc4fd"
+						"638b949dc05769402485d342"
 					]
 				}
 			},
@@ -72,7 +70,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"otp\":233362\n}",
+					"raw": "{\n    \"otp\":942653\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,15 +78,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/verifyotp/634e1b313c55d279059b5c17",
+					"raw": "{{host}}/auth/verifyotp/6395552e5703b69e655db65d",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"verifyotp",
-						"634e1b313c55d279059b5c17"
+						"6395552e5703b69e655db65d"
 					]
 				}
 			},
@@ -109,11 +106,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/login",
+					"raw": "{{host}}/auth/login",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"login"
@@ -143,11 +139,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/changepassword",
+					"raw": "{{host}}/auth/changepassword",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"changepassword"
@@ -177,11 +172,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/updateprofile",
+					"raw": "{{host}}/auth/updateprofile",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"updateprofile"
@@ -222,11 +216,10 @@
 					]
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/viewprofile",
+					"raw": "{{host}}/auth/viewprofile",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"viewprofile"
@@ -250,11 +243,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/forgotpassword",
+					"raw": "{{host}}/auth/forgotpassword",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"forgotpassword"
@@ -278,11 +270,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/resetpasswordotp/632ff154fddc88f04e30ce2c",
+					"raw": "{{host}}/auth/resetpasswordotp/632ff154fddc88f04e30ce2c",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"resetpasswordotp",
@@ -307,11 +298,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/auth/resetpassword/632ff154fddc88f04e30ce2c",
+					"raw": "{{host}}/auth/resetpassword/632ff154fddc88f04e30ce2c",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"auth",
 						"resetpassword",
@@ -337,7 +327,7 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "Cauliflower",
+							"value": "Cauliflower133",
 							"type": "text"
 						},
 						{
@@ -367,7 +357,7 @@
 						},
 						{
 							"key": "expary_date",
-							"value": "2022/12/02",
+							"value": "2023/12/02",
 							"type": "text"
 						},
 						{
@@ -383,16 +373,18 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/D:/HariBhari/96898729-fresh-cauliflower-isolated-on-white-background.webp"
+							"src": [
+								"/D:/image/img2.jpg",
+								"/D:/image/img3.jpg"
+							]
 						}
 					]
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/product",
+					"raw": "{{host}}/product",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"product"
 					]
@@ -406,11 +398,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}:{{port}}/product",
+					"raw": "{{host}}/product",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"product"
 					],
@@ -448,7 +439,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Glucose and Mari\",\r\n    \"parent_category\":\"Bakery and Biscuits\"\r\n}",
+					"raw": "{\r\n    \"name\":\"check2\",\r\n    \"parent_category\":\"639580d5bacf1b7115a066c3\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -456,11 +447,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/category",
+					"raw": "{{host}}/category",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"category"
 					]
@@ -480,11 +470,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/product/634edb8be72c76d5d4490d93",
+					"raw": "{{host}}/product/634edb8be72c76d5d4490d93",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"product",
 						"634edb8be72c76d5d4490d93"
@@ -505,11 +494,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/category",
+					"raw": "{{host}}/category",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"category"
 					],
@@ -535,6 +523,63 @@
 			"response": []
 		},
 		{
+			"name": "get category by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/category/6395810ebacf1b7115a066ca",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"category",
+						"6395810ebacf1b7115a066ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"check3\",\r\n    \"parent_category\":\"634ed79d314fa06ed7063b6d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/category/6395810ebacf1b7115a066ca",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"category",
+						"6395810ebacf1b7115a066ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "delete category by id",
 			"request": {
 				"method": "DELETE",
@@ -546,11 +591,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/category/633d01c6769e568ae3b5f72d",
+					"raw": "{{host}}/category/633d01c6769e568ae3b5f72d",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"category",
 						"633d01c6769e568ae3b5f72d"
@@ -580,11 +624,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/address",
+					"raw": "{{host}}/address",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"address"
 					]
@@ -604,11 +647,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/product/find/vegetables",
+					"raw": "{{host}}/product/find/vegetables",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"product",
 						"find",
@@ -630,11 +672,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/address",
+					"raw": "{{host}}/address",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"address"
 					]
@@ -654,11 +695,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/address/634bf3a36785d64944311e0f",
+					"raw": "{{host}}/address/634bf3a36785d64944311e0f",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"address",
 						"634bf3a36785d64944311e0f"
@@ -688,11 +728,10 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"address",
 						"6348bb3ee79921e53da0d61b"
@@ -713,11 +752,10 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}:{{port}}/address/6348bb3ee79921e53da0d61b",
+					"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"address",
 						"6348bb3ee79921e53da0d61b"
@@ -747,13 +785,204 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}:{{port}}/cart",
+					"raw": "{{host}}/cart",
 					"host": [
 						"{{host}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"soumyadeep1399@gmail.com\",\r\n    \"password\":\"Dip@12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/admin/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/auth/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Block Users/Vender/admin",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/auth/user/block/6395552e5703b69e655db65d",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"user",
+						"block",
+						"6395552e5703b69e655db65d"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "{{token}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unblock Users/Vender/admin",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/auth/user/unblock/6395552e5703b69e655db65d",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"user",
+						"unblock",
+						"6395552e5703b69e655db65d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Admin and Vendor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"role\":\"vender\",\r\n    \"name\":\"subhronil Das\",\r\n    \"email\":\"subhronildas.net@gmail.com\",\r\n    \"password\":\"Dip@12345\",\r\n    \"confirm_password\":\"Dip@12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/addvendoradmin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"addvendoradmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Venders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/auth/venders",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"venders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View admins",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/auth/admins",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"admins"
 					]
 				}
 			},
