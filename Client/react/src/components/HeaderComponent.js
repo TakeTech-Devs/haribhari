@@ -37,6 +37,18 @@ class Header extends Component {
       newPass: false,
       email: null,
       password: null,
+      signUpform: {
+        name: "",
+        email: "",
+        password: "",
+        confirm_password: ""
+      },
+      verifyOtp: { otp: 0 },
+      user_id: "",
+      loginForm: {
+        email: "",
+        password: ""
+      }
       // successMessage: false
     };
     this.dropdownToggle = this.dropdownToggle.bind(this);
@@ -104,7 +116,65 @@ class Header extends Component {
     });
   }
 
+  signupHandler = (e, val) => {
+    e.preventDefault()
+    console.log(this.state.signUpform);
+
+    axios
+      .post("http://localhost:4000/auth/signup", this.state.signUpform)
+      .then((res) => {
+        console.log(res);
+        //this.showModal.bind(this, "otp")
+        this.setState({
+          otp: true,
+          user_id: res.data.user_id
+        });
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+  }
+  loginHandler = (e, val) => {
+    e.preventDefault()
+    console.log(this.state.signUpform);
+
+    axios
+      .post("http://localhost:4000/auth/login", this.state.loginForm)
+      .then((res) => {
+        console.log(res);
+        alert("login sussesful")
+        return res
+      })
+      .catch((err) => {
+        console.log(err, "error");
+        alert(`${err.errors.error}`)
+      });
+  }
+  verifyOtpHandler = (e, val) => {
+    e.preventDefault()
+    console.log(this.state.otp);
+
+    axios
+      .put(`http://localhost:4000/auth/verifyotp/${this.state.user_id}`, { otp: Number(this.state.verifyOtp.otp) })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+  }
+  onChangeHandler = (e, formName) => {
+    let { name, value } = e.target;
+    this.setState({
+      [formName]: {
+        ...this.state[formName],
+        [name]: value
+      },
+    });
+  }
+
   render() {
+    console.log(this.state, "dsfds")
     return (
       <div
         style={{
@@ -299,24 +369,26 @@ class Header extends Component {
                   </ModalBody>
                 </Modal>
 
-                <Modal
-                  className="OTPpage"
-                  size="sm"
-                  aria-labelledby="contained-modal-title-vcenter"
-                  centered
-                  isOpen={this.state.otp}
-                  toggle={this.closeModal.bind(this, "otp")}
-                >
-                  <ModalBody>
-                    <Form>
-                      <FormGroup>
-                        <Label for="OTP">Enter OTP</Label>
-                        <Input type="number" name="otp" id="OTP" />
-                      </FormGroup>
-                      <Button>Submit</Button>
-                    </Form>
-                  </ModalBody>
-                </Modal>
+                      <Modal
+                        className="OTPpage"
+                        size="sm"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                        isOpen={this.state.otp}
+                        toggle={this.closeModal.bind(this, "otp")}
+                      >
+                        <ModalBody>
+                          <Form onSubmit={(e) => {
+                            this.verifyOtpHandler(e)
+                          }}>
+                            <FormGroup>
+                              <Label for="OTP"  >Enter OTP</Label>
+                              <Input type="number" name="otp" value={this.state.verifyOtp.otp} onChange={(e) => { this.onChangeHandler(e, "verifyOtp") }} id="OTP" />
+                            </FormGroup>
+                            <Button type="submit">Submit</Button>
+                          </Form>
+                        </ModalBody>
+                      </Modal>
 
                 <Modal
                   size="sm"

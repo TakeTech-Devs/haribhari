@@ -3,7 +3,7 @@ const router = new express.Router();
 router.use(express.json({}));
 const productController=require('../controller/ProductController');
 const {validateResult} = require('../middleware/ValidateResult');
-const {verifyToken, verifyTokenAndSeller} =
+const {verifyToken, verifyTokenAndVender} =
  require('../middleware/verifytoken');
 const {imageValidateMultiple}=
  require('../middleware/MultipleImageValidator');
@@ -29,7 +29,7 @@ upload = multer({
 
 router.post(
     '',
-    verifyTokenAndSeller, upload.array('image', 4),
+    verifyTokenAndVender, upload.array('image', 4),
     ProductValidator.createCategoryValidator,
     validateResult,
     imageValidateMultiple,

@@ -31,6 +31,12 @@ export default class LoginHeader extends React.Component {
       isOpen: false
     };
 
+    this.state = {
+      hidden: false,
+      // password: '',
+    };
+    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.toggleShow = this.toggleShow.bind(this);
 
     this.state = {
         dd1: false,
@@ -43,6 +49,19 @@ export default class LoginHeader extends React.Component {
     this.dropdownToggle = this.dropdownToggle.bind(this);
 
 
+  }
+  toggleShow() {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
+  componentDidMount(){
+    if(this.props.password){
+      this.setState({ password: this.props.password });
+    }
+  }
+
+  onInputChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
 
@@ -138,21 +157,25 @@ export default class LoginHeader extends React.Component {
                                   <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                   <Label className="">Name :</Label>
                                   <Label>Subhrajit Roy Chowdhury</Label>
+                                  {/* <input type="text" name="" id="" /> */}
                                   </FormGroup>
 
                                   <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                   <Label className="text-left">Email</Label>
                                   <Label>subhrajit@gmail.com</Label>
+                                  {/* <input type="email" name="" id="" /> */}
                                   </FormGroup>
 
                                     <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                     <Label className="text-left"> Phone Number:</Label>
                                     <Label>+91 9784561230</Label>
+                                    {/* <input type="number" name="" id="" /> */}
                                     </FormGroup>
 
                                     <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                     <Label className="text-left">Alternative Phone Number:</Label>
                                     <Label>+91 9712453675</Label>
+                                    {/* <input type="number" name="" id="" /> */}
                                     </FormGroup>
                                   </Form>
                                   <Button className="m-3">Done</Button>
@@ -166,16 +189,32 @@ export default class LoginHeader extends React.Component {
                                     <Form className="signupForm">
                                       <FormGroup>
                                       <Label for="OTP">Old Password</Label>
-                                      <Input type="password" name="newPass" id="OTP" />
+                                      <div className="password d-flex">
+                                        <Input
+                                          type={this.state.hidden ? 'text' : 'password'}
+                                          name="old-password"
+                                          value={this.state.password}
+                                          onChange={(e) => this.onInputChange(e)} 
+                                        />
+                                        <i className="fa fa-eye" onClick={this.toggleShow} />
+                                      </div>
                                       </FormGroup>
                                       <FormGroup>
                                       <Label for="OTP">New Password</Label>
-                                      <Input type="password" name="newPass" id="OTP" />
+                                      <div className="password d-flex">
+                                        <Input
+                                          type={this.state.hidden ? 'text' : 'password'}
+                                          name="new-password"
+                                          value={this.state.password}
+                                          onChange={(e) => this.onInputChange(e)} 
+                                        />
+                                        <i className="fa fa-eye" onClick={this.toggleShow} />
+                                      </div>
                                       </FormGroup>
                                       <FormGroup>
                                       <Label for="OTP">Confirm Password</Label>
                                       <Input
-                                          type="password"
+                                          type="text"
                                           name="confiPass"
                                           id="OTP"
                                       />

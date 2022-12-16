@@ -22,19 +22,17 @@ router.get(
     categoryController.findAllCategory,
 );
 
-// router.get(
-//     '/:id',
-//     verifyToken,
-//     validateResult,
-//     productController.getProduct,
-// );
+router.get(
+    '/:id',
+    verifyTokenAndAdmin,
+    categoryController.categoryOne,
+);
 
-// router.get(
-//     '/find/:category',
-//     verifyToken,
-//     validateResult,
-//     productController.findAllProductByCategory,
-// );
+router.put(
+    '/:id',
+    verifyTokenAndAdmin,
+    categoryController.updateCategory,
+);
 
 router.delete(
     '/:id',

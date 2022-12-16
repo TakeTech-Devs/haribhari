@@ -21,10 +21,10 @@ try {
         }
 
         roles = new Role();
-        roles.name = 'Seller';
-        roles.slug = 'seller';
+        roles.name = 'Vender';
+        roles.slug = 'vender';
 
-        role = await Role.find({'slug': 'seller'});
+        role = await Role.find({'slug': 'vender'});
         if (role.length === 0) {
             roles.save();
         }
