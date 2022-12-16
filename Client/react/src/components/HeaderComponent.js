@@ -1,21 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Navbar,
-  NavItem,
-  NavbarToggler,
-  Collapse,
-  NavLink,
-  Nav,
-  NavbarBrand,
-  Button,
-  Modal,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
+  Navbar, NavItem, NavbarToggler, Collapse, Nav, NavbarBrand, Button, Modal, ModalBody, Form, FormGroup, Label, Input} from "reactstrap";
 import SearchBar from "./SearchBarComponent";
 import axios from "axios";
 
@@ -25,6 +11,20 @@ class Header extends Component {
     this.state = {
       isNavOpen: false,
     };
+    this.toggle = this.toggle.bind(this);
+
+    this.state = {
+      hidden: false,
+      // password: '',
+    };
+    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.toggleShow = this.toggleShow.bind(this);
+
+    this.state = {
+      isOpen: false
+    };
+  
+  
 
     this.toggleNav = this.toggleNav.bind(this);
     this.state = {
@@ -41,6 +41,27 @@ class Header extends Component {
     };
     this.dropdownToggle = this.dropdownToggle.bind(this);
   }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  // handlePasswordChange(e){
+  //   this.setState({ password: e.target.value });
+  // }
+
+  toggleShow() {
+    this.setState({ hidden: !this.state.hidden });
+  }
+
+  componentDidMount(){
+    if(this.props.password){
+      this.setState({ password: this.props.password });
+    }
+  }
+
   onInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -91,273 +112,260 @@ class Header extends Component {
           padding: 30,
         }}
       >
-        <Navbar color="white fixed-top" light expand="md">
-          <NavbarBrand href="/">
-            <img
-              src="assets/images/Logo 1st.png"
-              height="100"
-              width="100"
-              alt="haribhari"
-            />
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
-          <Collapse isOpen={this.state.isNavOpen} navbar>
-            <Nav
-              className="justify-content-around align-items-center mr-auto mx-auto"
-              navbar
-            >
-              <NavItem className="me-2">
-                <SearchBar placeholder="Search for products" />
-              </NavItem>
-              <div className="nav-btns">
-                <div>
-                  <NavItem className="vendor my-1 me-2">
-                    <select name="vendor" id="">
-                      <option value="#" default selected>
-                        Select Vendor
-                      </option>
-                      <option value="Retail">Retail</option>
-                      <option value="Wholesaler">Wholesaler</option>
-                    </select>
-                  </NavItem>
+      <Navbar color="white fixed-top" light expand="md">
+        <NavbarBrand href="/">
+          <img
+            src="assets/images/Logo 1st.png"
+            height="100"
+            width="100"
+            alt="haribhari"
+          />
+        </NavbarBrand>
+        <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
+        <Collapse className="main-header" isOpen={this.state.isNavOpen} navbar>
+          <Nav
+            className="justify-content-between align-items-center mr-auto mx-auto"
+            navbar
+          >
+          <NavItem className="me-2">
+            <SearchBar placeholder="Search for products" />
+          </NavItem>
+            <NavItem className="me-2">
+              <div>
+                <Button
+                  className="px-md-5 my-1"
+                  onClick={this.showModal.bind(this, "login")}
+                >
+                  Login
+                </Button>
 
-                  <NavItem className="me-2">
-                    <div>
+                <Modal
+                  size="sm"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.login}
+                  toggle={this.closeModal.bind(this, "login")}
+                >
+                  <ModalBody>
+                    <Button onClick={this.showModal.bind(this, "login1")}>
+                      Login
+                    </Button>
+
+                    <div className="or">
+                      <span></span>
+                      <p>or</p>
+                      <span></span>
+                    </div>
+                    <Button
+                      className="signup"
+                      onClick={this.showModal.bind(this, "signup")}
+                    >Signup with Email</Button>
+                  </ModalBody>
+                </Modal>
+
+                <Modal
+                  size="md"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.login1}
+                  toggle={this.closeModal.bind(this, "login1")}
+                >
+                  <ModalBody>
+                    <Form>
+                      {/* Login Form */}
+                      <FormGroup className="text-left">
+                        <Label for="exampleEmail" className="text-left">
+                          Email
+                        </Label>
+                        <Input
+                          type="email"
+                          name="email"
+                          id={"login_email" + this.props.id}
+                          value={this.state.name}
+                          onChange={(e) => this.onInputChange(e)}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label
+                          for="examplePassword"
+                          className="text-left"
+                        >
+                          Password
+                        </Label>
+                        <div className="password d-flex">
+
+                          <Input
+                            type={this.state.hidden ? 'text' : 'password'}
+                            name="password"
+                            id={"login_password" + this.props.id}
+                            value={this.state.password}
+                            onChange={(e) => this.onInputChange(e)} 
+                          />
+                          <i className="fa fa-eye" onClick={this.toggleShow} />
+                        </div>
+                      </FormGroup>
+                      <FormGroup check>
+                        <Label check>
+                          <Input type="checkbox" /> Remember Me
+                        </Label>
+                      </FormGroup>
                       <Button
-                        className="px-md-5 my-1"
-                        onClick={this.showModal.bind(this, "login")}
+                        className="m-3"
+                        disabled={
+                          this.state.email === "" &&
+                          this.state.password === ""
+                        }
+                        onClick={this.login}
                       >
                         Login
                       </Button>
-
-                      <Modal
-                        size="sm"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.login}
-                        toggle={this.closeModal.bind(this, "login")}
+                      <br />
+                      <Button
+                        className="forget"
+                        onClick={this.showModal.bind(this, "forget")}
                       >
-                        <ModalBody>
-                          <Button onClick={this.showModal.bind(this, "login1")}>
-                            Login
-                          </Button>
+                        Forget Password
+                      </Button>
+                    </Form>
+                  </ModalBody>
+                </Modal>
 
-                          <div className="or">
-                            <span></span>
-                            <p>or</p>
-                            <span></span>
-                          </div>
-                          <Button
-                            className="signup"
-                            onClick={this.showModal.bind(this, "signup")}
-                          >
-                            Signup with Email
-                          </Button>
-                        </ModalBody>
-                      </Modal>
+                <Modal
+                  size="md"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.signup}
+                  toggle={this.closeModal.bind(this, "signup")}
+                >
+                  <ModalBody>
+                    <Form className="signupForm">
+                      <FormGroup>
+                        <Label for="Name">Name</Label>
+                        <Input type="text" name="name" id="Name" />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="Email">Email</Label>
+                        <Input type="email" name="email" id="Email" />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="Password">Password</Label>
+                        <div className="password d-flex">
+                          <Input
+                            type={this.state.hidden ? 'text' : 'password'}
+                            name="password"
+                            id={"login_password" + this.props.id}
+                            value={this.state.password}
+                            onChange={(e) => this.onInputChange(e)} 
+                          />
+                          <i className="fa fa-eye" onClick={this.toggleShow} />
+                        </div>
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="ConfirmPassword">
+                          Confirm Password
+                        </Label>
+                        <Input
+                          type="text"
+                          name="confPassword"
+                          id="confPassword"
+                        />
+                      </FormGroup>
 
-                      <Modal
-                        size="md"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.login1}
-                        toggle={this.closeModal.bind(this, "login1")}
-                      >
-                        <ModalBody>
-                          <Form>
-                            {/* Login Form */}
-                            <FormGroup className="text-left">
-                              <Label for="exampleEmail" className="text-left">
-                                Email
-                              </Label>
-                              <Input
-                                type="email"
-                                name="email"
-                                id={"login_email" + this.props.id}
-                                value={this.state.name}
-                                onChange={(e) => this.onInputChange(e)}
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label
-                                for="examplePassword"
-                                className="text-left"
-                              >
-                                Password
-                              </Label>
-                              <Input
-                                type="password"
-                                name="password"
-                                id={"login_password" + this.props.id}
-                                value={this.state.name}
-                                onChange={(e) => this.onInputChange(e)}
-                              />
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox" /> Remember Me
-                              </Label>
-                            </FormGroup>
-                            <Button
-                              className="m-3"
-                              disabled={
-                                this.state.email == "" &&
-                                this.state.password == ""
-                              }
-                              onClick={this.login}
-                            >
-                              Login
-                            </Button>
-                            <br />
+                      <Button onClick={this.showModal.bind(this, "otp")}>
+                        Next
+                      </Button>
+                    </Form>
+                  </ModalBody>
+                </Modal>
 
-                            <Button
-                              className="forget"
-                              onClick={this.showModal.bind(this, "forget")}
-                            >
-                              Forget Password
-                            </Button>
-                          </Form>
-                        </ModalBody>
-                      </Modal>
+                <Modal
+                  className="forgetPassword"
+                  size="md"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.forget}
+                  toggle={this.closeModal.bind(this, "forget")}
+                >
+                  <ModalBody>
+                    <Form>
+                      <FormGroup>
+                        <Label for="Email">Enter Your Email</Label>
+                        <Input type="email" name="email" id="Email" />
+                      </FormGroup>
+                      <Button onClick={this.showModal.bind(this, "otp")}>
+                        Send OTP
+                      </Button>
+                    </Form>
+                  </ModalBody>
+                </Modal>
 
-                      <Modal
-                        size="md"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.signup}
-                        toggle={this.closeModal.bind(this, "signup")}
-                      >
-                        <ModalBody>
-                          <Form className="signupForm">
-                            <FormGroup>
-                              <Label for="Name">Name</Label>
-                              <Input type="text" name="name" id="Name" />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="Email">Email</Label>
-                              <Input type="email" name="email" id="Email" />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="Password">Password</Label>
-                              <Input
-                                type="password"
-                                name="password"
-                                id="Password"
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="ConfirmPassword">
-                                Confirm Password
-                              </Label>
-                              <Input
-                                type="password"
-                                name="confPassword"
-                                id="confPassword"
-                              />
-                            </FormGroup>
+                <Modal
+                  className="OTPpage"
+                  size="sm"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.otp}
+                  toggle={this.closeModal.bind(this, "otp")}
+                >
+                  <ModalBody>
+                    <Form>
+                      <FormGroup>
+                        <Label for="OTP">Enter OTP</Label>
+                        <Input type="number" name="otp" id="OTP" />
+                      </FormGroup>
+                      <Button>Submit</Button>
+                    </Form>
+                  </ModalBody>
+                </Modal>
 
-                            <Button onClick={this.showModal.bind(this, "otp")}>
-                              Next
-                            </Button>
-                          </Form>
-                        </ModalBody>
-                      </Modal>
+                <Modal
+                  size="sm"
+                  aria-labelledby="contained-modal-title-vcenter"
+                  centered
+                  isOpen={this.state.newPass}
+                  toggle={this.closeModal.bind(this, "newPass")}
+                >
+                  <ModalBody>
+                    <Form>
+                      <FormGroup>
+                        <Label for="OTP">New Password</Label>
+                        <div className="password d-flex">
+                          <Input
+                            type={this.state.hidden ? 'text' : 'password'}
+                            name="password"
+                            id={"login_password" + this.props.id}
+                            value={this.state.password}
+                            onChange={(e) => this.onInputChange(e)} 
+                          />
+                          <i className="fa fa-eye" onClick={this.toggleShow} />
+                        </div>
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="OTP">Confirm Password</Label>
+                        <Input
+                          type="text"
+                          name="confiPass"
+                          id="OTP"
+                        />
+                      </FormGroup>
+                      <Button>Reset Password</Button>
+                    </Form>
+                  </ModalBody>
+                </Modal>
 
-                      <Modal
-                        className="forgetPassword"
-                        size="md"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.forget}
-                        toggle={this.closeModal.bind(this, "forget")}
-                      >
-                        <ModalBody>
-                          <Form>
-                            <FormGroup>
-                              <Label for="Email">Enter Your Email</Label>
-                              <Input type="email" name="email" id="Email" />
-                            </FormGroup>
-                            <Button onClick={this.showModal.bind(this, "otp")}>
-                              Send OTP
-                            </Button>
-                          </Form>
-                        </ModalBody>
-                      </Modal>
-
-                      <Modal
-                        className="OTPpage"
-                        size="sm"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.otp}
-                        toggle={this.closeModal.bind(this, "otp")}
-                      >
-                        <ModalBody>
-                          <Form>
-                            <FormGroup>
-                              <Label for="OTP">Enter OTP</Label>
-                              <Input type="number" name="otp" id="OTP" />
-                            </FormGroup>
-                            <Button>Submit</Button>
-                          </Form>
-                        </ModalBody>
-                      </Modal>
-
-                      <Modal
-                        size="sm"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                        isOpen={this.state.newPass}
-                        toggle={this.closeModal.bind(this, "newPass")}
-                      >
-                        <ModalBody>
-                          <Form>
-                            <FormGroup>
-                              <Label for="OTP">New Password</Label>
-                              <Input type="password" name="newPass" id="OTP" />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="OTP">Confirm Password</Label>
-                              <Input
-                                type="password"
-                                name="confiPass"
-                                id="OTP"
-                              />
-                            </FormGroup>
-                            <Button>Reset Password</Button>
-                          </Form>
-                        </ModalBody>
-                      </Modal>
-
-                      {/* <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.successMessage} toggle={this.closeModal.bind(this, 'successMessage')}>
-												<ModalBody>
-													Success!!!!
-												</ModalBody>
-											</Modal> */}
-                    </div>
-                  </NavItem>
-                </div>
-                <div>
-                  <NavItem className="me-2">
-                    <NavLink href="#" className="px-md-5 my-1">
-                      {" "}
-                      Location<span className="fa fa-map-marker"></span>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem className="me-2">
-                    <NavLink href="#" className="px-md-5 my-1">
-                      {" "}
-                      Add to Cart<span className="fa fa-shopping-cart"></span>
-                    </NavLink>
-                  </NavItem>
-                </div>
+                <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.successMessage} toggle={this.closeModal.bind(this, 'successMessage')}>
+									<ModalBody>
+										Success!!!!
+									</ModalBody>
+								</Modal>
               </div>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
-  }
+            </NavItem>  
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+}
 }
 
 export default Header;

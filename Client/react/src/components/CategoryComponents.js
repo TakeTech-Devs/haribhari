@@ -17,6 +17,14 @@ class Category extends Component {
                 </div>
                 <div className="row m-auto">
                     <Card style={{border:'none'}}>
+                        <CardImg src="assets/images/products/spices.png" class="card-img-top" alt="..." />
+                        <CardBody>
+                        <CardTitle className='text-center'>Spices</CardTitle>
+                        </CardBody>
+                    </Card>
+                </div>
+                <div className="row m-auto">
+                    <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Fish.png" class="card-img-top" alt="..." />
                         <CardBody>
                         <CardTitle className='text-center'>Fish, Meat & Egg</CardTitle>
@@ -83,7 +91,7 @@ class Category extends Component {
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Mashala.png" class="card-img-top" alt="..." />
                         <CardBody>
-                        <CardTitle className='text-center'>Mashala, Oil & more</CardTitle>
+                        <CardTitle className='text-center'>Oils & more</CardTitle>
                         </CardBody>
                     </Card>
                 </div>
@@ -127,7 +135,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-md-2 m-auto">
+                <div className="row m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/babyCare.png" class="card-img-top" alt="..." />
                         <CardBody>
@@ -135,7 +143,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-md-2 m-auto">
+                <div className="row m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Home.png" class="card-img-top" alt="..." />
                         <CardBody>
@@ -143,7 +151,7 @@ class Category extends Component {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="row mx-md-2 m-auto">
+                <div className="row m-auto">
                     <Card style={{border:'none'}}>
                         <CardImg src="assets/images/products/Cleaning.png" class="card-img-top" alt="..." />
                         <CardBody>

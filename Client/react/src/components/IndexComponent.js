@@ -3,7 +3,7 @@ import React from "react";
 function Index(props){
     return(
         <div className="bannerHolder">
-            <img src="assets/images/banner1.webp" alt="" />
+            <img src="assets/images/Banner.jpg" alt="" />
         </div>
     );
 }

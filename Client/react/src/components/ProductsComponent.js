@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 // import { Link } from 'react-router-dom';
 
 
+function Products(){
 
-class Products extends Component {
-  render() {
     return (
       <div className="products">
         <div className="vegetable mx-4">
@@ -14,11 +13,11 @@ class Products extends Component {
             <Button className="mt-5">See More</Button>
           </div>
           <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
-              <div className="ShiftButton">
-                <span>
-                  <p>&#60;</p>
-                </span>
-              </div>
+            <div className="ShiftButton">
+              <span>
+                <p>&#60;</p>
+              </span>
+            </div>
             <div className="row active">
               <Card style={{ border: "none" }}>
                 <CardBody>
@@ -100,13 +99,10 @@ class Products extends Component {
               </Card>
             </div>
             <div className="ShiftButton">
-              <span>
-                <p>&#62;</p>
-              </span>
-            </div>
-          </div>
-        </div>
-
+            <span>
+              <p>&#62;</p>
+            </span>
+          </div>          
         <div className="snacks mx-4">
           <div className="buttons d-flex justify-content-between mt-5">
             <Button>Snacks</Button>
@@ -413,8 +409,9 @@ class Products extends Component {
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+    </div>
+  );
 }
 
 export default Products;
