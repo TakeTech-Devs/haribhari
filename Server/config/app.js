@@ -1,9 +1,12 @@
 const express = require('express');
 const db = require('../src/db/conn');
+const path = require('path');
 // require('../src/db/conn'); // database connection
 db.dbConnect(); // database connection
 
 const app = express();
+console.log(path.join(__dirname , '..'));
+app.use(express.static(path.join(__dirname , '..')));
 app.use(express.json({}));
 
 const {pageNotFound} = require('../src/middleware/PageNotFound');
