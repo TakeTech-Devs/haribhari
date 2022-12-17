@@ -4,6 +4,8 @@ const Product = require('../model/product');
 exports.addCart = async (req, res, next) =>{
     try {
         let cart;
+        let totlatCost = 0;
+        let totalActualPrice= 0;
         const getCart = await Cart.findOne({user: req.user._id});
         if (!getCart) {
             cart = new Cart({}); ;
@@ -11,6 +13,7 @@ exports.addCart = async (req, res, next) =>{
             cart = getCart;
         }
         const productId = req.body.product_id;
+        const qty = req.body.qty;
         const getProduct = await Product.findById({_id: productId});
         if (!getProduct) {
             return res.status(400).json({
@@ -18,13 +21,22 @@ exports.addCart = async (req, res, next) =>{
                 errors: {error: 'Product not found'},
             });
         }
-        const qty = req.body.qty;
         const actualPrice = qty * getProduct.actual_price;
         const price = qty * getProduct.price;
         const metaData = {
             actualPrice: actualPrice,
             price: price,
         };
+        console.log(cart.items);
+        cart.items.find((element) =>{
+            console.log(element.productId == productId);
+            if(element.productId == productId){
+
+            } else {
+
+            }
+        })
+        // return
         cart.items.push({
             productId: productId,
             qty: qty,
@@ -33,6 +45,12 @@ exports.addCart = async (req, res, next) =>{
         });
         cart.user = req.user._id;
         cart.totalQty = cart.totalQty + 1;
+        cart.items.forEach(element => {
+            totlatCost = totlatCost+element.price;
+            totalActualPrice = totalActualPrice + element.actual_price;
+        })
+        cart.totalCost = totlatCost;
+        cart.totalActualPrice = totalActualPrice;
         // await cart.save();
         return res.status(200).json({
             success: true,
