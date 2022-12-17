@@ -12,5 +12,16 @@ router.post(
     cartController.addCart,
 );
 
+router.get(
+    '',
+    verifyToken,
+    cartController.viewCart,
+);
+
+router.put(
+    '/:productId',
+    verifyToken,
+    cartController.deleteCart,
+);
 
 module.exports = router;
