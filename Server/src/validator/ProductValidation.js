@@ -29,8 +29,8 @@ exports.createCategoryValidator=[
             }
             return true;
         }),
-    body('customer_care_email').isEmail()
-        .withMessage('Please Enter a valid Email')
-        .normalizeEmail({gmail_remove_dots: false})
-        .notEmpty().withMessage('Customer care email should not be empty!'),
+    // body('customer_care_email').isEmail()
+    //     .withMessage('Please Enter a valid Email')
+    //     .normalizeEmail({gmail_remove_dots: false})
+    //     .notEmpty().withMessage('Customer care email should not be empty!'),
 ];
