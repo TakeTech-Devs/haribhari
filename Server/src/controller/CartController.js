@@ -27,16 +27,6 @@ exports.addCart = async (req, res, next) =>{
             actualPrice: actualPrice,
             price: price,
         };
-        console.log(cart.items);
-        cart.items.find((element) =>{
-            console.log(element.productId == productId);
-            if(element.productId == productId){
-
-            } else {
-
-            }
-        })
-        // return
         cart.items.push({
             productId: productId,
             qty: qty,
@@ -51,7 +41,7 @@ exports.addCart = async (req, res, next) =>{
         })
         cart.totalCost = totlatCost;
         cart.totalActualPrice = totalActualPrice;
-        // await cart.save();
+        await cart.save();
         return res.status(200).json({
             success: true,
             info: {message: 'Cart added successfully'},
