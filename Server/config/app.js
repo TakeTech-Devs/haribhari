@@ -23,13 +23,15 @@ const UserRouter=require('../src/router/AuthRoute');
 const ProductRouter=require('../src/router/ProcuctRoute');
 const CategoryRouter = require('../src/router/CategoryRoute');
 const AddressRoute = require('../src/router/AddressRoute');
-const cartRoute = require('../src/router/CartRoute')
+const cartRoute = require('../src/router/CartRoute');
+const orderRoute = require('../src/router/OrderRoute');
 
 app.use('/auth/', UserRouter);
 app.use('/product/', ProductRouter);
 app.use('/category/', CategoryRouter);
 app.use('/address/', AddressRoute);
 app.use('/cart/', cartRoute);
+app.use('/order/', orderRoute);
 app.use(pageNotFound);
 app.use(errorHandler);
 
