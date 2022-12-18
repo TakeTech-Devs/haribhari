@@ -616,7 +616,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"receiver_name\": \"Dipronil Das\",\r\n    \"resident_no\": \"180\",\r\n    \"resident_name\":\"adisaptagram\",\r\n    \"address_type\": \"home\"\r\n}",
+					"raw": "{\r\n    \"receiver_name\": \"Dipronil Das\",\r\n    \"resident_no\": \"30\",\r\n    \"resident_name\":\"bandel\",\r\n    \"address_type\": \"work\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -777,7 +777,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product_id\":\"634eda68680eae751f2271a5\",\r\n    \"qty\":2\r\n}",
+					"raw": "{\r\n    \"product_id\":\"634eda68680eae751f2271a5\",\r\n    \"qty\":7\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1037,6 +1037,86 @@
 					"path": [
 						"auth",
 						"admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pin\":712121,\r\n    \"phone\":9999999999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/order/639f21a58935735d82947f4e",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"order",
+						"639f21a58935735d82947f4e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view order",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/order",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View single order",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/order/639f2f5f2666e9573ce101b7",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"order",
+						"639f2f5f2666e9573ce101b7"
 					]
 				}
 			},
