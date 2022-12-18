@@ -5,7 +5,6 @@ const path = require('path');
 db.dbConnect(); // database connection
 
 const app = express();
-console.log(path.join(__dirname , '..'));
 app.use(express.static(path.join(__dirname , '..')));
 app.use(express.json({}));
 

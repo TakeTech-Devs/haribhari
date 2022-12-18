@@ -777,7 +777,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product_id\":\"634edb8be72c76d5d4490d93\",\r\n    \"qty\":5\r\n}",
+					"raw": "{\r\n    \"product_id\":\"634eda68680eae751f2271a5\",\r\n    \"qty\":2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -791,6 +791,60 @@
 					],
 					"path": [
 						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View cart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/cart",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cart"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove product from cart",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/cart/634eda68680eae751f2271a5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cart",
+						"634eda68680eae751f2271a5"
 					]
 				}
 			},
