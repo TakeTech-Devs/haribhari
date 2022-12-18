@@ -72,3 +72,47 @@ exports.addOrder = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.viewAllOrder = async (req, res, next) => {
+    try {
+        const viewAllOrder = await Order.find({
+            user: req.user._id
+        }).populate('shippingInfo.address').populate('orderItems.product');
+        if(viewAllOrder.length == 0){
+            return res.status(404).json({
+                success: false,
+                errors:{error: 'No order found'}
+            })
+        } else {
+            return res.status(200).json({
+                success: true,
+                info: viewAllOrder,
+            });
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.viewSingleOrder = async (req, res, next) => {
+    try {
+        const orderId = req.params.orderId;
+        const viewOrder = await Order.findOne({
+            _id: orderId,
+            user: req.user._id
+        }).populate('shippingInfo.address').populate('orderItems.product');
+        if(!viewOrder){
+            return res.status(404).json({
+                success: false,
+                errors:{error: 'No order found'}
+            })
+        } else {
+            return res.status(200).json({
+                success: true,
+                info: viewOrder,
+            });
+        }
+    } catch (error) {
+        next(error)
+    }
+}
