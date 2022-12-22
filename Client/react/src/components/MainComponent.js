@@ -18,6 +18,7 @@ import Cart from './CartComponent';
 // import CategoryNav from './ProductCategoryNavComponent';
 // import CategoryProducts from './CategoryProductsComponent';
 import OrderDetails from './OrderDetailsComponent';
+import Shop from '../pages/Shop';
 // import { integerPropType } from '@mui/utils';
 
 
@@ -42,6 +43,7 @@ class Main extends React.Component {
             <Route path="/order-list" element={<OrderList/>}/>
             <Route path="/cart-list" element={<Cart/>}/>
             <Route path="/order-details" element={<OrderDetails/>}/>
+            <Route path="/shop" element={<Shop/>}/>
           </Routes>
         {/* <Footer/> */}
 
