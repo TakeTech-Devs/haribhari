@@ -6,13 +6,13 @@ const path = require('path');
 db.dbConnect(); // database connection
 
 const app = express();
-app.use(express.static(path.join(__dirname , '..')));
+app.use(express.static(path.join(__dirname, '..')));
 app.use(express.json({}));
 app.use(cors());
 
-const { pageNotFound } = require('../src/middleware/PageNotFound');
-const { errorHandler } = require('../src/middleware/ErrorHandler');
-app.use(function (req, res, next) {
+const {pageNotFound} = require('../src/middleware/PageNotFound');
+const {errorHandler} = require('../src/middleware/ErrorHandler');
+app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

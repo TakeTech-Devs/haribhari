@@ -28,7 +28,7 @@ exports.addCart = async (req, res, next) =>{
             actualPrice: actualPrice,
             price: price,
         };
-        /////have an issue
+        // ///have an issue
         cart.items.push({
             productId: productId,
             qty: qty,
@@ -37,10 +37,10 @@ exports.addCart = async (req, res, next) =>{
         });
         cart.user = req.user._id;
         cart.totalQty = cart.totalQty + 1;
-        cart.items.forEach(element => {
+        cart.items.forEach((element) => {
             totlatCost = totlatCost+element.price;
             totalActualPrice = totalActualPrice + element.actual_price;
-        })
+        });
         cart.totalCost = totlatCost;
         cart.totalActualPrice = totalActualPrice;
         await cart.save();
@@ -59,7 +59,7 @@ exports.viewCart = async (req, res, next) => {
         const getCart = await Cart.findOne({user: req.user._id})
             .populate('user')
             .populate('items.productId');
-        if(getCart){
+        if (getCart) {
             return res.status(200).json({
                 success: true,
                 info: getCart,
@@ -68,13 +68,12 @@ exports.viewCart = async (req, res, next) => {
             return res.status(404).json({
                 success: true,
                 errors: {error: 'Cart not found'},
-            })
+            });
         }
     } catch (error) {
-        console.log(error);
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.deleteCart = async (req, res, next) => {
     try {
@@ -82,24 +81,24 @@ exports.deleteCart = async (req, res, next) => {
         let totalActualPrice= 0;
         const productId = req.params.productId;
         const getCart = await Cart.findOne({user: req.user._id});
-        if(getCart){
-            for( var i = 0; i < getCart.items.length; i++){ 
-                if(getCart.items[i].productId == productId){
-                    getCart.items.splice(i, 1); 
+        if (getCart) {
+            for ( let i = 0; i < getCart.items.length; i++) {
+                if (getCart.items[i].productId == productId) {
+                    getCart.items.splice(i, 1);
                     i--;
                 }
             }
-            getCart.items.forEach(element => {
+            getCart.items.forEach((element) => {
                 totlatCost = totlatCost+element.price;
                 totalActualPrice = totalActualPrice + element.actual_price;
-            })
+            });
             const totalQty = getCart.items.length;
-            if(totalQty>0){
+            if (totalQty>0) {
                 await Cart.updateOne({user: req.user._id}, {
-                    totalQty:totalQty,
+                    totalQty: totalQty,
                     totalCost: totlatCost,
                     totalActualPrice: totalActualPrice,
-                    items: getCart.items
+                    items: getCart.items,
                 });
                 return res.status(200).json({
                     success: true,
@@ -116,9 +115,9 @@ exports.deleteCart = async (req, res, next) => {
             return res.status(404).json({
                 success: true,
                 errors: {error: 'Cart not found'},
-            })
+            });
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};

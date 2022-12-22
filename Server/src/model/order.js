@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    orderId:{
+    orderId: {
         type: String,
-        required: false
+        required: false,
     },
     shippingInfo: {
         address: {
@@ -46,8 +46,8 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
     // required: true,
     },
-    paymentType:{
-        type: String
+    paymentType: {
+        type: String,
     },
     paymentInfo: {
         id: {
@@ -91,7 +91,7 @@ const orderSchema = new mongoose.Schema({
         default: false,
     },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 
 module.exports = mongoose.model('Order', orderSchema);
