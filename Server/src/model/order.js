@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
+    orderId:{
+        type: String,
+        required: false
+    },
     shippingInfo: {
         address: {
             type: mongoose.Schema.ObjectId,
@@ -11,15 +15,15 @@ const orderSchema = new mongoose.Schema({
             type: Number,
             // required: true,
         },
-        phoneNo: {
+        phone: {
             type: Number,
             // required: true,
         },
     },
     orderItems: [
         {
-            name: {
-                type: String,
+            actual_price: {
+                type: Number,
                 // required: true,
             },
             price: {
@@ -42,6 +46,9 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
     // required: true,
     },
+    paymentType:{
+        type: String
+    },
     paymentInfo: {
         id: {
             type: String,
@@ -59,7 +66,6 @@ const orderSchema = new mongoose.Schema({
     itemsPrice: {
         type: Number,
         // required: true,
-        default: 0,
     },
     taxPrice: {
         type: Number,
@@ -69,12 +75,10 @@ const orderSchema = new mongoose.Schema({
     shippingPrice: {
         type: Number,
         // required: true,
-        default: 0,
     },
     totalPrice: {
         type: Number,
         // required: true,
-        default: 0,
     },
     orderStatus: {
         type: String,
@@ -82,10 +86,12 @@ const orderSchema = new mongoose.Schema({
         default: 'Processing',
     },
     deliveredAt: Date,
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    isCancelled: {
+        type: Boolean,
+        default: false,
     },
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Order', orderSchema);
