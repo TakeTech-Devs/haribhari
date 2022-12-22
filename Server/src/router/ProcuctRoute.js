@@ -51,7 +51,7 @@ router.get(
 
 router.get(
     '/find/:category',
-    verifyToken,
+    // verifyToken,
     validateResult,
     productController.findAllProductByCategory,
 );
