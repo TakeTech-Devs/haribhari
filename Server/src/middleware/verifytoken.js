@@ -3,17 +3,14 @@ const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log(authHeader, "authHeader")
     if (authHeader) {
         const token = authHeader.split(' ')[1];
-        console.log(token)
-
         jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
             if (err) {
                 return res.status(403)
                     .json({
                         'success': false,
-                        'errors': { 'error': 'token is not valid' },
+                        'errors': {'error': 'token is not valid'},
                     });
             }
             req.user = user;
@@ -23,7 +20,7 @@ const verifyToken = (req, res, next) => {
         return res.status(401)
             .json({
                 'success': false,
-                'errors': { 'error': 'You are not authenticated' },
+                'errors': {'error': 'You are not authenticated'},
             });
     }
 };
@@ -36,7 +33,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    'errors': { 'error': 'You are not alowed to do that' },
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
@@ -50,7 +47,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    'errors': { 'error': 'You are not alowed to do that' },
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
@@ -64,7 +61,7 @@ const verifyTokenAndVender = (req, res, next) => {
             res.status(403)
                 .json({
                     'success': false,
-                    'errors': { 'error': 'You are not alowed to do that' },
+                    'errors': {'error': 'You are not alowed to do that'},
                 });
         }
     });
@@ -73,5 +70,5 @@ const verifyTokenAndVender = (req, res, next) => {
 
 module.exports = {
     verifyToken, verifyTokenAndAuthorization,
-    verifyTokenAndAdmin, verifyTokenAndVender
+    verifyTokenAndAdmin, verifyTokenAndVender,
 };

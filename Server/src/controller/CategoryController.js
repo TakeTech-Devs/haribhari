@@ -1,11 +1,14 @@
 const Category = require('../model/category');
 const APIFeatures = require('../utils/apiFeatures');
+const fs = require('fs');
+
 
 exports.create = async (req, res, next) => {
     try {
         let parentId;
         const name = req.body.name;
         const slug = req.body.name.toLowerCase();
+        const image = req.file.path;
         const getCategory = await Category.findOne({slug: slug});
         if (!getCategory) {
             const parentCategoryId = req.body.parent_category;
@@ -25,6 +28,7 @@ exports.create = async (req, res, next) => {
                 name: name,
                 slug: slug,
                 parent_category: parentId,
+                image: image,
             });
             await category.save();
             res.status(201).json({
@@ -32,12 +36,14 @@ exports.create = async (req, res, next) => {
                 info: {message: 'Category Created Successfully'},
             });
         } else {
+            fs.unlinkSync(image);
             res.status(404).json({
                 success: false,
                 errors: {error: 'Category Already Exists'},
             });
         }
     } catch (error) {
+        fs.unlinkSync(image);
         next(error);
     }
 };
@@ -66,16 +72,18 @@ exports.findAllCategory = async (req, res, next) => {
 exports.categoryOne = async (req, res, next) => {
     try {
         const _id = req.params.id;
-        const getCategory = await Category.findOne({_id: _id}).populate('parent_category');
-        if(!getCategory){
-            res.status(404).json({success: false, errors: {error: 'Category not found'}});
+        const getCategory = await Category
+            .findOne({_id: _id}).populate('parent_category');
+        if (!getCategory) {
+            res.status(404).json({success: false,
+                errors: {error: 'Category not found'}});
         } else {
             res.status(200).json({success: true, info: getCategory});
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.updateCategory = async (req, res, next) => {
     try {
@@ -84,25 +92,26 @@ exports.updateCategory = async (req, res, next) => {
         const slug = req.body.name.toLowerCase();
         const parentCategory = req.body.parent_category;
         const getCategory = await Category.findOne({_id: _id});
-        if(!getCategory){
-            res.status(404).json({success: false, errors: {error: 'Category not found'}});
+        if (!getCategory) {
+            res.status(404).json({success: false,
+                errors: {error: 'Category not found'}});
         } else {
             const categories = {
-                name:name,
-                slug:slug,
-                parent_category: parentCategory
-            }
-            await Category.update({_id: _id}, categories)
+                name: name,
+                slug: slug,
+                parent_category: parentCategory,
+            };
+            await Category.update({_id: _id}, categories);
             res.status(200).json(
                 {
-                    success: true, 
-                    info: {message: 'Category update successfully'}
+                    success: true,
+                    info: {message: 'Category update successfully'},
                 });
         }
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.deleteCategory = async (req, res, next) => {
     try {

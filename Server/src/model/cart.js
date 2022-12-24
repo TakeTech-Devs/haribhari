@@ -33,13 +33,13 @@ const cartSchema = new mongoose.Schema({
     },
     totalActualPrice: {
         type: Number,
-        default: 0
+        default: 0,
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     // required: true,
-    }
+    },
 }, {
     timestamps: true,
 });

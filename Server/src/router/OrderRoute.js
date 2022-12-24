@@ -2,8 +2,9 @@ const express = require('express');
 const router = new express.Router();
 router.use(express.json({}));
 const orderController=require('../controller/OrderController');
-const {validateResult} = require('../middleware/ValidateResult');
-const {verifyToken, verifyTokenAndAuthorization} = require('../middleware/verifytoken');
+// const {validateResult} = require('../middleware/ValidateResult');
+const {verifyToken, verifyTokenAndAuthorization} =
+require('../middleware/verifytoken');
 
 router.post(
     '/:cartId',
