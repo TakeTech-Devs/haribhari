@@ -69,12 +69,12 @@ export function AuthProvider({ children }) {
             setbillingInfo(res.data.info)
             setCartItems(res.data.info.items)
         }).catch(err => {
-            localStorage.removeItem('token')
+            // localStorage.removeItem('token')
         })
     }
 
     const handleRefresh = () => {
-        window.location.reload(true);
+        // window.location.reload(true);
     }
     const handelLogout = () => {
         localStorage.removeItem('token')
