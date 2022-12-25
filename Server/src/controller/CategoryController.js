@@ -110,7 +110,7 @@ exports.updateCategory = async (req, res, next) => {
                 parent_category: parentCategory,
                 image: newImage || oldImage
             };
-            await Category.update({ _id: _id }, categories);
+            await Category.updateOne({ _id: _id }, categories);
             if (newImage) {
                 fs.unlinkSync(oldImage);
               }
@@ -143,6 +143,9 @@ exports.deleteCategory = async (req, res, next) => {
             }
             const deleteCategoy = await Category.findByIdAndDelete({ _id: _id });
             if (deleteCategoy) {
+                if(findCategory.image){
+                    fs.unlinkSync(findCategory.image);
+                }
                 res.status(200).json({
                     success: true,
                     info: { message: 'Category delete successfully' },
