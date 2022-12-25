@@ -6,7 +6,7 @@ const {validateResult} = require('../middleware/ValidateResult');
 const {verifyTokenAndAdmin} =
  require('../middleware/verifytoken');
 const categoryValidation = require('../validator/CategoryValidation');
-const {imageValidate} =
+const {imageValidate, imageUpdateValidate} =
  require('../middleware/SingleImageValidator');
 
 const multer = require('multer');
@@ -52,6 +52,8 @@ router.get(
 router.put(
     '/:id',
     verifyTokenAndAdmin,
+    upload.single('image'),
+    imageUpdateValidate,
     categoryController.updateCategory,
 );
 
