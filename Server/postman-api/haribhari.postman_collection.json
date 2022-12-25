@@ -6,1121 +6,1167 @@
 	},
 	"item": [
 		{
-			"name": "Signup",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\":\"Dipronil Das\",\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\",\n    \"confirm_password\":\"Dip@12345\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/signup",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "resend otp",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/resendotp/638b949dc05769402485d342",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"resendotp",
-						"638b949dc05769402485d342"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "verify otp",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"otp\":942653\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/verifyotp/6395552e5703b69e655db65d",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"verifyotp",
-						"6395552e5703b69e655db65d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/login",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Change Password",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"old_password\":\"Dip@12345\",\r\n    \"password\":\"Dip@123456\",\r\n    \"confirm_password\":\"Dip@123456\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/changepassword",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"changepassword"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Profile",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Subhronil Das\",\r\n    \"phone\":999999888,\r\n    \"address\":\"Kolkata\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/updateprofile",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"updateprofile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "view Profile",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "",
-							"value": "",
-							"type": "text",
-							"disabled": true
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Dipronil Das\",\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\",\n    \"confirm_password\":\"Dip@12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "",
-							"type": "file",
-							"src": [],
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "{{host}}/auth/viewprofile",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"viewprofile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "forgot password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/forgotpassword",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"forgotpassword"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "verify reset otp",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"otp\":596023\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/resetpasswordotp/632ff154fddc88f04e30ce2c",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"resetpasswordotp",
-						"632ff154fddc88f04e30ce2c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "reset password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"password\":\"Dip@1234567\",\n    \"confirm_password\":\"Dip@1234567\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/auth/resetpassword/632ff154fddc88f04e30ce2c",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"resetpassword",
-						"632ff154fddc88f04e30ce2c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create Product",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Cauliflower133",
-							"type": "text"
-						},
-						{
-							"key": "actual_price",
-							"value": "50",
-							"type": "text"
-						},
-						{
-							"key": "price",
-							"value": "42",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "description for tomato",
-							"type": "text"
-						},
-						{
-							"key": "disclaimer",
-							"value": "disclaimer for tomato",
-							"type": "text"
-						},
-						{
-							"key": "category",
-							"value": "fruits",
-							"type": "text"
-						},
-						{
-							"key": "expary_date",
-							"value": "2023/12/02",
-							"type": "text"
-						},
-						{
-							"key": "customer_care_email",
-							"value": "info@info.com",
-							"type": "text"
-						},
-						{
-							"key": "customer_care_phone",
-							"value": "9999999999",
-							"type": "text"
-						},
-						{
-							"key": "image",
-							"type": "file",
-							"src": [
-								"/D:/image/img2.jpg",
-								"/D:/image/img3.jpg"
+						"url": {
+							"raw": "{{host}}/auth/signup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"signup"
 							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/product",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"product"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "find all product",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/product",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"product"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "2",
-							"disabled": true
+				{
+					"name": "verify otp",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\":942653\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "limit",
-							"value": "3",
-							"disabled": true
+						"url": {
+							"raw": "{{host}}/auth/verifyotp/6395552e5703b69e655db65d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"verifyotp",
+								"6395552e5703b69e655db65d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend otp",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "keyword",
-							"value": "apple",
-							"disabled": true
+						"url": {
+							"raw": "{{host}}/auth/resendotp/638b949dc05769402485d342",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"resendotp",
+								"638b949dc05769402485d342"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create category",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"check2\",\r\n    \"parent_category\":\"639580d5bacf1b7115a066c3\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/category",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"category"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get product by id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/product/634edb8be72c76d5d4490d93",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"product",
-						"634edb8be72c76d5d4490d93"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all categories",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/category",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"category"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "3",
-							"disabled": true
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "limit",
-							"value": "2",
-							"disabled": true
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old_password\":\"Dip@12345\",\r\n    \"password\":\"Dip@123456\",\r\n    \"confirm_password\":\"Dip@123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "keyword",
-							"value": "Leave",
-							"disabled": true
+						"url": {
+							"raw": "{{host}}/auth/changepassword",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"changepassword"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get category by id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/category/6395810ebacf1b7115a066ca",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"category",
-						"6395810ebacf1b7115a066ca"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Category",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"check3\",\r\n    \"parent_category\":\"634ed79d314fa06ed7063b6d\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/category/6395810ebacf1b7115a066ca",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"category",
-						"6395810ebacf1b7115a066ca"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete category by id",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/category/633d01c6769e568ae3b5f72d",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"category",
-						"633d01c6769e568ae3b5f72d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add address",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"receiver_name\": \"Dipronil Das\",\r\n    \"resident_no\": \"30\",\r\n    \"resident_name\":\"bandel\",\r\n    \"address_type\": \"work\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Subhronil Das\",\r\n    \"phone\":999999888,\r\n    \"address\":\"Kolkata\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/updateprofile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"updateprofile"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/address",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"address"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "find product by category",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/product/find/vegetables",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"product",
-						"find",
-						"vegetables"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "view all address for user",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/address",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"address"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get address by id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/address/634bf3a36785d64944311e0f",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"address",
-						"634bf3a36785d64944311e0f"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "edit address",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"resident_no\": \"35/1\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "view Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/auth/viewprofile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"viewprofile"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"address",
-						"6348bb3ee79921e53da0d61b"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete address ",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"address",
-						"6348bb3ee79921e53da0d61b"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create cart",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"product_id\":\"634eda68680eae751f2271a5\",\r\n    \"qty\":7\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/forgotpassword",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"forgotpassword"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/cart",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"cart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "View cart",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/cart",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"cart"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "",
-							"disabled": true
+				{
+					"name": "verify reset otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":596023\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/resetpasswordotp/632ff154fddc88f04e30ce2c",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"resetpasswordotp",
+								"632ff154fddc88f04e30ce2c"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "remove product from cart",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/cart/634eda68680eae751f2271a5",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"cart",
-						"634eda68680eae751f2271a5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "admin login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"soumyadeep1399@gmail.com\",\r\n    \"password\":\"Dip@12345\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/auth/admin/login",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"admin",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "View Users",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/auth/users",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Block Users/Vender/admin",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/auth/user/block/6395552e5703b69e655db65d",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"user",
-						"block",
-						"6395552e5703b69e655db65d"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "{{token}}",
-							"disabled": true
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"Dip@1234567\",\n    \"confirm_password\":\"Dip@1234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/resetpassword/632ff154fddc88f04e30ce2c",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"resetpassword",
+								"632ff154fddc88f04e30ce2c"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Unblock Users/Vender/admin",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/auth/user/unblock/6395552e5703b69e655db65d",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"user",
-						"unblock",
-						"6395552e5703b69e655db65d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Admin and Vendor",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"role\":\"vender\",\r\n    \"name\":\"subhronil Das\",\r\n    \"email\":\"subhronildas.net@gmail.com\",\r\n    \"password\":\"Dip@12345\",\r\n    \"confirm_password\":\"Dip@12345\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/auth/addvendoradmin",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"addvendoradmin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "View Venders",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/auth/venders",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"venders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "View admins",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/auth/admins",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"auth",
-						"admins"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add order",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"pin\":712121,\r\n    \"phone\":9999999999\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"soumyadeep1399@gmail.com\",\r\n    \"password\":\"Dip@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/admin/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"admin",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/order/639f21a58935735d82947f4e",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"order",
-						"639f21a58935735d82947f4e"
-					]
+				{
+					"name": "View Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/auth/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block Users/Vender/admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/auth/user/block/6395552e5703b69e655db65d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"block",
+								"6395552e5703b69e655db65d"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "{{token}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unblock Users/Vender/admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/auth/user/unblock/6395552e5703b69e655db65d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"unblock",
+								"6395552e5703b69e655db65d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Admin and Vendor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\":\"vender\",\r\n    \"name\":\"subhronil Das\",\r\n    \"email\":\"subhronildas.net@gmail.com\",\r\n    \"password\":\"Dip@12345\",\r\n    \"confirm_password\":\"Dip@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth/addvendoradmin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"addvendoradmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Venders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/auth/venders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"venders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View admins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/auth/admins",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"admins"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "view order",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/order",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"order"
-					]
+			"name": "Product",
+			"item": [
+				{
+					"name": "create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Cauliflower133",
+									"type": "text"
+								},
+								{
+									"key": "actual_price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "42",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description for tomato",
+									"type": "text"
+								},
+								{
+									"key": "disclaimer",
+									"value": "disclaimer for tomato",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "fruits",
+									"type": "text"
+								},
+								{
+									"key": "expary_date",
+									"value": "2023/12/02",
+									"type": "text"
+								},
+								{
+									"key": "customer_care_email",
+									"value": "info@info.com",
+									"type": "text"
+								},
+								{
+									"key": "customer_care_phone",
+									"value": "9999999999",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": [
+										"/D:/image/img2.jpg",
+										"/D:/image/img3.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/product?keyword=Cauliflower1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "Cauliflower1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product/634edb8be72c76d5d4490d93",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"634edb8be72c76d5d4490d93"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "View single order",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/order/639f2f5f2666e9573ce101b7",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"order",
-						"639f2f5f2666e9573ce101b7"
-					]
+			"name": "Category",
+			"item": [
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "check40",
+									"type": "text"
+								},
+								{
+									"key": "parent_category",
+									"value": "639580d5bacf1b7115a066c3",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/image/img11.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/category",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "Leave",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get category by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category/6395810ebacf1b7115a066ca",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category",
+								"6395810ebacf1b7115a066ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "check46",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/image/img7.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/category/63a866074ff2fba695cc0d1d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category",
+								"63a866074ff2fba695cc0d1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category/63a866a5b1ba54e02964f833",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category",
+								"63a866a5b1ba54e02964f833"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find product by category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product/find/634ed79d314fa06ed7063b70",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"find",
+								"634ed79d314fa06ed7063b70"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "add address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiver_name\": \"Dipronil Das\",\r\n    \"resident_no\": \"30\",\r\n    \"resident_name\":\"bandel\",\r\n    \"address_type\": \"work\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/address",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view all address for user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/address",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get address by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/address/634bf3a36785d64944311e0f",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"address",
+								"634bf3a36785d64944311e0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit address",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resident_no\": \"35/1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"address",
+								"6348bb3ee79921e53da0d61b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete address ",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/address/6348bb3ee79921e53da0d61b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"address",
+								"6348bb3ee79921e53da0d61b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "create cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\":\"634edb8be72c76d5d4490d93\",\r\n    \"qty\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/cart",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cart",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cart"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove product from cart",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cart/634eda68680eae751f2271a5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cart",
+								"634eda68680eae751f2271a5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pin\":712121,\r\n    \"phone\":9999999999\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/order/639f21a58935735d82947f4e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"order",
+								"639f21a58935735d82947f4e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/order",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View single order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/order/639f2f5f2666e9573ce101b7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"order",
+								"639f2f5f2666e9573ce101b7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -89,6 +89,7 @@ exports.categoryOne = async (req, res, next) => {
 
 exports.updateCategory = async (req, res, next) => {
     try {
+        let slug;
         const _id = req.params.id;
         const getCategory = await Category.findOne({ _id: _id });
         if (!getCategory) {
@@ -97,8 +98,11 @@ exports.updateCategory = async (req, res, next) => {
                 errors: { error: 'Category not found' }
             });
         } else {
+            console.log(getCategory);
             const name = req.body.name;
-            const slug = req.body.name.toLowerCase();
+            if(name){
+                slug = req.body.name.toLowerCase();
+            }
             const oldImage = getCategory.image;
             const parentCategory = req.body.parent_category;
             if (req.file) {

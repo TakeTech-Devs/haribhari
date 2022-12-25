@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const imageValidate = (req, res, next) => {
-    const expectedFileType = ['png', 'jpg', 'jpeg'];
+    const expectedFileType = ['png', 'jpg', 'jpeg', 'webp'];
     if (!req.file) {
         return res.status(400).json({message: 'Image is Required'});
     }
