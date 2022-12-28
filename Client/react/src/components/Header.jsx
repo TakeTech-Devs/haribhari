@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import logoww from '../images/Logo1st.png';
+import mapimg from '../images/map.png';
 import {
     Navbar, NavItem, NavbarToggler, Collapse, Nav, NavbarBrand, Button, Modal, ModalBody, Form, FormGroup, Label, Input, UncontrolledDropdown, DropdownToggle, DropdownItem, NavLink, DropdownMenu
 } from "reactstrap";
@@ -9,9 +11,11 @@ import SearchBarComponent from './SearchBarComponent';
 
 function Header() {
     const [loginUser, setIsLoginUser] = useState(false);
+    const [mySavedAddress, setmySavedAddress] = useState([]);
     const [formState, setFormState] = useState({
         values: {}
     });
+    const navigate = useNavigate()
     const [mymodal, setmyModal] = useState({
         firstModal: false,
         loginModal: false,
@@ -19,6 +23,11 @@ function Header() {
         otpModal: false,
         forgetPassModal: false,
         showEye: false,
+        profileInfoModel: false,
+        changePassModel: false,
+        addressModel: false,
+        addAddressModel: false,
+        userUpdateModel: false,
     });
     const {
         onAddProduct,
@@ -26,10 +35,13 @@ function Header() {
         cartItems,
         setCartItems,
         handelLogout,
-        handleRefresh
+        handleRefresh,
+        UserInfo,
+        setUserInfo,
+        getUserDetails
     } = useAuth()
     const handleChange = (event) => {
-        console.log(event.target.files, event.target.name)
+        // console.log(event.target.files, event.target.name)
 
         setFormState(formState => ({
             ...formState,
@@ -43,7 +55,7 @@ function Header() {
 
         }));
     }
-    const toggle = () => setmyModal({ loginModal: false, otpModal: false, registerModal: false, firstModal: false, forgetPassModal: false });
+    const toggle = () => setmyModal({ loginModal: false, otpModal: false, registerModal: false, firstModal: false, forgetPassModal: false, addressModel: false, addAddressModel: false, userUpdateModel: false });
     const handleLogin = () => {
         toggle()
         setmyModal({ ...mymodal, loginModal: true })
@@ -81,7 +93,8 @@ function Header() {
             localStorage.setItem('token', JSON.stringify(res.data.info.token))
             console.log(res, "fsd")
             toggle()
-            handleRefresh()
+            navigate("/shop")
+            // handleRefresh()
         })
     }
 
@@ -102,10 +115,130 @@ function Header() {
         if (token) {
             setIsLoginUser(true)
         }
+        // getMyAddress()
     }, [])
     const [collapsed, setCollapsed] = useState(true);
 
     const toggleNavbar = () => setCollapsed(!collapsed);
+
+    console.log('formState.values', formState.values)
+
+    const handleResetPass = (e) => {
+        e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.put(`http://localhost:4000/auth/changepassword`, formState.values, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            toggle()
+            // handleRefresh()
+        })
+    }
+
+    const handleAddressForm = (e) => {
+        e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.post(`http://localhost:4000/address`, formState.values, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            toggle()
+            // handleRefresh()
+        })
+    }
+
+
+    const handleUpdateUser = (e) => {
+        e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.put(`http://localhost:4000/auth/updateprofile`, formState.values, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            getUserDetails()
+
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            toggle()
+            // handleRefresh()
+
+        })
+    }
+
+
+    const getMyAddress = () => {
+        // e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.get(`http://localhost:4000/address`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            // toggle()
+            // handleRefresh()
+            setmySavedAddress(res.data?.info)
+            toggle()
+            setmyModal({ ...mymodal, addressModel: true })
+        })
+    }
+    const handleDeleteAddress = (id) => {
+        // e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.delete(`http://localhost:4000/address/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            // toggle()
+            // handleRefresh()
+            setmySavedAddress(res.data?.info)
+        })
+    }
+    const handleEditAddress = (id) => {
+        // e.preventDefault();
+        const token = JSON.parse(localStorage.getItem('token'))
+
+
+        axios.put(`http://localhost:4000/address/${id}`, formState.values, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log('res', res)
+            // setcategories(res.data.info)
+            // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+            // console.log(res, "fsd")
+            toggle()
+            // handleRefresh()
+        })
+    }
+
     return (
         <>
             <div
@@ -117,7 +250,7 @@ function Header() {
                 <Navbar color="white fixed-top" light expand="md">
                     <Link to="/">
                         <img
-                            src="assets/images/Logo 1st.png"
+                            src={logoww}
                             height="100"
                             width="100"
                             alt="haribhari"
@@ -126,7 +259,7 @@ function Header() {
                     <NavbarToggler onClick={toggleNavbar} />
                     <Collapse isOpen={!collapsed} className="main-header" navbar>
                         <Nav
-                            className={loginUser?"ml-auto":"justify-content-between align-items-center mr-auto mx-auto"}
+                            className={loginUser ? "ml-auto" : "justify-content-between align-items-center mr-auto mx-auto"}
                             navbar
                         >
                             <NavItem className="me-2 my-3">
@@ -327,23 +460,30 @@ function Header() {
                                         <UncontrolledDropdown nav inNavbar>
                                             <DropdownToggle nav caret className='me-3 my-3'> Account </DropdownToggle>
                                             <DropdownMenu className="text-center">
-                                                <DropdownItem >Profile
-                                                    <Modal className="white-background" size="md" aria-labelledby="contained-modal-title-vcenter" centered >
+                                                <DropdownItem onClick={() => {
+                                                    toggle()
+                                                    setmyModal({ ...mymodal, profileInfoModel: true })
+                                                }}>Profile
+                                                    <Modal
+                                                        centered
+                                                        isOpen={mymodal.profileInfoModel}
+                                                        toggle={toggle}
+                                                        className="white-background" size="md" aria-labelledby="contained-modal-title-vcenter"  >
                                                         <ModalBody>
                                                             <h2 className="text-center mb-3">Profile</h2>
                                                             <Form>
                                                                 <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                     <Label>Name :</Label>
-                                                                    <Label>Subhrajit Roy Chowdhury</Label>
+                                                                    <Label>{UserInfo?.name}</Label>
                                                                 </FormGroup>
                                                                 <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                     <Label>Email</Label>
-                                                                    <Label>subhrajit@gmail.com</Label>
+                                                                    <Label>{UserInfo?.email}</Label>
                                                                 </FormGroup>
 
                                                                 <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                     <Label> Phone Number:</Label>
-                                                                    <Label>+91 9784561230</Label>
+                                                                    <Label>{UserInfo?.role}</Label>
                                                                 </FormGroup>
 
                                                                 <FormGroup className="d-flex text-left align-items-center justify-content-around">
@@ -351,43 +491,63 @@ function Header() {
                                                                     <Label>+91 9712453675</Label>
                                                                 </FormGroup>
                                                             </Form>
-                                                            <Button className="signup" >
+                                                            <Button className="signup"
+                                                                onClick={() => {
+                                                                    setFormState({ values: { ...UserInfo } })
+                                                                    toggle()
+                                                                    setmyModal({ ...mymodal, userUpdateModel: true })
+
+                                                                }}
+                                                            >
                                                                 Update Profile
                                                             </Button>
-                                                            <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered >
+                                                            <Modal
+                                                                isOpen={mymodal.userUpdateModel}
+                                                                toggle={toggle}
+                                                                size="md" aria-labelledby="contained-modal-title-vcenter" centered >
                                                                 <ModalBody>
                                                                     <Form>
                                                                         <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                             <Label className="">Name :</Label>
-                                                                            <Label>Subhrajit Roy Chowdhury</Label>
-                                                                            {/* <input type="text" name="" id="" /> */}
+                                                                            {/* <Label>Subhrajit Roy Chowdhury</Label> */}
+                                                                            <input type="text" value={formState.values?.name} onChange={(e) => setFormState({ ...UserInfo, ...formState, values: { name: e.target.value } })} placeholder='user name' name="" id="" />
                                                                         </FormGroup>
 
                                                                         <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                             <Label className="text-left">Email</Label>
-                                                                            <Label>subhrajit@gmail.com</Label>
+                                                                            <Label>{UserInfo?.email}</Label>
                                                                             {/* <input type="email" name="" id="" /> */}
                                                                         </FormGroup>
 
                                                                         <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                             <Label className="text-left"> Phone Number:</Label>
-                                                                            <Label>+91 9784561230</Label>
-                                                                            {/* <input type="number" name="" id="" /> */}
+                                                                            {/* <Label>+91 9784561230</Label> */}
+                                                                            <input type="text"
+                                                                                value={formState.values?.phone} onChange={(e) => setFormState({ ...UserInfo, ...formState, values: { phone: e.target.value } })}
+                                                                                name="" id="" />
                                                                         </FormGroup>
 
-                                                                        <FormGroup className="d-flex text-left align-items-center justify-content-around">
+                                                                        {/* <FormGroup className="d-flex text-left align-items-center justify-content-around">
                                                                             <Label className="text-left">Alternative Phone Number:</Label>
                                                                             <Label>+91 9712453675</Label>
-                                                                            {/* <input type="number" name="" id="" /> */}
-                                                                        </FormGroup>
+                                                                            <input type="number" name="" id="" />
+                                                                        </FormGroup> */}
                                                                     </Form>
-                                                                    <Button className="m-3">Done</Button>
+                                                                    <Button className="m-3" onClick={handleUpdateUser}>Done</Button>
                                                                 </ModalBody>
                                                             </Modal>
-                                                            <Button className="signup" >
+                                                            <Button className="signup" onClick={() => {
+                                                                toggle()
+                                                                setmyModal({ ...mymodal, changePassModel: true })
+                                                            }} >
                                                                 Change Password
                                                             </Button>
-                                                            <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered >
+                                                            <Modal
+
+                                                                isOpen={mymodal.changePassModel}
+                                                                toggle={toggle}
+
+                                                                size="md" aria-labelledby="contained-modal-title-vcenter" centered >
                                                                 <ModalBody>
                                                                     <Form className="signupForm">
                                                                         <FormGroup>
@@ -395,8 +555,9 @@ function Header() {
                                                                             <div className="password d-flex">
                                                                                 <Input
                                                                                     // type={this.state.hidden ? 'text' : 'password'}
-                                                                                    name="old-password"
-                                                                                // value={this.state.password}
+                                                                                    name="old_password"
+                                                                                    // value={this.state.password}'
+                                                                                    onChange={handleChange}
                                                                                 // onChange={(e) => this.onInputChange(e)}
                                                                                 />
                                                                                 <i className="fa fa-eye" />
@@ -406,8 +567,12 @@ function Header() {
                                                                             <Label for="OTP">New Password</Label>
                                                                             <div className="password d-flex">
                                                                                 <Input
+                                                                                    type="text"
+
                                                                                     // type={this.state.hidden ? 'text' : 'password'}
-                                                                                    name="new-password"
+                                                                                    onChange={handleChange}
+
+                                                                                    name="password"
                                                                                 // value={this.state.password}
                                                                                 // onChange={(e) => this.onInputChange(e)}
                                                                                 />
@@ -418,11 +583,12 @@ function Header() {
                                                                             <Label for="OTP">Confirm Password</Label>
                                                                             <Input
                                                                                 type="text"
-                                                                                name="confiPass"
+                                                                                name="confirm_password"
                                                                                 id="OTP"
+                                                                                onChange={handleChange}
                                                                             />
                                                                         </FormGroup>
-                                                                        <Button>Done</Button>
+                                                                        <Button onClick={handleResetPass}>Done</Button>
                                                                     </Form>
                                                                 </ModalBody>
                                                             </Modal>
@@ -435,34 +601,64 @@ function Header() {
 
 
                                                 <DropdownItem >
-                                                    Saved Addresses
-                                                    <Modal className="SavedAddress white-background" size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
+
+                                                    <p onClick={() => {
+                                                        getMyAddress()
+
+                                                    }} >
+                                                        Saved Addresses
+                                                    </p>
+                                                    <Modal
+
+                                                        isOpen={mymodal.addressModel}
+                                                        toggle={toggle}
+                                                        className="SavedAddress white-background" size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
                                                         <ModalBody>
-                                                            <Button className="signup px-md-5 my-1 text-left" >Add New Address</Button>
-                                                            <h6>Home</h6>
-                                                            <div className="add d-flex align-items-center justify-content-around">
-                                                                <p>Subhrajeet Roy Chowdhury- 551/A, Talbagan, Kolkata</p>
-                                                                <div className="action d-flex justify-content-between">
-                                                                    <Button className="signup">Edit</Button>
-                                                                    <Button className="signup">Delete</Button>
-                                                                </div>
-                                                            </div>
-                                                            <h6>Office</h6>
-                                                            <div className="add d-flex align-items-center justify-content-around">
-                                                                <p>Subhrajeet Roy Chowdhury- 551/A, Talbagan, Kolkata</p>
-                                                                <div className="action d-flex justify-content-between">
-                                                                    <Button className="signup">Edit</Button>
-                                                                    <Button className="signup">Delete</Button>
-                                                                </div>
-                                                            </div>
+
+                                                            <Button className="signup px-md-5 my-1 text-left" onClick={() => {
+                                                                setFormState({ ...formState, values: {} })
+                                                                toggle()
+                                                                setmyModal({ ...mymodal, addAddressModel: true })
+                                                            }} >
+                                                                Add New Address
+                                                            </Button>
+
+                                                            {
+                                                                mySavedAddress?.map((addres, ind) => (
+                                                                    <>
+                                                                        <h6>{addres?.address_type}</h6>
+                                                                        <div className="add d-flex align-items-center justify-content-around">
+                                                                            <p>{`${addres?.receiver_name} ${addres?.resident_name} ${addres?.resident_no} `}</p>
+                                                                            <div className="action d-flex justify-content-between">
+                                                                                <Button className="signup" onClick={() => {
+
+                                                                                    setFormState({ ...formState, values: { ...mySavedAddress[ind] } })
+                                                                                    toggle()
+                                                                                    setmyModal({ ...mymodal, addAddressModel: true })
+                                                                                }}>Edit</Button>
+                                                                                <Button className="signup" onClick={() => handleDeleteAddress(addres?._id)}>Delete</Button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                ))
+                                                            }
 
 
 
-                                                            <Modal className="white-background" size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
+
+
+
+
+
+                                                            <Modal className="white-background" size="lg"
+
+                                                                isOpen={mymodal.addAddressModel}
+                                                                toggle={toggle}
+                                                                aria-labelledby="contained-modal-title-vcenter" centered >
                                                                 <ModalBody>
                                                                     <div className="newAddress d-flex align-items-center justify-content-between">
                                                                         <div className="new-address-img">
-                                                                            <img className="location-image" src="assets/images/map.png" alt="" />
+                                                                            <img className="location-image" src={mapimg} alt="" />
                                                                             <div className="loc d-flex text-center align-items-center justify-content-around">
                                                                                 <img src="assets/images/icons/loc.png" alt="" />
                                                                                 <h3>Your Location</h3>
@@ -473,31 +669,37 @@ function Header() {
                                                                             <h2>Enter Complete Address</h2>
                                                                             <p>This allow us to find you easily and give you timely delivery experience</p>
                                                                             <FormGroup>
-                                                                                <Input type="text" name="name" id="" placeholder="Reaceiver's Name" />
+                                                                                <Input value={formState.values.receiver_name} onChange={handleChange} type="text" name="receiver_name" id="" placeholder="Reaceiver's Name" />
                                                                             </FormGroup>
                                                                             <FormGroup>
-                                                                                <Input type="text" name="address" id="" placeholder="Flate/House/Office No." />
+                                                                                <Input value={formState.values.resident_name} onChange={handleChange} type="text" name="resident_name" id="" placeholder="Flate/House/Office No." />
                                                                             </FormGroup>
                                                                             <FormGroup>
-                                                                                <Input type="text" name="street/society/office-name" id="" placeholder="Street/Society/Office Name." />
+                                                                                <Input value={formState.values.resident_no} onChange={handleChange} type="text" name="resident_no" id="" placeholder="Street/Society/Office Name." />
                                                                             </FormGroup>
                                                                             <FormGroup>
-                                                                                <Input type="number" name="pin" id="" placeholder="Pin Number" />
+                                                                                <Input value={formState.values?.pin} onChange={handleChange} type="number" name="pin" id="" placeholder="Pin Number" />
                                                                             </FormGroup>
                                                                             <FormGroup tag="fieldset" className="d-flex justify-content-around">
                                                                                 <p>Save address as : &nbsp;</p>
                                                                                 <FormGroup check>
                                                                                     <Label check>
-                                                                                        <Input type="radio" name="address-type" /> Home&nbsp;&nbsp;
+                                                                                        <Input onChange={handleChange} type="radio" value="home"
+                                                                                            selected={formState.values?.address_type == 'home'}
+                                                                                            name="address_type" /> Home&nbsp;&nbsp;
                                                                                     </Label>
                                                                                 </FormGroup>
                                                                                 <FormGroup check>
                                                                                     <Label check>
-                                                                                        <Input type="radio" name="address-type" /> Office
+                                                                                        <Input value='work'
+                                                                                            selected={formState.values?.address_type == 'work'}
+                                                                                            onChange={handleChange} type="radio" name="address_type" /> Office
                                                                                     </Label>
                                                                                 </FormGroup>
                                                                             </FormGroup>
-                                                                            <Button className="btn SaveAddress">Save Address</Button>
+                                                                            <Button className="btn SaveAddress" onClick={(e) => {
+                                                                                formState.values._id ? handleEditAddress(formState.values._id) : handleAddressForm(e)
+                                                                            }}>Save Address</Button>
                                                                         </Form>
                                                                     </div>
 

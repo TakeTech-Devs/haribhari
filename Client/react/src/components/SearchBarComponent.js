@@ -15,7 +15,7 @@ function SearchBarComponent({placeholder}) {
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
     // our api to fetch the search result
-    console.log("search ", searchTerm);
+
   };
   return (
     <div className='search'>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { useAuth } from "../context/AuthContex";
 
@@ -32,7 +33,7 @@ function CategoryProducts(props) {
       setproducts(res.data.info)
     })
   }
-  console.log(cartItems, "cartItems")
+  console.log(products, "products")
   return (
     <div className="products-category">
       <div className="mx-4">
@@ -51,23 +52,25 @@ function CategoryProducts(props) {
           {products?.map(pd => (
             <div className="row col-12 col-md-3 col-sm-1">
               <Card className="filter-products">
-                <CardBody>
-                  <CardImg
-                    src={`http://localhost:4000/${pd?.images[0]}`}
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body-bottom">
-                    <CardTitle className="text-left">
-                      {pd?.description}
-                    </CardTitle>
+                <Link to={`/products/${pd._id}`} >
+                  <CardBody>
+                    <CardImg
+                      src={`http://localhost:4000/${pd?.images[0]}`}
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div className="card-body-bottom">
+                      <CardTitle className="text-left">
+                        {pd?.description}
+                      </CardTitle>
 
-                    <div className="add-button  d-flex justify-content-between align-items-bottom">
-                      <p>${pd?.price}</p>
-                      <Button onClick={() => onAddProduct(pd)}>Add</Button>
+                      <div className="add-button  d-flex justify-content-between align-items-bottom">
+                        <p>${pd?.price}</p>
+                        <Button onClick={() => onAddProduct(pd)}>Add</Button>
+                      </div>
                     </div>
-                  </div>
-                </CardBody>
+                  </CardBody>
+                </Link>
               </Card>
             </div>
           ))}
