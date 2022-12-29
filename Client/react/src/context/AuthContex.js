@@ -9,6 +9,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
 
     const [cartItems, setCartItems] = useState([]);
+    const [UserInfo, setUserInfo] = useState([]);
     const [billingInfo, setbillingInfo] = useState({});
     const onAddProduct = (product) => {
         const exist = cartItems.find((x) => x._id === product._id);
@@ -55,26 +56,50 @@ export function AuthProvider({ children }) {
 
 
     useEffect(() => {
-        getMyCart()
+
+        getUserDetails()
+        document.body.classList.remove("stop-scrolling");
+
     }, [])
+    useEffect(() => {
+
+        if (JSON.stringify(UserInfo) !== '{}') {
+            getMyCart()
+
+        }
+    }, [UserInfo])
+
     const getMyCart = () => {
         const token = JSON.parse(localStorage.getItem('token'))
-        // console.log(token)
+
         axios.get('http://localhost:4000/cart', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then(res => {
-            console.log(res, "resd")
+
             setbillingInfo(res.data.info)
             setCartItems(res.data.info.items)
         }).catch(err => {
             // localStorage.removeItem('token')
         })
     }
+    const getUserDetails = () => {
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        axios.get('http://localhost:4000/auth/viewprofile', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            setUserInfo(res?.data?.info)
+        }).catch(err => {
+            localStorage.removeItem('token')
+        })
+    }
 
     const handleRefresh = () => {
-        // window.location.reload(true);
+        window.location.reload(true);
     }
     const handelLogout = () => {
         localStorage.removeItem('token')
@@ -89,7 +114,10 @@ export function AuthProvider({ children }) {
         handelLogout,
         handleRefresh,
         billingInfo, setbillingInfo,
-        getMyCart
+        getMyCart,
+        UserInfo,
+        setUserInfo,
+        getUserDetails
     };
 
     return (

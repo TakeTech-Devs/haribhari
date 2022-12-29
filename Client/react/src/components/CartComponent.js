@@ -83,9 +83,9 @@ function Cart(props) {
                 <div className="added-item">
                     {cartItems?.map(pd => (
                         <div className="item-info-container d-flex align-items-center justify-content-evenly">
-
+                            {console.log(pd?.productId?.images[0], "pd")}
                             <div className="item-img">
-                                <img src="assets/images/products/PastsNoodles.jpg" alt="" />
+                                <img src={`http://localhost:4000//${pd?.productId?.images[0]}`} alt="" />
 
                             </div>
                             <div className="item-desc">

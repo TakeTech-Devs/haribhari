@@ -7,18 +7,18 @@ const moment = require('moment');
 
 exports.signUp = async (req, res, next) => {
     try {
-    // eslint-disable-next-line
-    const { name, email, password, confirm_password } = req.body;
-        const emailuser = await User.findOne({email: email});
+        // eslint-disable-next-line
+        const { name, email, password, confirm_password } = req.body;
+        const emailuser = await User.findOne({ email: email });
         if (!emailuser) {
             // eslint-disable-next-line
-      if (password == confirm_password) {
+            if (password == confirm_password) {
                 const user = new User({
                     name: name,
                     email: email,
                     password: password,
                     // eslint-disable-next-line
-          confirm_password: confirm_password,
+                    confirm_password: confirm_password,
                 });
                 const otp = await user.generateOTP();
                 await user.save();
@@ -31,14 +31,14 @@ exports.signUp = async (req, res, next) => {
                 // res.setHeader("id", user._id);
                 res.status(201).json({
                     success: true,
-                    info: {message: `OTP Sent To ${user.email}`},
+                    info: { message: `OTP Sent To ${user.email}` },
                     user_id: user._id,
                 });
                 logger.info(`OTP Sent To ${user.email}`);
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: {error: 'Password Mismatched'},
+                    errors: { error: 'Password Mismatched' },
                 });
                 logger.error('Password Mismatched');
             }
@@ -60,19 +60,19 @@ exports.verifyOtp = async (req, res, next) => {
     try {
         const _id = req.params.id;
         const otp = req.body.otp;
-        const otpInfo = await Otp.findOne({user_id: _id}).sort({createdAt: -1});
+        const otpInfo = await Otp.findOne({ user_id: _id }).sort({ createdAt: -1 });
         if (
             otpInfo &&
-      otp == otpInfo.OTP &&
-      moment().format('hh:mm:ss') <= otpInfo.expairAt
+            otp == otpInfo.OTP &&
+            moment().format('hh:mm:ss') <= otpInfo.expairAt
         ) {
             await User
-                .findByIdAndUpdate({_id: _id}, {email_verified: true}).sort(
-                    {createdAt: -1},
+                .findByIdAndUpdate({ _id: _id }, { email_verified: true }).sort(
+                    { createdAt: -1 },
                 );
             await Otp.updateOne(
-                {user_id: _id, OTP: otpInfo.OTP},
-                {expairAt: moment(new Date()).format('hh:mm:ss')},
+                { user_id: _id, OTP: otpInfo.OTP },
+                { expairAt: moment(new Date()).format('hh:mm:ss') },
             );
             res.status(200).json({
                 success: true,
@@ -99,7 +99,7 @@ exports.verifyOtp = async (req, res, next) => {
 exports.resendOtp = async (req, res, next) => {
     try {
         const _id = req.params.id;
-        const user = await User.findById({_id: _id});
+        const user = await User.findById({ _id: _id });
         if (user) {
             if (user.email_verified) {
                 res.status(400).json({
@@ -126,7 +126,7 @@ exports.resendOtp = async (req, res, next) => {
         } else {
             res.status(404).json({
                 success: false,
-                errors: {error: 'User Not found'},
+                errors: { error: 'User Not found' },
             });
         }
     } catch (error) {
@@ -137,8 +137,8 @@ exports.resendOtp = async (req, res, next) => {
 
 exports.logIn = async (req, res, next) => {
     try {
-        const {email, password} = req.body;
-        const emailuser = await User.findOne({email: email});
+        const { email, password } = req.body;
+        const emailuser = await User.findOne({ email: email });
         if (emailuser) {
             if (emailuser.active) {
                 if (emailuser.email_verified) {
@@ -148,34 +148,34 @@ exports.logIn = async (req, res, next) => {
                     if (isValid) {
                         res.status(200).json({
                             success: true,
-                            info: {message: 'Login Successfully', token: token},
+                            info: { message: 'Login Successfully', token: token },
                         });
                         logger.info('Login Successfully');
                         next();
                     } else {
                         res.status(401).json({
                             success: false,
-                            errors: {error: 'Invalid Credientials'},
+                            errors: { error: 'Invalid Credientials' },
                         });
                         logger.error('Invalid Credientials');
                     }
                 } else {
                     res.status(400).json({
                         success: false,
-                        errors: {error: 'Please Veriry Your Account'},
+                        errors: { error: 'Please Veriry Your Account' },
                     });
                     logger.error('Please Veriry Your Account');
                 }
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: {error: `You are Blocked. Please contact admin`},
+                    errors: { error: `You are Blocked. Please contact admin` },
                 });
             }
         } else {
             res
                 .status(400)
-                .json({success: false, errors: {error: 'User Not Exists'}});
+                .json({ success: false, errors: { error: 'User Not Exists' } });
             logger.error('User Not Exists');
         }
     } catch (error) {
@@ -188,8 +188,8 @@ exports.currentSignInAt = async (req, res, next) => {
     try {
         const email = req.body.email;
         await User.findOneAndUpdate(
-            {email: email},
-            {current_sign_in_at: Date.now()},
+            { email: email },
+            { current_sign_in_at: Date.now() },
         );
     } catch (error) {
         next(error);
@@ -200,7 +200,7 @@ exports.sendUserPasswordReset = async (req, res, next) => {
     try {
         const email = req.body.email;
         if (email) {
-            const user = await User.findOne({email: email});
+            const user = await User.findOne({ email: email });
             if (user) {
                 const otp = await user.generateOTP();
                 await new Otp({
@@ -217,13 +217,13 @@ exports.sendUserPasswordReset = async (req, res, next) => {
                 });
                 logger.info(`OTP Sent To ${user.email}`);
             } else {
-                res.status(400).send({message: 'Email doesn\'t exists'});
+                res.status(400).send({ message: 'Email doesn\'t exists' });
                 logger.error('Email doesn\'t exists');
             }
         } else {
             res.send({
                 success: false,
-                errors: {error: 'Email Field is Required'},
+                errors: { error: 'Email Field is Required' },
             });
         }
     } catch (error) {
@@ -236,16 +236,16 @@ exports.userPasswordResetOtp = async (req, res, next) => {
     try {
         const _id = req.params.id;
         const otp = req.body.otp;
-        const otpInfo = await Otp.findOne({user_id: _id}).sort({createdAt: -1});
+        const otpInfo = await Otp.findOne({ user_id: _id }).sort({ createdAt: -1 });
         if (
             otpInfo &&
-      otp === otpInfo.OTP &&
-      moment().format('hh:mm:ss') <= otpInfo.expairAt
+            otp === otpInfo.OTP &&
+            moment().format('hh:mm:ss') <= otpInfo.expairAt
         ) {
-            await User.findByIdAndUpdate({_id: _id}, {email_verified: true});
+            await User.findByIdAndUpdate({ _id: _id }, { email_verified: true });
             await Otp.updateOne(
-                {user_id: _id, OTP: otpInfo.OTP},
-                {expairAt: moment(new Date()).format('hh:mm:ss')},
+                { user_id: _id, OTP: otpInfo.OTP },
+                { expairAt: moment(new Date()).format('hh:mm:ss') },
             );
             res.status(200).json({
                 success: true,
@@ -270,14 +270,14 @@ exports.userPasswordResetOtp = async (req, res, next) => {
 
 exports.userPasswordReset = async (req, res, next) => {
     // eslint-disable-next-line
-  const { password, confirm_password } = req.body;
+    const { password, confirm_password } = req.body;
     const id = req.params.id;
     const user = await User.findById(id);
     try {
-    // eslint-disable-next-line
-    if (password && confirm_password) {
+        // eslint-disable-next-line
+        if (password && confirm_password) {
             // eslint-disable-next-line
-      if (password !== confirm_password) {
+            if (password !== confirm_password) {
                 return res.json({
                     message: `New Password and 
                         Confirm New Password doesn\'t match`,
@@ -286,13 +286,13 @@ exports.userPasswordReset = async (req, res, next) => {
                 const salt = Number(process.env.SALT);
                 const newHashPassword = await bcrypt.hash(password, salt);
                 await User.findByIdAndUpdate(user._id, {
-                    $set: {password: newHashPassword},
+                    $set: { password: newHashPassword },
                 });
-                res.json({message: 'Password Reset Successfully'});
+                res.json({ message: 'Password Reset Successfully' });
                 logger.info('Password Reset Successfully');
             }
         } else {
-            res.json({message: 'All Fields are Required'});
+            res.json({ message: 'All Fields are Required' });
         }
     } catch (error) {
         logger.error('Invalid Token');
@@ -302,11 +302,12 @@ exports.userPasswordReset = async (req, res, next) => {
 
 exports.changeUserPassword = async (req, res, next) => {
     try {
+
         const _id = req.user._id;
         const oldPassword = req.body.old_password;
         const password = req.body.password;
         const confirmPassword = req.body.confirm_password;
-        const user = await User.findById({_id: _id});
+        const user = await User.findById({ _id: _id });
         const isValid = await bcrypt.compare(oldPassword, user.password);
         if (isValid) {
             if (password && confirmPassword) {
@@ -319,26 +320,28 @@ exports.changeUserPassword = async (req, res, next) => {
                         },
                     });
                 } else {
-                    const salt = await bcrypt.genSalt(process.env.SALT);
+                    console.log('first click', process.env.SALT, typeof process.env.SALT)
+
+                    const salt = await bcrypt.genSalt(Number(process.env.SALT));
                     const newHashPassword = await bcrypt.hash(password, salt);
                     await User.findByIdAndUpdate(
-                        {_id: _id},
+                        { _id: _id },
                         {
-                            $set: {password: newHashPassword},
+                            $set: { password: newHashPassword },
                         },
                     );
                     res.send({
                         success: true,
-                        info: {success: 'Password changed succesfully'},
+                        info: { success: 'Password changed succesfully' },
                     });
                 }
             } else {
-                res.send({success: false, message: 'All Fields are Required'});
+                res.send({ success: false, message: 'All Fields are Required' });
             }
         } else {
             res.status(400).send({
                 success: false,
-                errors: {error: 'Current Password doesnot match'},
+                errors: { error: 'Current Password doesnot match' },
             });
         }
     } catch (error) {
@@ -355,10 +358,10 @@ exports.updateProfile = async (req, res, next) => {
             name: name,
             phone: phone,
         };
-        await User.findByIdAndUpdate({_id: req.user._id}, updateProfile);
+        await User.findByIdAndUpdate({ _id: req.user._id }, updateProfile);
         res.status(200).json({
             success: true,
-            info: {message: 'Profile Updated Successfully'},
+            info: { message: 'Profile Updated Successfully' },
         });
     } catch (error) {
         next(error);
@@ -368,7 +371,7 @@ exports.updateProfile = async (req, res, next) => {
 exports.viewProfile = async (req, res, next) => {
     try {
         const user = await User.findById(req.user._id);
-        res.status(200).json({success: true, info: user});
+        res.status(200).json({ success: true, info: user });
     } catch (error) {
         next(error);
     }
@@ -376,15 +379,15 @@ exports.viewProfile = async (req, res, next) => {
 
 exports.adminLogin = async (req, res, next) => {
     try {
-        const {email, password} = req.body;
-        const emailuser = await User.findOne({email: email});
+        const { email, password } = req.body;
+        const emailuser = await User.findOne({ email: email });
         if (emailuser) {
             if (emailuser.active) {
                 if (emailuser.email_verified) {
                     if (emailuser.role !== 'admin') {
                         return res.status(400).json({
                             success: false,
-                            errors: {error: 'You have not admin authorized'},
+                            errors: { error: 'You have not admin authorized' },
                         });
                     }
                     const isValid = await bcrypt
@@ -393,34 +396,34 @@ exports.adminLogin = async (req, res, next) => {
                     if (isValid) {
                         res.status(200).json({
                             success: true,
-                            info: {message: 'Login Successfully', token: token},
+                            info: { message: 'Login Successfully', token: token },
                         });
                         logger.info('Login Successfully');
                         next();
                     } else {
                         res.status(401).json({
                             success: false,
-                            errors: {error: 'Invalid Credientials'},
+                            errors: { error: 'Invalid Credientials' },
                         });
                         logger.error('Invalid Credientials');
                     }
                 } else {
                     res.status(400).json({
                         success: false,
-                        errors: {error: 'Please Veriry Your Account'},
+                        errors: { error: 'Please Veriry Your Account' },
                     });
                     logger.error('Please Veriry Your Account');
                 }
             } else {
                 res.status(400).json({
                     success: false,
-                    errors: {error: `You are Blocked. Please contact admin`},
+                    errors: { error: `You are Blocked. Please contact admin` },
                 });
             }
         } else {
             res
                 .status(400)
-                .json({success: false, errors: {error: 'User Not Exists'}});
+                .json({ success: false, errors: { error: 'User Not Exists' } });
             logger.error('User Not Exists');
         }
     } catch (error) {
@@ -430,14 +433,14 @@ exports.adminLogin = async (req, res, next) => {
 
 exports.viewUser = async (req, res, next) => {
     try {
-        const getUserInfo = await User.find({role: 'user'});
+        const getUserInfo = await User.find({ role: 'user' });
         if (getUserInfo.length === 0) {
             res.status(404).json({
                 success: false,
-                errors: {error: 'Users not found'},
+                errors: { error: 'Users not found' },
             });
         } else {
-            res.status(200).json({success: true, info: getUserInfo});
+            res.status(200).json({ success: true, info: getUserInfo });
         }
     } catch (error) {
         next(error);
@@ -446,14 +449,14 @@ exports.viewUser = async (req, res, next) => {
 
 exports.viewVender = async (req, res, next) => {
     try {
-        const getVenderInfo = await User.find({role: 'vender'});
+        const getVenderInfo = await User.find({ role: 'vender' });
         if (getVenderInfo.length === 0) {
             res.status(404).json({
                 success: false,
-                errors: {error: 'Users not found'},
+                errors: { error: 'Users not found' },
             });
         } else {
-            res.status(200).json({success: true, info: getVenderInfo});
+            res.status(200).json({ success: true, info: getVenderInfo });
         }
     } catch (error) {
         next(error);
@@ -462,14 +465,14 @@ exports.viewVender = async (req, res, next) => {
 
 exports.viewAdmin = async (req, res, next) => {
     try {
-        const getAdminInfo = await User.find({role: 'admin'});
+        const getAdminInfo = await User.find({ role: 'admin' });
         if (getAdminInfo.length === 0) {
             res.status(404).json({
                 success: false,
-                errors: {error: 'Users not found'},
+                errors: { error: 'Users not found' },
             });
         } else {
-            res.status(200).json({success: true, info: getAdminInfo});
+            res.status(200).json({ success: true, info: getAdminInfo });
         }
     } catch (error) {
         next(error);
@@ -479,16 +482,18 @@ exports.viewAdmin = async (req, res, next) => {
 exports.blockUser = async (req, res, next) => {
     try {
         const _id = req.params.id;
-        const getUser = await User.findOne({_id: _id});
+        const getUser = await User.findOne({ _id: _id });
         if (!getUser) {
             res.status(404).json({
                 success: false,
-                errors: {error: 'Users not found'},
+                errors: { error: 'Users not found' },
             });
         } else {
-            await User.update({_id: _id}, {$set: {active: false}});
-            res.status(200).json({success: true, info:
-                 {message: 'User Blocked'}});
+            await User.update({ _id: _id }, { $set: { active: false } });
+            res.status(200).json({
+                success: true, info:
+                    { message: 'User Blocked' }
+            });
         }
     } catch (error) {
         next(error);
@@ -498,17 +503,19 @@ exports.blockUser = async (req, res, next) => {
 exports.unBlockUser = async (req, res, next) => {
     try {
         const _id = req.params.id;
-        const getUser = await User.findOne({_id: _id});
+        const getUser = await User.findOne({ _id: _id });
         if (!getUser) {
             res.status(404).json({
                 success: false,
-                errors: {error: 'Users not found'},
+                errors: { error: 'Users not found' },
             });
         } else {
-            await User.update({_id: _id},
-                {$set: {active: true}});
-            res.status(200).json({success: true,
-                info: {message: 'User Unblocked'}});
+            await User.update({ _id: _id },
+                { $set: { active: true } });
+            res.status(200).json({
+                success: true,
+                info: { message: 'User Unblocked' }
+            });
         }
     } catch (error) {
         next(error);
@@ -522,10 +529,10 @@ exports.addVenderAdmin = async (req, res, next) => {
             const { name, email, password, confirm_password } = req.body;
             const role = req.body.role;
             const unHashedPassword = password;
-            const emailuser = await User.findOne({email: email});
+            const emailuser = await User.findOne({ email: email });
             if (!emailuser) {
                 // eslint-disable-next-line
-              if (password == confirm_password) {
+                if (password == confirm_password) {
                     const user = new User({
                         name: name,
                         email: email,
@@ -539,14 +546,14 @@ exports.addVenderAdmin = async (req, res, next) => {
                         .createVendorAdmin(role, name, email, unHashedPassword);
                     res.status(201).json({
                         success: true,
-                        info: {message: `Vender Created.`},
+                        info: { message: `Vender Created.` },
                         user_id: user._id,
                     });
                     logger.info(`Vender Created.`);
                 } else {
                     res.status(400).json({
                         success: false,
-                        errors: {error: 'Password Mismatched'},
+                        errors: { error: 'Password Mismatched' },
                     });
                     logger.error('Password Mismatched');
                 }

@@ -1068,3 +1068,9 @@ button.order-button{
     width: 158px;
   }
 }
+
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

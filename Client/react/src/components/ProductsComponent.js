@@ -16,13 +16,13 @@ function Products() {
 
   const getProducts = () => {
     // const token = JSON.parse(localStorage.getItem('token'))
-    // console.log(token)
+   
     axios.get('http://localhost:4000/product/find/639a0c0e56faa05e018e85ec', {
       headers: {
         // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
       }
     }).then(res => {
-      console.log(res, "resd")
+     
       setproducts(res.data.info)
     })
   }

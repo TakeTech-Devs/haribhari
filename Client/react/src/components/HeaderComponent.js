@@ -176,7 +176,7 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state, "dsfds")
+  
     return (
       <div
         style={{
