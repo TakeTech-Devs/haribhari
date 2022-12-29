@@ -4,36 +4,32 @@ import { Link } from "react-router-dom";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { useAuth } from "../context/AuthContex";
 
-
 function CategoryProducts(props) {
-
-  const [products, setproducts] = useState([])
-  const {
-    onAddProduct,
-    onRemoveProduct,
-    cartItems,
-    setCartItems
-  } = useAuth()
+  const [products, setproducts] = useState([]);
+  const { onAddProduct, onRemoveProduct, cartItems, setCartItems } = useAuth();
 
   useEffect(() => {
-    getProducts()
-
-
-  }, [])
+    getProducts();
+  }, []);
 
   const getProducts = () => {
     // const token = JSON.parse(localStorage.getItem('token'))
     // console.log(token)
-    axios.get('http://localhost:4000/product/find/639a0c0e56faa05e018e85ec', {
-      headers: {
-        // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
-      }
-    }).then(res => {
-      console.log(res, "resd")
-      setproducts(res.data.info)
-    })
-  }
-  console.log(products, "products")
+    axios
+      .get(
+        "https://apidevelopment.hari-bhari.com/product/find/639a0c0e56faa05e018e85ec",
+        {
+          headers: {
+            // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res, "resd");
+        setproducts(res.data.info);
+      });
+  };
+  console.log(products, "products");
   return (
     <div className="products-category">
       <div className="mx-4">
@@ -41,21 +37,32 @@ function CategoryProducts(props) {
           <div className="row col-12 col-md-3 col-sm-1">
             <Card className="filter-products">
               <CardBody className="category-button">
-                <button className="active"><img src="assets/images/vegetables.webp" alt="" />Vegetables</button>
-                <button><img src="assets/images/download.jfif" alt="" />Frogen Veges</button>
-                <button><img src="assets/images/fruits.jpg" alt="" />Fruits</button>
-                <button><img src="assets/images/combo.jpg" alt="" />Combo Offer</button>
-
+                <button className="active">
+                  <img src="assets/images/vegetables.webp" alt="" />
+                  Vegetables
+                </button>
+                <button>
+                  <img src="assets/images/download.jfif" alt="" />
+                  Frogen Veges
+                </button>
+                <button>
+                  <img src="assets/images/fruits.jpg" alt="" />
+                  Fruits
+                </button>
+                <button>
+                  <img src="assets/images/combo.jpg" alt="" />
+                  Combo Offer
+                </button>
               </CardBody>
             </Card>
           </div>
-          {products?.map(pd => (
+          {products?.map((pd) => (
             <div className="row col-12 col-md-3 col-sm-1">
               <Card className="filter-products">
-                <Link to={`/products/${pd._id}`} >
+                <Link to={`/products/${pd._id}`}>
                   <CardBody>
                     <CardImg
-                      src={`http://localhost:4000/${pd?.images[0]}`}
+                      src={`https://apidevelopment.hari-bhari.com/${pd?.images[0]}`}
                       class="card-img-top"
                       alt="..."
                     />
@@ -357,7 +364,6 @@ function CategoryProducts(props) {
         </div>
       </div>
     </div>
-
   );
 }
 
