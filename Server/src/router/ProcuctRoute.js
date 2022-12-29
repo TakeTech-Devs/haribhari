@@ -44,7 +44,6 @@ router.get(
 
 router.get(
     '/:id',
-    verifyToken,
     validateResult,
     productController.getProduct,
 );
