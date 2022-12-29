@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Navbar, NavItem, NavbarToggler, Collapse, Nav, NavbarBrand, Button, Modal, ModalBody, Form, FormGroup, Label, Input
+  Navbar,
+  NavItem,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  NavbarBrand,
+  Button,
+  Modal,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
 } from "reactstrap";
 import SearchBar from "./SearchBarComponent";
 import axios from "axios";
@@ -22,10 +34,8 @@ class Header extends Component {
     this.toggleShow = this.toggleShow.bind(this);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
-
-
 
     this.toggleNav = this.toggleNav.bind(this);
     this.state = {
@@ -42,14 +52,14 @@ class Header extends Component {
         name: "",
         email: "",
         password: "",
-        confirm_password: ""
+        confirm_password: "",
       },
       verifyOtp: { otp: 0 },
       user_id: "",
       loginForm: {
         email: "",
-        password: ""
-      }
+        password: "",
+      },
       // successMessage: false
     };
     this.dropdownToggle = this.dropdownToggle.bind(this);
@@ -57,7 +67,7 @@ class Header extends Component {
 
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   }
 
@@ -81,13 +91,13 @@ class Header extends Component {
 
   login = () => {
     axios
-      .post("http://localhost:4000/auth/login", {
+      .post("https://apidevelopment.hari-bhari.com/auth/login", {
         email: this.state.email,
         password: this.state.password,
       })
       .then((res) => {
         const token = res.data.info.token;
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem("token", JSON.stringify(token));
         alert(res.data.info.message);
       })
       .catch((err) => {
@@ -118,65 +128,73 @@ class Header extends Component {
   }
 
   signupHandler = (e, val) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log(this.state.signUpform);
 
     axios
-      .post("http://localhost:4000/auth/signup", this.state.signUpform)
+      .post(
+        "https://apidevelopment.hari-bhari.com/auth/signup",
+        this.state.signUpform
+      )
       .then((res) => {
         console.log(res);
         //this.showModal.bind(this, "otp")
         this.setState({
           otp: true,
-          user_id: res.data.user_id
+          user_id: res.data.user_id,
         });
       })
       .catch((err) => {
         console.log(err, "error");
       });
-  }
+  };
   loginHandler = (e, val) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log(this.state.signUpform);
 
     axios
-      .post("http://localhost:4000/auth/login", this.state.loginForm)
+      .post(
+        "https://apidevelopment.hari-bhari.com/auth/login",
+        this.state.loginForm
+      )
       .then((res) => {
         console.log(res);
-        alert("login sussesful")
-        return res
+        alert("login sussesful");
+        return res;
       })
       .catch((err) => {
         console.log(err, "error");
-        alert(`${err.errors.error}`)
+        alert(`${err.errors.error}`);
       });
-  }
-  
+  };
+
   verifyOtpHandler = (e, val) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log(this.state.otp);
 
     axios
-      .put(`http://localhost:4000/auth/verifyotp/${this.state.user_id}`, { otp: Number(this.state.verifyOtp.otp) })
+      .put(
+        `https://apidevelopment.hari-bhari.com/auth/verifyotp/${this.state.user_id}`,
+        { otp: Number(this.state.verifyOtp.otp) }
+      )
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err, "error");
       });
-  }
+  };
   onChangeHandler = (e, formName) => {
     let { name, value } = e.target;
     this.setState({
       [formName]: {
         ...this.state[formName],
-        [name]: value
+        [name]: value,
       },
     });
-  }
+  };
 
   render() {
-  
     return (
       <div
         style={{
@@ -194,7 +212,11 @@ class Header extends Component {
             />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
-          <Collapse className="main-header" isOpen={this.state.isNavOpen} navbar>
+          <Collapse
+            className="main-header"
+            isOpen={this.state.isNavOpen}
+            navbar
+          >
             <Nav
               className="justify-content-between align-items-center mr-auto mx-auto"
               navbar
@@ -231,7 +253,9 @@ class Header extends Component {
                       <Button
                         className="signup"
                         onClick={this.showModal.bind(this, "signup")}
-                      >Signup with Email</Button>
+                      >
+                        Signup with Email
+                      </Button>
                     </ModalBody>
                   </Modal>
 
@@ -258,22 +282,21 @@ class Header extends Component {
                           />
                         </FormGroup>
                         <FormGroup>
-                          <Label
-                            for="examplePassword"
-                            className="text-left"
-                          >
+                          <Label for="examplePassword" className="text-left">
                             Password
                           </Label>
                           <div className="password d-flex">
-
                             <Input
-                              type={this.state.hidden ? 'text' : 'password'}
+                              type={this.state.hidden ? "text" : "password"}
                               name="password"
                               id={"login_password" + this.props.id}
                               value={this.state.password}
                               onChange={(e) => this.onInputChange(e)}
                             />
-                            <i className="fa fa-eye" onClick={this.toggleShow} />
+                            <i
+                              className="fa fa-eye"
+                              onClick={this.toggleShow}
+                            />
                           </div>
                         </FormGroup>
                         <FormGroup check>
@@ -323,19 +346,20 @@ class Header extends Component {
                           <Label for="Password">Password</Label>
                           <div className="password d-flex">
                             <Input
-                              type={this.state.hidden ? 'text' : 'password'}
+                              type={this.state.hidden ? "text" : "password"}
                               name="password"
                               id={"login_password" + this.props.id}
                               value={this.state.password}
                               onChange={(e) => this.onInputChange(e)}
                             />
-                            <i className="fa fa-eye" onClick={this.toggleShow} />
+                            <i
+                              className="fa fa-eye"
+                              onClick={this.toggleShow}
+                            />
                           </div>
                         </FormGroup>
                         <FormGroup>
-                          <Label for="ConfirmPassword">
-                            Confirm Password
-                          </Label>
+                          <Label for="ConfirmPassword">Confirm Password</Label>
                           <Input
                             type="text"
                             name="confPassword"
@@ -380,12 +404,22 @@ class Header extends Component {
                     toggle={this.closeModal.bind(this, "otp")}
                   >
                     <ModalBody>
-                      <Form onSubmit={(e) => {
-                        this.verifyOtpHandler(e)
-                      }}>
+                      <Form
+                        onSubmit={(e) => {
+                          this.verifyOtpHandler(e);
+                        }}
+                      >
                         <FormGroup>
-                          <Label for="OTP"  >Enter OTP</Label>
-                          <Input type="number" name="otp" value={this.state.verifyOtp.otp} onChange={(e) => { this.onChangeHandler(e, "verifyOtp") }} id="OTP" />
+                          <Label for="OTP">Enter OTP</Label>
+                          <Input
+                            type="number"
+                            name="otp"
+                            value={this.state.verifyOtp.otp}
+                            onChange={(e) => {
+                              this.onChangeHandler(e, "verifyOtp");
+                            }}
+                            id="OTP"
+                          />
                         </FormGroup>
                         <Button type="submit">Submit</Button>
                       </Form>
@@ -405,32 +439,35 @@ class Header extends Component {
                           <Label for="OTP">New Password</Label>
                           <div className="password d-flex">
                             <Input
-                              type={this.state.hidden ? 'text' : 'password'}
+                              type={this.state.hidden ? "text" : "password"}
                               name="password"
                               id={"login_password" + this.props.id}
                               value={this.state.password}
                               onChange={(e) => this.onInputChange(e)}
                             />
-                            <i className="fa fa-eye" onClick={this.toggleShow} />
+                            <i
+                              className="fa fa-eye"
+                              onClick={this.toggleShow}
+                            />
                           </div>
                         </FormGroup>
                         <FormGroup>
                           <Label for="OTP">Confirm Password</Label>
-                          <Input
-                            type="text"
-                            name="confiPass"
-                            id="OTP"
-                          />
+                          <Input type="text" name="confiPass" id="OTP" />
                         </FormGroup>
                         <Button>Reset Password</Button>
                       </Form>
                     </ModalBody>
                   </Modal>
 
-                  <Modal size='sm' aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.successMessage} toggle={this.closeModal.bind(this, 'successMessage')}>
-                    <ModalBody>
-                      Success!!!!
-                    </ModalBody>
+                  <Modal
+                    size="sm"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    isOpen={this.state.successMessage}
+                    toggle={this.closeModal.bind(this, "successMessage")}
+                  >
+                    <ModalBody>Success!!!!</ModalBody>
                   </Modal>
                 </div>
               </NavItem>

@@ -1,41 +1,44 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 // import { Link } from 'react-router-dom';
 
-
 function Products() {
-  const [products, setproducts] = useState([])
+  const [products, setproducts] = useState([]);
   useEffect(() => {
-    getProducts()
-
-
-  }, [])
+    getProducts();
+  }, []);
 
   const getProducts = () => {
     // const token = JSON.parse(localStorage.getItem('token'))
-   
-    axios.get('http://localhost:4000/product/find/639a0c0e56faa05e018e85ec', {
-      headers: {
-        // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
-      }
-    }).then(res => {
-     
-      setproducts(res.data.info)
-    })
-  }
-  const navigate = useNavigate()
+
+    axios
+      .get(
+        "https://apidevelopment.hari-bhari.com/product/find/639a0c0e56faa05e018e85ec",
+        {
+          headers: {
+            // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
+          },
+        }
+      )
+      .then((res) => {
+        setproducts(res.data.info);
+      });
+  };
+  const navigate = useNavigate();
   const gotoShop = () => {
-    navigate('/shop')
-  }
+    navigate("/shop");
+  };
   return (
     <div className="products">
       <div className="vegetable mx-4">
         <div className="buttons d-flex justify-content-between mt-5">
           <Button className="mt-5">Grocery</Button>
-          <Button className="mt-5" onClick={gotoShop}>See More</Button>
+          <Button className="mt-5" onClick={gotoShop}>
+            See More
+          </Button>
         </div>
         <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
           <div className="ShiftButton">
@@ -43,13 +46,13 @@ function Products() {
               <p>&#60;</p>
             </span>
           </div>
-        
-          {products?.map(pd => (
+
+          {products?.map((pd) => (
             <div className="row">
               <Card style={{ border: "none" }}>
                 <CardBody>
                   <CardImg
-                    src={`http://localhost:4000/${pd?.images[0]}`}
+                    src={`https://apidevelopment.hari-bhari.com/${pd?.images[0]}`}
                     class="card-img-top"
                     alt="..."
                   />
@@ -65,8 +68,8 @@ function Products() {
                 </CardBody>
               </Card>
             </div>
-))}
-        
+          ))}
+
           <div className="ShiftButton">
             <span>
               <p>&#62;</p>
@@ -75,7 +78,9 @@ function Products() {
           <div className="snacks mx-4">
             <div className="buttons d-flex justify-content-between mt-5">
               <Button>Snacks</Button>
-              <Button className="mt-5" onClick={gotoShop}>See More</Button>
+              <Button className="mt-5" onClick={gotoShop}>
+                See More
+              </Button>
             </div>
             <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
               <div className="ShiftButton">
@@ -155,7 +160,6 @@ function Products() {
                       alt="..."
                     />
                     <div className="card-body-bottom">
-
                       <CardTitle className="text-left">
                         Lorem ipsum dolor sit amet.
                       </CardTitle>
@@ -179,7 +183,9 @@ function Products() {
           <div className="cookies mx-4">
             <div className="buttons d-flex justify-content-between mt-5">
               <Button>Biscuits & Cookies</Button>
-              <Button className="mt-5" onClick={gotoShop}>See More</Button>
+              <Button className="mt-5" onClick={gotoShop}>
+                See More
+              </Button>
             </div>
             <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto">
               <div className="ShiftButton">
@@ -196,7 +202,6 @@ function Products() {
                       alt="..."
                     />
                     <div className="card-body-bottom">
-
                       <CardTitle className="text-left">
                         Lorem ipsum dolor sit amet.
                       </CardTitle>
@@ -257,7 +262,6 @@ function Products() {
                       alt="..."
                     />
                     <div className="card-body-bottom">
-
                       <CardTitle className="text-left">
                         Lorem ipsum dolor sit amet.
                       </CardTitle>
@@ -280,7 +284,9 @@ function Products() {
           <div className="homeEssentials mx-4">
             <div className="buttons d-flex justify-content-between mt-5">
               <Button>Home & Office Essentials</Button>
-              <Button className="mt-5" onClick={gotoShop}>See More</Button>
+              <Button className="mt-5" onClick={gotoShop}>
+                See More
+              </Button>
             </div>
             <div className="container d-flex flex-wrap align-items-center justify-content-between pt-2 m-auto pb-5">
               <div className="ShiftButton">
@@ -297,7 +303,6 @@ function Products() {
                       alt="..."
                     />
                     <div className="card-body-bottom">
-
                       <CardTitle className="text-left">
                         Lorem ipsum dolor sit amet.
                       </CardTitle>
@@ -358,7 +363,6 @@ function Products() {
                       alt="..."
                     />
                     <div className="card-body-bottom">
-
                       <CardTitle className="text-left">
                         Lorem ipsum dolor sit amet.
                       </CardTitle>
