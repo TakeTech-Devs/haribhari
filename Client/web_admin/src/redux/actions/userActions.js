@@ -18,14 +18,14 @@ import { ToastObjects } from "./toastObject";
 
 // Register
 export const Register = (name, email, password) => async (dispatch) => {
-
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
 
-    const { data } = await axios.post(
-      `auth/register`,
-      { name, email, password }
-    );
+    const { data } = await axios.post(`auth/register`, {
+      name,
+      email,
+      password,
+    });
 
     if (!data.success) {
       toast.error(data.message, ToastObjects);
@@ -36,7 +36,6 @@ export const Register = (name, email, password) => async (dispatch) => {
       toast.success(data.message, ToastObjects);
       dispatch({ type: USER_REGISTER_SUCCESS });
     }
-
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -58,7 +57,6 @@ export const RegisterReset = () => (dispatch) => {
 
 // Login
 export const Login = (email, password) => async (dispatch) => {
-
   const ToastObjects = {
     pauseOnFocusLoss: false,
     draggable: false,
@@ -71,12 +69,12 @@ export const Login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
 
     const response = await axios.post(
-      `http://localhost:4000/auth/login`,
+      `https://apidevelopment.hari-bhari.com//auth/login`,
       { email, password }
     );
 
     let responseData = response.data;
-    console.log(responseData, "responseData")
+    console.log(responseData, "responseData");
     if (!responseData.success) {
       if (responseData?.data) {
         toast.error("You are not allowed to access admin.", ToastObjects);
@@ -89,9 +87,11 @@ export const Login = (email, password) => async (dispatch) => {
       });
     } else {
       dispatch({ type: USER_LOGIN_SUCCESS, payload: responseData });
-      localStorage.setItem("userInfo", JSON.stringify(responseData?.info?.token));
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify(responseData?.info?.token)
+      );
     }
-
   } catch (error) {
     const message =
       error.response && error.response.data.message
