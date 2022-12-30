@@ -419,7 +419,7 @@ export default class LoginHeader extends React.Component {
                                           type="radio"
                                           name="address-type"
                                         />{" "}
-                                        Work
+                                        Office
                                       </Label>
                                     </FormGroup>
                                   </FormGroup>

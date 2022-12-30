@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContex";
 function CategoryProducts(props) {
   const [products, setproducts] = useState([]);
   const { onAddProduct, onRemoveProduct, cartItems, setCartItems } = useAuth();
+  import { Link } from "react-router-dom";
 
   useEffect(() => {
     getProducts();
