@@ -26,7 +26,7 @@ function Cart(props){
         {
         setNum1(num1 - 1);
         }
-    }
+    };
 
      // Modal open state
      const [payment, setPayment] = React.useState(false);

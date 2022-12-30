@@ -15,6 +15,8 @@ import FrequentlyAsked from './FrequentlyAskedComponent';
 import {Route, Routes} from  'react-router-dom';
 import OrderList from './MyOrderComponent';
 import Cart from './CartComponent';
+import CardSlider from './CardSliderComponent';
+import ProductDetails from './ProductDetailComponent';
 // import CategoryNav from './ProductCategoryNavComponent';
 // import CategoryProducts from './CategoryProductsComponent';
 import OrderDetails from './OrderDetailsComponent';
@@ -42,6 +44,8 @@ class Main extends React.Component {
             <Route path="/order-list" element={<OrderList/>}/>
             <Route path="/cart-list" element={<Cart/>}/>
             <Route path="/order-details" element={<OrderDetails/>}/>
+            <Route path="/card-slider" element={<CardSlider/>}/>
+            <Route path='/product-details' element={<ProductDetails />} /> 
           </Routes>
         {/* <Footer/> */}
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
+import { Link } from "react-router-dom";
 
 
 function CategoryProducts(props){
@@ -27,9 +28,14 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+
+                  <Link to="/product-details">
+
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
+
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -48,9 +54,12 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
+                  
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -68,9 +77,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -88,9 +99,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -108,9 +121,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -128,9 +143,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -148,9 +165,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -168,9 +187,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -188,9 +209,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -208,9 +231,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -228,9 +253,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -248,9 +275,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -268,9 +297,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -288,9 +319,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>
@@ -308,9 +341,11 @@ function CategoryProducts(props){
                         alt="..."
                     />
                   <div className="card-body-bottom">
+                  <Link to="/product-details">
                     <CardTitle className="text-left">
                     Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
                     </CardTitle>
+                  </Link>
                     <div className="add-button  d-flex justify-content-between align-items-bottom">
                       <p>$20</p>
                       <Button>Add</Button>

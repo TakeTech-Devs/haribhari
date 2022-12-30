@@ -1,8 +1,19 @@
 import React from "react";
+import { useState } from 'react';
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 
 
 function ProductDetails(props){
+    let [num1, setNum1]= useState(1);
+    let incNum1 =()=>{
+        setNum1(num1 + 1); 
+    };
+    let decNum1 = () => {
+        if(num1>1)
+        {
+        setNum1(num1 - 1);
+        }
+    };
     return(
         <div className="product-details">
             <div className="container product-desc d-flex align-items-center justify-content-around mt-4">
@@ -24,7 +35,15 @@ function ProductDetails(props){
                         <div className="price d-flex  ">
                             <p><strike>&#8377;500</strike> <ins>&#8377;250</ins> <Button className="btn btn-primary">20% off</Button></p> 
                         </div>
-                        <Button className="btn">ADD</Button>
+                        <div className="add-button d-flex">
+                            <Button className="btn m-1">ADD</Button>
+                            <Button className="btn d-flex align-items-center justify-content-around p-2">
+                                <i className="fa fa-minus" onClick={decNum1} />&nbsp;
+                                {num1}
+                                &nbsp;<i className="fa fa-plus" onClick={incNum1} />
+                            </Button>
+                        </div>
+                            <Button className="btn btn-primary">Remove</Button>
                         <h3 className="mt-5">Product Details</h3>
                         <h5>Disclaimer</h5>
                         <p>Every effort is made to maintain the accuracy of all information. However, actual product packaging and materials may contain more and/or different information. It is recommended not to solely rely on the information presented.</p>

@@ -2,7 +2,6 @@ import React from 'react';
 import SearchBar from './SearchBarComponent';
 import CategoryNav from './ProductCategoryNavComponent';
 import CategoryProducts from './CategoryProductsComponent';
-// import ProductDetails from './ProductDetailComponent';
 import UpperFooter from './UpperFooterComponent'
 import Footer from './FooterComponent';
 // import Cart from './CartComponent';
@@ -45,6 +44,7 @@ export default class LoginHeader extends React.Component {
         NewAddress: false,
         UpdateProfile: false,
         ChangePassword: false,
+        EditLocation: false,
     };
     this.dropdownToggle = this.dropdownToggle.bind(this);
 
@@ -240,7 +240,37 @@ export default class LoginHeader extends React.Component {
                             <div className="add d-flex align-items-center justify-content-around">
                                 <p>Subhrajeet Roy Chowdhury- 551/A, Talbagan, Kolkata</p>
                                 <div className="action d-flex justify-content-between">
-                                <Button className="signup">Edit</Button>
+                                <Button className="signup" onClick={this.showModal.bind(this, "EditLocation")}>Edit</Button>
+                                <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered isOpen={this.state.EditLocation} toggle={this.closeModal.bind(this, "EditLocation")}>
+                              <ModalBody>
+                                <Form>
+                                  <FormGroup className="d-flex text-left align-items-center justify-content-around">
+                                  <Label className="">Name :</Label>
+                                  <Label></Label>
+                                  {/* <input type="text" name="" id="" /> */}
+                                  </FormGroup>
+
+                                  <FormGroup className="d-flex text-left align-items-center justify-content-around">
+                                  <Label className="text-left">Email</Label>
+                                  <Label></Label>
+                                  {/* <input type="email" name="" id="" /> */}
+                                  </FormGroup>
+
+                                    <FormGroup className="d-flex text-left align-items-center justify-content-around">
+                                    <Label className="text-left"> Phone Number:</Label>
+                                    <Label></Label>
+                                    {/* <input type="number" name="" id="" /> */}
+                                    </FormGroup>
+
+                                    <FormGroup className="d-flex text-left align-items-center justify-content-around">
+                                    <Label className="text-left">Alternative Phone Number:</Label>
+                                    <Label></Label>
+                                    {/* <input type="number" name="" id="" /> */}
+                                    </FormGroup>
+                                  </Form>
+                                  <Button className="m-3">Done</Button>
+                                </ModalBody>
+                                </Modal>
                                 <Button className="signup">Delete</Button>
                                 </div>
                             </div>
@@ -248,7 +278,7 @@ export default class LoginHeader extends React.Component {
                             <div className="add d-flex align-items-center justify-content-around">
                                 <p>Subhrajeet Roy Chowdhury- 551/A, Talbagan, Kolkata</p>
                                 <div className="action d-flex justify-content-between">
-                                <Button className="signup">Edit</Button>
+                                <Button className="signup" onClick={this.showModal.bind(this, "EditLocation")}>Edit</Button>
                                 <Button className="signup">Delete</Button>
                                 </div>
                             </div>
@@ -331,7 +361,7 @@ export default class LoginHeader extends React.Component {
                 </NavItem> 
                 <NavItem className="me-2">
                   <NavLink className="px-md-5 my-3">
-                    <Link to="/cart-list">Cart &nbsp;<span className="fa fa-shopping-cart"></span></Link>
+                    <Link to="/cart-list">Cart &nbsp;<span className="fa fa-shopping-cart"></span> <span className="product-count">1</span></Link>
                   </NavLink>
                 </NavItem>
               {/* </div> */}
@@ -341,7 +371,7 @@ export default class LoginHeader extends React.Component {
         {/* <Cart /> */}
         {/* <ProductDetails/> */}
         <CategoryNav/>
-        <CategoryProducts/>
+        <CategoryProducts />
         <UpperFooter />
         <Footer />
       </div>

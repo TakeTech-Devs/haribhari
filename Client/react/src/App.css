@@ -914,6 +914,17 @@ button.order-button{
 .rating span:nth-last-child(1){
   color: rgba(217, 217, 217, 1);
 }
+.img-details .img{
+  width: 50%;
+  height: 380px;
+}
+.filter-products a{
+  text-decoration: none;
+  color: black;
+}
+.add-button .btn{
+  background-color: rgba(157, 230, 1, 1);
+}
 @media screen and (max-width:1230px) {
   .bannerHolder{
     margin-top: 7%;
@@ -946,6 +957,33 @@ button.order-button{
   }
   .circle{
     display: none;
+  }
+ 
+  .img-details .img{
+    width: 45%;
+    height: 350px;
+  }
+  .img-details .img img{
+    width: 100%;
+    height: 100%;
+  }
+  .order-progress {
+    padding: 0px;
+  }
+  .progress-bar {
+    text-align: left;
+    display: flex;
+    padding: 0px;
+  }
+  .progress-bar .progress-line .line {
+    width: 6px;
+    margin: 10px;
+  }
+  .progress-bar .progress-intervals {
+    margin-top: -39%;
+  }
+  .progress-bar span.dot {
+    margin: 0px;
   }
 
 
@@ -1000,6 +1038,9 @@ button.order-button{
     margin-left: -57%;
     margin-top: -8px;
   }
+  .progress-bar .progress-intervals {
+    margin-top: -53%;
+  }
 }
 @media screen and (max-width:569px) {
   .qr-container{
@@ -1046,7 +1087,71 @@ button.order-button{
     height: 380px;
     margin-top: 0px;
   }
-
+  
+  .item-info-container{
+    justify-content: space-around;
+    width: 98%;
+  }
+  .ordered-item .item-info-container img {
+    width: 80px;
+    height: 80px;
+  }
+  .ordered-item .item-info-container a {
+    text-decoration: none;
+    color: rgba(49, 70, 2, 1);
+    font-size: 15px;
+  }
+  .ordered-item .item-info-container .item-desc{
+    width: 70%;
+  }
+  .ordered-item .item-info-container .item-desc h4{
+    font-size: 15px;
+  }
+  .ordered-item .item-info-container .item-desc p {
+    font-size: 13px;
+    color: #A7A7A7;
+  }
+  .ordered-item .search-area input {
+    width: 55vw;
+  }
+  .ordered-item .search-area .filter {
+    width: 20%;
+    font-size: 18px;
+  }
+  .ordered-item .search-area .filter span {
+    font-size: 18px;
+  }
+  .img-details {
+    display: block;
+    font-size: 12px;
+  }
+  .img-details .img {
+    width: 50%;
+    height: 180px;
+  }
+  .img-details .img img{
+    width: 100%;
+    height: 100%;
+  }
+  .order-progress {
+    padding: 0px;
+  }
+  .progress-bar {
+    text-align: left;
+    display: flex;
+    padding: 0px;
+  }
+  .progress-bar .progress-line .line {
+    width: 6px;
+    margin: 10px;
+  }
+  .progress-bar .progress-intervals {
+    margin-top: -92%;
+  }
+  .progress-bar span.dot {
+    margin: 0px;
+  }
+  
 
 }
 @media screen and (max-width: 380px){
@@ -1062,9 +1167,37 @@ button.order-button{
     margin-top: -5px;
   
   }
+  .order-progress{
+    font-size: 12px;
+  }
+  .progress-bar{
+    font-size: 12px;
+  }
+  .progress-bar h5{
+    font-size: 16px;
+  }
+  .progress-bar h6{
+    font-size: 14px;
+  }
+  .progress-bar .progress-intervals {
+    margin-top: -92%;
+  }
+  .progress-bar .progress-line .line {
+    width: 6px;
+    height: 310px;
+    margin: 10px;
+  }
 }
 @media screen and (max-width: 325px){
   .qr-container {
     width: 158px;
+  }
+  .progress-bar .progress-intervals {
+    margin-top: -92%;
+  }
+  .progress-bar .progress-line .line {
+    width: 6px;
+    height: 310px;
+    margin: 10px;
   }
 }

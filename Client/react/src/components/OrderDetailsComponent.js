@@ -7,8 +7,8 @@ function OrderDetails(props){
             <div className="order-id">
                 <p>Order ID - 0D54811154</p>
             </div>
-            <div className="img-details d-flex align-items-center justify-content-around">
-                <div className="img">
+            <div className="img-details d-flex d-block align-items-center justify-content-around">
+                <div className="img col-12 col-md-auto col-sm-12">
                     <img src="assets/images/products/lady-finger.jpg" alt="" />
                 </div>
                 <div className="details">
