@@ -38,14 +38,12 @@ router.post(
 
 router.get(
     '',
-    verifyTokenAndAdmin,
     validateResult,
     categoryController.findAllCategory,
 );
 
 router.get(
     '/:id',
-    verifyTokenAndAdmin,
     categoryController.categoryOne,
 );
 
