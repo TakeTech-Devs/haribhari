@@ -52,7 +52,7 @@ const AddCategory = () => {
     formData.append("name", formState.values.name);
     formData.append("parent_category", formState.values.parent_category);
     axios
-      .post("https://apidevelopment.hari-bhari.com//category", formData, {
+      .post("https://apidevelopment.hari-bhari.com/category", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(
             localStorage.getItem("userInfo")
@@ -69,7 +69,7 @@ const AddCategory = () => {
   useEffect(() => {
     const getCategories = async () => {
       axios
-        .get("https://apidevelopment.hari-bhari.com//category", {
+        .get("https://apidevelopment.hari-bhari.com/category", {
           headers: {
             Authorization: `Bearer ${JSON.parse(
               localStorage.getItem("userInfo")

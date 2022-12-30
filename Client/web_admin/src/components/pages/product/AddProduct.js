@@ -61,7 +61,7 @@ const AddProduct = () => {
     formData.append("actual_price", formState.values.actual_price);
     formData.append("name", formState.values.name);
     axios
-      .post("https://apidevelopment.hari-bhari.com//product", formData, {
+      .post("https://apidevelopment.hari-bhari.com/product", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(
             localStorage.getItem("userInfo")
@@ -78,7 +78,7 @@ const AddProduct = () => {
   useEffect(() => {
     const getCategories = async () => {
       axios
-        .get("https://apidevelopment.hari-bhari.com//category", {
+        .get("https://apidevelopment.hari-bhari.com/category", {
           headers: {
             Authorization: `Bearer ${JSON.parse(
               localStorage.getItem("userInfo")

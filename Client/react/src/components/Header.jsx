@@ -881,7 +881,7 @@ function Header() {
                                               type="radio"
                                               name="address_type"
                                             />{" "}
-                                            Office
+                                            Work
                                           </Label>
                                         </FormGroup>
                                       </FormGroup>

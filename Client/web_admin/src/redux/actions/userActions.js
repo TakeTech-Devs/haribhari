@@ -69,7 +69,7 @@ export const Login = (email, password) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
 
     const response = await axios.post(
-      `https://apidevelopment.hari-bhari.com//auth/login`,
+      `https://apidevelopment.hari-bhari.com/auth/login`,
       { email, password }
     );
 

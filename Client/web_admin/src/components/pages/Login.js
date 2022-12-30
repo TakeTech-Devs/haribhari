@@ -34,7 +34,7 @@ const LoginPage = ({ history }) => {
     const { email, password } = formState.values;
     if (email && password) {
       dispatch(Login(email, password));
-      // await axios.post('https://apidevelopment.hari-bhari.com//auth/login', { email, password }).then(res => {
+      // await axios.post('https://apidevelopment.hari-bhari.com/auth/login', { email, password }).then(res => {
       //   console.log(res)
       // })
     }

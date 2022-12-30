@@ -35,7 +35,7 @@ const RegisterPage = ({ history }) => {
     if (name && email && password) {
       // dispatch(Register(name, email, password));
       await axios
-        .post("https://apidevelopment.hari-bhari.com//auth/signup", {
+        .post("https://apidevelopment.hari-bhari.com/auth/signup", {
           name,
           email,
           password,
