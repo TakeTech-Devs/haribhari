@@ -21,7 +21,7 @@ import ProductDetails from "./ProductDetailComponent";
 // import CategoryProducts from './CategoryProductsComponent';
 import OrderDetails from "./OrderDetailsComponent";
 import Shop from "../pages/Shop";
-// import ProductDetails from "./ProductDetailComponent";
+
 // import { integerPropType } from '@mui/utils';
 
 class Main extends React.Component {
@@ -47,6 +47,8 @@ class Main extends React.Component {
           <Route path="/shop" element={<Shop />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/sproducts" element={<ProductDetails />} />
+          <Route path="/card-slider" element={<CardSlider />} />
+          <Route path="/product-details" element={<ProductDetails />} />
         </Routes>
         {/* <Footer/> */}
       </>
