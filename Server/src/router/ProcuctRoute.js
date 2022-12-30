@@ -55,4 +55,10 @@ router.get(
     productController.findAllProductByCategory,
 );
 
+router.delete(
+    '/:productId',
+    verifyTokenAndVender,
+    productController.deleteProduct,
+);
+
 module.exports = router;

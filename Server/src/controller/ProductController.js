@@ -14,7 +14,7 @@ exports.createProduct = async (req, res, next) => {
         const disclaimer = req.body.disclaimer;
         const user = req.user._id;
         const category = req.body.category.toLowerCase();
-        const getCategory = await Category.find({slug: category});
+        const getCategory = await Category.find({ slug: category });
         const exparyDate = req.body.expary_date;
         const customerCareEmail = req.body.customer_care_email;
         const customerCarePhone = req.body.customer_care_phone;
@@ -23,7 +23,7 @@ exports.createProduct = async (req, res, next) => {
                 fs.unlinkSync(element.path);
             });
             return res.status(404)
-                .json({success: false, errors: {error: 'Category Not Exists'}});
+                .json({ success: false, errors: { error: 'Category Not Exists' } });
         }
         const customerCare = {
             email: customerCareEmail,
@@ -70,10 +70,10 @@ exports.findAllProduct = async (req, res, next) => {
         if (products.length === 0) {
             res.status(400).json({
                 success: false,
-                errors: {error: 'Product not found'},
+                errors: { error: 'Product not found' },
             });
         } else {
-            res.status(200).json({success: true, info: products});
+            res.status(200).json({ success: true, info: products });
         }
     } catch (error) {
         next(error);
@@ -83,24 +83,24 @@ exports.findAllProduct = async (req, res, next) => {
 exports.getProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const product = await Product.findById({_id: id});
+        const product = await Product.findById({ _id: id });
         if (!product) {
             return res.status(400).json({
                 success: false,
-                errors: {error: 'Product not found'},
+                errors: { error: 'Product not found' },
             });
         } else {
             // eslint-disable-next-line
-            const discount = ((product.actual_price-product.price)/product.actual_price) * 100;
+            const discount = ((product.actual_price - product.price) / product.actual_price) * 100;
             const shelfLife = moment(product.expary_date, 'YYYYMMDD').fromNow();
             const similarProduct = await Product.find(
                 {
                     $and:
                         [
-                            {category: product.category},
-                            {name: {$nin: product.name}},
+                            { category: product.category },
+                            { name: { $nin: product.name } },
                         ],
-                }, {name: 1, price: 1, description: 1, images:1},
+                }, { name: 1, price: 1, description: 1, images: 1 },
             ).limit(4);
             const metaData = {
                 discount: Math.round(discount),
@@ -121,16 +121,46 @@ exports.getProduct = async (req, res, next) => {
 exports.findAllProductByCategory = async (req, res, next) => {
     try {
         const categoryId = req.params.categoryId;
-        const procuctByCategory = await Product.find({id: categoryId});
+        const procuctByCategory = await Product.find({ id: categoryId });
         if (procuctByCategory.length === 0) {
             res.status(400).json({
                 success: false,
-                errors: {error: 'Product not found'},
+                errors: { error: 'Product not found' },
             });
         } else {
-            res.status(200).json({success: true, info: procuctByCategory});
+            res.status(200).json({ success: true, info: procuctByCategory });
         }
     } catch (error) {
         next(error);
     }
 };
+
+
+exports.deleteProduct = async (req, res, next) => {
+    try {
+        const productId = req.params.productId;
+        const getProduct = await Product.findOne({ _id: productId });
+        if (getProduct) {
+            const deleteProduct = await Product.deleteOne({ _id: productId })
+            if(deleteProduct.acknowledged){
+                if(getProduct.images){
+                    getProduct.images.forEach(function(image){
+                        fs.unlinkSync(image);
+                    })
+                }
+                res.status(200).json({
+                    success: true,
+                    info: {
+                        message: 'Product removed Successfully',
+                    },
+                });
+            } else {
+                res.status(200).json({ success: true, errors: {error: 'Please try again after some time'} });
+            }
+        } else {
+            res.status(404).json({ success: false, errors: { error: 'Product not found' } });
+        }
+    } catch (error) {
+        next(error)
+    }
+}
