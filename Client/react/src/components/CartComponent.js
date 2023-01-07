@@ -58,18 +58,37 @@ function Cart(props) {
   const proceedOrder = () => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    axios.post(`https://apidevelopment.hari-bhari.com/order/${billingInfo?._id}`, {
-      phone: 4545435435,
-      pin: 7886
-    },
-      {
+
+
+
+    axios
+      .get(`https://apidevelopment.hari-bhari.com/address`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(res => {
-        console.log('res', res)
       })
-    setOrder(!order)
+      .then((res) => {
+
+        console.log('res.data?.info', res.data?.info)
+
+        axios.post(`https://apidevelopment.hari-bhari.com/order/${billingInfo?._id}`, {
+          phone: 4545435435,
+          addressId: res.data?.info[0]._id,
+          pin: 7886
+        },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }).then(res => {
+            console.log('res', res)
+          })
+        setOrder(!order)
+
+      })
+
+
+
   };
 
   // Payment Option Show Hide

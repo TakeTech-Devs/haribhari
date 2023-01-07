@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../Header";
 import Sidebar from "../../Sidebar";
 import Footer from "../../Footer";
@@ -13,7 +13,7 @@ const AddCategory = () => {
   const [categories, setcategories] = useState([]);
   const [imgFile, setimgFile] = useState();
   const dispatch = useDispatch();
-
+  const { id } = useParams()
   const userRegister = useSelector((state) => state.userRegister);
   const { error, loading, register_status } = userRegister;
 
@@ -50,21 +50,42 @@ const AddCategory = () => {
     formData.append("image", imgFile);
 
     formData.append("name", formState.values.name);
-    formData.append("parent_category", formState.values.parent_category);
-    axios
-      .post("https://apidevelopment.hari-bhari.com/category", formData, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("userInfo")
-          )}`,
-        },
-      })
-      .then((res) => {
-        // setcategories(res.data.info)
-      });
-    // setFormState({ values: {} });
-    setSubmitted(false);
-    // }
+    if (formState.values.parent_category) {
+
+      formData.append("parent_category", formState.values.parent_category);
+    }
+    if (id) {
+      axios
+        .put(`https://apidevelopment.hari-bhari.com/category/${id}`, formData, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userInfo")
+            )}`,
+          },
+        })
+        .then((res) => {
+          // navigate('/categories')
+        });
+      // setFormState({ values: {} });
+      setSubmitted(false);
+      // }
+    } else {
+      axios
+        .post("https://apidevelopment.hari-bhari.com/category", formData, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userInfo")
+            )}`,
+          },
+        })
+        .then((res) => {
+          // navigate('/categories')
+        });
+      // setFormState({ values: {} });
+      setSubmitted(false);
+      // }
+    }
+
   };
   useEffect(() => {
     const getCategories = async () => {
@@ -83,6 +104,23 @@ const AddCategory = () => {
 
     getCategories();
   }, []);
+  useEffect(() => {
+    const getSingleCat = async () => {
+      axios
+        .get(`https://apidevelopment.hari-bhari.com/category/${id}`, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("userInfo")
+            )}`,
+          },
+        })
+        .then((res) => {
+          setFormState({ values: res.data.info });
+        });
+    };
+
+    getSingleCat();
+  }, [id]);
 
   console.log(formState.values, "imgFile");
   return (
@@ -139,20 +177,14 @@ const AddCategory = () => {
                                 <input
                                   type="file"
                                   className={
-                                    "form-control form-control-lg" +
-                                    (submitted && !formState.values.images
-                                      ? " is-invalid"
-                                      : "")
+                                    "form-control form-control-lg"
                                   }
                                   name="image"
                                   onChange={handleChange}
-                                  value={formState.values.images || ""}
+                                // value={formState.values.image || ""}
                                 />
-                                {submitted && !formState.values.images && (
-                                  <div className="inline-errormsg">
-                                    images is required
-                                  </div>
-                                )}
+
+
                               </div>
                             </div>
                           </div>
@@ -172,7 +204,7 @@ const AddCategory = () => {
                                   multiple
                                 >
                                   {categories?.map((cat) => (
-                                    <option key={cat?._id} value={cat?.slug}>
+                                    <option key={cat?._id} value={cat?._id}>
                                       {cat?.name}
                                     </option>
                                   ))}

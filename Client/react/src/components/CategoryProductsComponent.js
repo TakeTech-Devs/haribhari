@@ -36,7 +36,7 @@ function CategoryProducts(props) {
     // console.log(token)
     axios
       .get(
-        "http://localhost:4000/category",
+        "https://apidevelopment.hari-bhari.com/category",
         {
           headers: {
             // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec

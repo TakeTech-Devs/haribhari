@@ -26,7 +26,7 @@ import {
 import { useAuth } from "../context/AuthContex";
 import SearchBarComponent from "./SearchBarComponent";
 
-function Header() {
+function Header({ setaddressUser }) {
   const [loginUser, setIsLoginUser] = useState(false);
   const [mySavedAddress, setmySavedAddress] = useState([]);
   const [defaultaddress, setDefaultaddress] = useState("");
@@ -96,7 +96,7 @@ function Header() {
   const handleOtpVer = () => {
     axios
       .post(
-        "auth/signup",
+        "https://apidevelopment.hari-bhari.com/auth/signup",
         formState.values,
         {}
       )
@@ -121,7 +121,7 @@ function Header() {
     e.preventDefault();
     axios
       .post(
-        "auth/login",
+        "https://apidevelopment.hari-bhari.com/auth/login",
         formState.values,
         {}
       )
@@ -138,7 +138,7 @@ function Header() {
     e.preventDefault();
     axios
       .put(
-        `${formState?.values?.user_id}`,
+        `https://apidevelopment.hari-bhari.com/auth/verifyotp/${formState?.values?.user_id}`,
         formState.values,
         {}
       )
@@ -164,7 +164,7 @@ function Header() {
 
     axios
       .put(
-        `auth/changepassword`,
+        `https://apidevelopment.hari-bhari.com/auth/changepassword`,
         formState.values,
         {
           headers: {
@@ -185,7 +185,7 @@ function Header() {
     const token = JSON.parse(localStorage.getItem("token"));
 
     axios
-      .post(`address`, formState.values, {
+      .post(`https://apidevelopment.hari-bhari.com/address`, formState.values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -253,9 +253,14 @@ function Header() {
         // toggle()
         // handleRefresh()
         setmySavedAddress(res.data?.info);
+        setaddressUser(res.data?.info);
         toggle();
         setmyModal({ ...mymodal, addressModel: true });
-      });
+      }).catch(err => {
+
+        toggle();
+        setmyModal({ ...mymodal, addressModel: true });
+      })
   };
   const handleDeleteAddress = (id) => {
     // e.preventDefault();
@@ -924,7 +929,7 @@ function Header() {
                                               type="radio"
                                               name="address_type"
                                             />{" "}
-                                            Work
+                                            Office
                                           </Label>
                                         </FormGroup>
                                       </FormGroup>

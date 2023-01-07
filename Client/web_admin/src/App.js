@@ -20,7 +20,7 @@ import AddCategory from "./components/pages/category/AddCategory";
 function App() {
   return (
     <>
-      <Toast />
+      {/* <Toast /> */}
       <Router>
         <Switch>
           <PrivateRouter path="/" component={Dashboard} exact />
@@ -28,10 +28,11 @@ function App() {
           <AuthRoute path="/register" component={Register} />
           <PrivateRouter path="/dashboard" component={Dashboard} />
           <PrivateRouter path="/products" component={Products} />
-          <PrivateRouter path="/product/add" component={AddProduct} />
-          <PrivateRouter path="/product/edit/:id" component={EditProduct} />
+          <PrivateRouter key={1} path="/product/add" component={AddProduct} />
+          <PrivateRouter key={23} path="/product/edit/:id" component={AddProduct} />
           <PrivateRouter path="/categories" component={Categories} />
-          <PrivateRouter path="/category/add" component={AddCategory} />
+          <PrivateRouter key={1} path="/category/add" component={AddCategory} />
+          <PrivateRouter key={23} path="/category/edit/:id" component={AddCategory} />
           <PrivateRouter path="/orders" component={Orders} />
           <PrivateRouter path="/order/edit/:id" component={EditOrder} />
           <PrivateRouter path="/users" component={Users} />
