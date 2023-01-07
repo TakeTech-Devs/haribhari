@@ -46,6 +46,7 @@ function Cart(props) {
     billingInfo,
     setbillingInfo,
     getMyCart,
+    UserInfo
   } = useAuth();
   // Modal open state
   const [payment, setPayment] = React.useState(false);
@@ -54,7 +55,22 @@ function Cart(props) {
 
   // Toggle for Modal
   const proceedPayment = () => setPayment(!payment);
-  const proceedOrder = () => setOrder(!order);
+  const proceedOrder = () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    axios.post(`https://apidevelopment.hari-bhari.com/order/${billingInfo?._id}`, {
+      phone: 4545435435,
+      pin: 7886
+    },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(res => {
+        console.log('res', res)
+      })
+    setOrder(!order)
+  };
 
   // Payment Option Show Hide
   const [showtab, setShowtab] = useState(1);
@@ -80,7 +96,7 @@ function Cart(props) {
         console.log(res, "resd");
         getMyCart();
       })
-      .catch((err) => {});
+      .catch((err) => { });
   };
 
   return (
@@ -95,7 +111,7 @@ function Cart(props) {
         <div className="added-item">
           {cartItems?.map((pd) => (
             <div className="item-info-container d-flex align-items-center justify-content-evenly">
-              {console.log(pd?.productId?.images[0], "pd")}
+
               <div className="item-img">
                 <img
                   src={`https://apidevelopment.hari-bhari.com//${pd?.productId?.images[0]}`}
@@ -122,7 +138,7 @@ function Cart(props) {
                   </Button>
                   <Button
                     className="btn btn-primary"
-                    onClick={() => removeMyCart(pd._id)}
+                    onClick={() => removeMyCart(pd?.productId?._id)}
                   >
                     Remove
                   </Button>
@@ -486,35 +502,26 @@ function Cart(props) {
                       </div>
                       <div className="my-cart">
                         <h5>My Cart</h5>
-                        <p>2 Items</p>
+                        <p>{billingInfo?.totalQty}Items</p>
                       </div>
                       <div className="cart-info">
-                        <div className="item-img d-flex align-items-center justify-content-between">
-                          <img
-                            src="assets/images/products/PastsNoodles.jpg"
-                            width={60}
-                            height={60}
-                            alt=""
-                          />
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Fugiat <br />
-                            <h6>&#8377; 80</h6>
-                          </p>
-                        </div>
-                        <div className="item-img d-flex align-items-center justify-content-between">
-                          <img
-                            src="assets/images/products/petfood.webp"
-                            width={60}
-                            height={60}
-                            alt=""
-                          />
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Fugiat? <br />
-                            <h6>&#8377; 80</h6>
-                          </p>
-                        </div>
+
+                        {cartItems?.map((pd) => (
+
+                          <div className="item-img d-flex align-items-center justify-content-between">
+                            <img
+                              src={`https://apidevelopment.hari-bhari.com//${pd?.productId?.images[0]}`}
+                              alt=""
+                            />
+                            <p>
+                              Lorem, ipsum dolor sit amet consectetur adipisicing
+                              elit. Fugiat <br />
+                              <h6>&#8377; {pd?.price}</h6>
+                            </p>
+                          </div>
+                        ))}
+
+
                       </div>
                     </div>
                   </div>

@@ -6,18 +6,21 @@ import { useAuth } from "../context/AuthContex";
 
 function CategoryProducts(props) {
   const [products, setproducts] = useState([]);
+  const [categoryAll, setcategoryAll] = useState([]);
   const { onAddProduct, onRemoveProduct, cartItems, setCartItems } = useAuth();
 
   useEffect(() => {
-    getProducts();
-  }, []);
-
-  const getProducts = () => {
+    getProducts(categoryAll[0]?._id);
+  }, [categoryAll]);
+  useEffect(() => {
+    getAllCategoris()
+  }, [])
+  const getProducts = (id) => {
     // const token = JSON.parse(localStorage.getItem('token'))
     // console.log(token)
     axios
       .get(
-        "https://apidevelopment.hari-bhari.com/product/find/639a0c0e56faa05e018e85ec",
+        `https://apidevelopment.hari-bhari.com/product/find/${id}`,
         {
           headers: {
             // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
@@ -29,7 +32,26 @@ function CategoryProducts(props) {
         setproducts(res.data.info);
       });
   };
-  console.log(products, "products");
+  const getAllCategoris = () => {
+    // const token = JSON.parse(localStorage.getItem('token'))
+    // console.log(token)
+    axios
+      .get(
+        "http://localhost:4000/category",
+        {
+          headers: {
+            // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res, "resd");
+        setcategoryAll(res.data.info);
+      });
+  };
+  const handleFilterPdwthCat = (id) => {
+    getProducts(id)
+  }
   return (
     <div className="products-category">
       <div className="mx-4">
@@ -37,22 +59,15 @@ function CategoryProducts(props) {
           <div className="row col-12 col-md-3 col-sm-1">
             <Card className="filter-products">
               <CardBody className="category-button">
-                <button className="active">
-                  <img src="assets/images/vegetables.webp" alt="" />
-                  Vegetables
-                </button>
-                <button>
-                  <img src="assets/images/download.jfif" alt="" />
-                  Frogen Veges
-                </button>
-                <button>
-                  <img src="assets/images/fruits.jpg" alt="" />
-                  Fruits
-                </button>
-                <button>
-                  <img src="assets/images/combo.jpg" alt="" />
-                  Combo Offer
-                </button>
+                {
+                  categoryAll?.map(cate => (
+                    <button onClick={() => handleFilterPdwthCat(cate?._id)}>
+                      <img src="assets/images/combo.jpg" alt="" />
+                      Combo Offer
+                    </button>
+                  ))
+                }
+
               </CardBody>
             </Card>
           </div>
