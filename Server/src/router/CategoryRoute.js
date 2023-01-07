@@ -38,7 +38,7 @@ router.post(
 
 router.get(
     '',
-    verifyTokenAndAdmin,
+    // verifyTokenAndAdmin,
     validateResult,
     categoryController.findAllCategory,
 );

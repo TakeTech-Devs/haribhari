@@ -21,6 +21,7 @@ exports.signUp = async (req, res, next) => {
                     confirm_password: confirm_password,
                 });
                 const otp = await user.generateOTP();
+                console.log('otp', otp)
                 await user.save();
                 await new Otp({
                     user_id: user._id,
