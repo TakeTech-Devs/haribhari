@@ -1,30 +1,30 @@
-import React from 'react';
-import Home from './HomeComponent';
-import About from './AboutComponent';
+import React from "react";
+import Home from "./HomeComponent";
+import About from "./AboutComponent";
 // import Header from './HeaderComponent';
 // import Footer from './FooterComponent';
-import Disclaimer from './DisclaimerComponent';
-import FAQ from './FaqComponent';
-import Grievance from './GrievanceComponent';
-import Payment from './PaymentComponent';
-import Privacy from './PrivacyComponent';
-import Quality from './QualityComponent';
-import Vision from './VisionComponent';
-import LoginHeader from './LoginHeaderComponent';
-import FrequentlyAsked from './FrequentlyAskedComponent';
-import { Route, Routes } from 'react-router-dom';
-import OrderList from './MyOrderComponent';
-import Cart from './CartComponent';
+import Disclaimer from "./DisclaimerComponent";
+import FAQ from "./FaqComponent";
+import Grievance from "./GrievanceComponent";
+import Payment from "./PaymentComponent";
+import Privacy from "./PrivacyComponent";
+import Quality from "./QualityComponent";
+import Vision from "./VisionComponent";
+import LoginHeader from "./LoginHeaderComponent";
+import FrequentlyAsked from "./FrequentlyAskedComponent";
+import { Route, Routes } from "react-router-dom";
+import OrderList from "./MyOrderComponent";
+import Cart from "./CartComponent";
+import CardSlider from "./CardSliderComponent";
+import ProductDetails from "./ProductDetailComponent";
 // import CategoryNav from './ProductCategoryNavComponent';
 // import CategoryProducts from './CategoryProductsComponent';
-import OrderDetails from './OrderDetailsComponent';
-import Shop from '../pages/Shop';
-import ProductDetails from './ProductDetailComponent';
+import OrderDetails from "./OrderDetailsComponent";
+import Shop from "../pages/Shop";
+
 // import { integerPropType } from '@mui/utils';
 
-
 class Main extends React.Component {
-
   render() {
     return (
       <>
@@ -47,10 +47,10 @@ class Main extends React.Component {
           <Route path="/shop" element={<Shop />} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/sproducts" element={<ProductDetails />} />
+          <Route path="/card-slider" element={<CardSlider />} />
+          <Route path="/product-details" element={<ProductDetails />} />
         </Routes>
         {/* <Footer/> */}
-
-
       </>
     );
   }

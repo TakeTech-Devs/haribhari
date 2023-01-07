@@ -1,36 +1,32 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Register, RegisterReset } from "../../redux/actions/userActions";
 import axios from "axios";
 
-
 const RegisterPage = ({ history }) => {
-
   const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
   const { register_status } = userRegister;
 
-
   const [formState, setFormState] = useState({
-    values: {}
+    values: {},
   });
 
   const handleChange = (event) => {
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       values: {
         ...formState.values,
         [event.target.name]:
-          event.target.type === 'checkbox'
+          event.target.type === "checkbox"
             ? event.target.checked
-            : event.target.value
-      }
-
+            : event.target.value,
+      },
     }));
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,20 +34,25 @@ const RegisterPage = ({ history }) => {
     const { name, email, password, confirm_password } = formState.values;
     if (name && email && password) {
       // dispatch(Register(name, email, password));
-      await axios.post('http://localhost:4000/auth/signup', { name, email, password, confirm_password }).then(res => {
-        console.log(res)
-      })
+      await axios
+        .post("https://apidevelopment.hari-bhari.com/auth/signup", {
+          name,
+          email,
+          password,
+          confirm_password,
+        })
+        .then((res) => {
+          console.log(res);
+        });
     }
-  }
+  };
 
   useEffect(() => {
     if (register_status) {
       history.push("/");
       dispatch(RegisterReset());
     }
-
   }, [dispatch, register_status]);
-
 
   return (
     <>
@@ -65,60 +66,101 @@ const RegisterPage = ({ history }) => {
                     <img src="assets/images/logo.svg" alt="logo" />
                   </div>
                   <h4>New here?</h4>
-                  <h6 className="fw-light">Signing up is easy. It only takes a few steps</h6>
-                  <form className="pt-3" onSubmit={handleSubmit} autoComplete="off">
+                  <h6 className="fw-light">
+                    Signing up is easy. It only takes a few steps
+                  </h6>
+                  <form
+                    className="pt-3"
+                    onSubmit={handleSubmit}
+                    autoComplete="off"
+                  >
                     <div className="form-group">
-                      <input type="text" className={'form-control form-control-lg' + (submitted && !formState.values.name ? ' is-invalid' : '')}
+                      <input
+                        type="text"
+                        className={
+                          "form-control form-control-lg" +
+                          (submitted && !formState.values.name
+                            ? " is-invalid"
+                            : "")
+                        }
                         name="name"
                         placeholder="Name"
                         onChange={handleChange}
-                        value={formState.values.name || ''}
+                        value={formState.values.name || ""}
                       />
-                      {submitted && !formState.values.name &&
+                      {submitted && !formState.values.name && (
                         <div className="inline-errormsg">Name is required</div>
-                      }
+                      )}
                     </div>
                     <div className="form-group">
-                      <input type="email" className={'form-control form-control-lg' + (submitted && !formState.values.email ? ' is-invalid' : '')}
+                      <input
+                        type="email"
+                        className={
+                          "form-control form-control-lg" +
+                          (submitted && !formState.values.email
+                            ? " is-invalid"
+                            : "")
+                        }
                         name="email"
                         placeholder="Email"
                         onChange={handleChange}
-                        value={formState.values.email || ''}
+                        value={formState.values.email || ""}
                       />
-                      {submitted && !formState.values.email &&
+                      {submitted && !formState.values.email && (
                         <div className="inline-errormsg">Email is required</div>
-                      }
+                      )}
                     </div>
                     <div className="form-group">
-                      <input type="password" className={'form-control form-control-lg' + (submitted && !formState.values.password ? ' is-invalid' : '')}
+                      <input
+                        type="password"
+                        className={
+                          "form-control form-control-lg" +
+                          (submitted && !formState.values.password
+                            ? " is-invalid"
+                            : "")
+                        }
                         name="password"
                         placeholder="Password"
                         onChange={handleChange}
-                        value={formState.values.password || ''}
+                        value={formState.values.password || ""}
                       />
-                      {submitted && !formState.values.password &&
-                        <div className="inline-errormsg">Password is required</div>
-                      }
+                      {submitted && !formState.values.password && (
+                        <div className="inline-errormsg">
+                          Password is required
+                        </div>
+                      )}
                     </div>
                     <div className="form-group">
-                      <input type="password" className={'form-control form-control-lg' + (submitted && !formState.values.confirm_password ? ' is-invalid' : '')}
+                      <input
+                        type="password"
+                        className={
+                          "form-control form-control-lg" +
+                          (submitted && !formState.values.confirm_password
+                            ? " is-invalid"
+                            : "")
+                        }
                         name="confirm_password"
                         placeholder="confirm_Password"
                         onChange={handleChange}
-                        value={formState.values.confirm_password || ''}
+                        value={formState.values.confirm_password || ""}
                       />
-                      {submitted && !formState.values.confirm_password &&
-                        <div className="inline-errormsg">confirm_Password is required</div>
-                      }
+                      {submitted && !formState.values.confirm_password && (
+                        <div className="inline-errormsg">
+                          confirm_Password is required
+                        </div>
+                      )}
                     </div>
                     <div className="mt-3">
-                      <button className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >SIGN UP</button>
+                      <button className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                        SIGN UP
+                      </button>
                     </div>
-                    <div className="my-2 d-flex justify-content-between align-items-center">
-
-                    </div>
+                    <div className="my-2 d-flex justify-content-between align-items-center"></div>
                     <div className="text-center mt-4 fw-light">
-                      Already have an account? <Link to="/login" className="text-primary">Login</Link>
+                      Already have an account?{" "}
+                      <Link to="/login" className="text-primary">
+                        Login
+                      </Link>
                     </div>
                   </form>
                 </div>
@@ -128,7 +170,7 @@ const RegisterPage = ({ history }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default RegisterPage;

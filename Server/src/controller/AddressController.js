@@ -36,7 +36,6 @@ exports.viewAddress = async (req, res, next) => {
             //     errors: {error: 'No address found'},
             // });
             res.status(200).json({ success: true, info: [] });
-
         } else {
             res.status(200).json({ success: true, info: address });
         }

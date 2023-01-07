@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { useAuth } from "../context/AuthContex";
-
 function CategoryProducts(props) {
   const [products, setproducts] = useState([]);
   const [categoryAll, setcategoryAll] = useState([]);
