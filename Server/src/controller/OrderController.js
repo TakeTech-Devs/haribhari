@@ -13,8 +13,9 @@ exports.addOrder = async (req, res, next) => {
         const caartId = req.params.cartId;
         const pin = req.body.pin;
         const phone = req.body.phone;
+        const addressId = req.body.addressId;
         const taxPrice = 0;
-        const address = await Address.findOne({user: userId});
+        const address = await Address.findOne({_id: addressId,user: userId});
         if (!address) {
             return res.status(404).json({
                 success: false,
@@ -57,6 +58,7 @@ exports.addOrder = async (req, res, next) => {
         });
         const createOder = await order.save();
         if (createOder) {
+            await Cart.deleteOne({_id: caartId});
             return res.status(200).json({
                 success: true,
                 info: {message: 'Order added successfully'},
