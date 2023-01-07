@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Dipronil Das\",\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\",\n    \"confirm_password\":\"Dip@12345\"\n}",
+							"raw": "{\n    \"name\":\"Admin\",\n    \"email\":\"admin@gmail.comm\",\n    \"password\":\"Admin@12345\",\n    \"confirm_password\":\"Admin@12345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"dipronildas.net@gmail.com\",\n    \"password\":\"Dip@12345\"\n}",
+							"raw": "{\n    \"email\":\"admin@gmail.comm\",\n    \"password\":\"Admin@12345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -637,13 +637,37 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/product/634edb8be72c76d5d4490d93",
+							"raw": "{{host}}/product/634eda68680eae751f2271a5",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"product",
-								"634edb8be72c76d5d4490d93"
+								"634eda68680eae751f2271a5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product/6390c498c603e04a6b7eec00",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"6390c498c603e04a6b7eec00"
 							]
 						}
 					},
@@ -705,7 +729,8 @@
 							{
 								"key": "authorization",
 								"value": "{{token}}",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -1008,7 +1033,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_id\":\"634edb8be72c76d5d4490d93\",\r\n    \"qty\":5\r\n}",
+							"raw": "{\r\n    \"product_id\":\"634eda68680eae751f2271a5\",\r\n    \"qty\":6\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
