@@ -13,8 +13,8 @@ exports.createProduct = async (req, res, next) => {
         const description = req.body.description;
         const disclaimer = req.body.disclaimer;
         const user = req.user._id;
-        const category = req.body.category.toLowerCase();
-        const getCategory = await Category.find({ slug: category });
+        const category = req.body.category;
+        const getCategory = await Category.find({ _id: category });
         const exparyDate = req.body.expary_date;
         const customerCareEmail = req.body.customer_care_email;
         const customerCarePhone = req.body.customer_care_phone;
@@ -62,7 +62,7 @@ exports.createProduct = async (req, res, next) => {
 exports.findAllProduct = async (req, res, next) => {
     try {
         const resPerPage = req.query.limit;
-        const product = Product.find();
+        const product = Product.find().populate('category');
         const apiFeatures = new APIFeatures(product, req.query)
             .search()
             .pagination(resPerPage);
@@ -83,7 +83,7 @@ exports.findAllProduct = async (req, res, next) => {
 exports.getProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const product = await Product.findById({ _id: id });
+        const product = await Product.findById({ _id: id }).populate('category');
         if (!product) {
             return res.status(400).json({
                 success: false,

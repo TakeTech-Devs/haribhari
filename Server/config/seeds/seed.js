@@ -4,7 +4,7 @@ const db = require('../../src/db/conn');
 try {
     db.dbConnect();
     require('./SeedRole');
-    require('./SeedCategory');
+    // require('./SeedCategory');
     setTimeout(()=>{
     // eslint-disable-next-line
     console.log('Seeding Complete');
