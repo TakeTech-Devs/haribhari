@@ -14,13 +14,13 @@ router.post(
 
 router.get(
     '',
-    verifyTokenAndAuthorization,
+    verifyToken,
     orderController.viewAllOrder,
 );
 
 router.get(
     '/:orderId',
-    verifyTokenAndAuthorization,
+    verifyToken,
     orderController.viewSingleOrder,
 );
 
