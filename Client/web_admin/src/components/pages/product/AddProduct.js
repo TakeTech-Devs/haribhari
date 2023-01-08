@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../Header";
 import Sidebar from "../../Sidebar";
 import Footer from "../../Footer";
@@ -92,8 +92,18 @@ const AddProduct = () => {
 
     getCategories();
   }, []);
+  const [editedPd, seEditedPd] = useState()
+  const { id } = useParams()
 
-  console.log(formState.values, "imgFile");
+
+  useEffect(() => {
+    axios.get(`https://apidevelopment.hari-bhari.com/product/${id}`)
+      .then(res => {
+        setFormState({ values: res.data.info })
+        seEditedPd(res.data.info)
+      })
+  }, [id])
+  console.log(editedPd, "editedPd");
   return (
     <>
       <div className="container-scroller">
@@ -184,13 +194,9 @@ const AddProduct = () => {
                                   name="images"
                                   multiple
                                   onChange={handleChange}
-                                  value={formState.values.images || ""}
+                                // value={formState.values.images || ""}
                                 />
-                                {submitted && !formState.values.images && (
-                                  <div className="inline-errormsg">
-                                    images is required
-                                  </div>
-                                )}
+
                               </div>
                             </div>
                           </div>
@@ -303,7 +309,7 @@ const AddProduct = () => {
                                   className={
                                     "form-control form-control-lg" +
                                     (submitted &&
-                                    !formState.values.customer_care_email
+                                      !formState.values.customer_care_email
                                       ? " is-invalid"
                                       : "")
                                   }
@@ -336,7 +342,7 @@ const AddProduct = () => {
                                   className={
                                     "form-control form-control-lg" +
                                     (submitted &&
-                                    !formState.values.customer_care_phone
+                                      !formState.values.customer_care_phone
                                       ? " is-invalid"
                                       : "")
                                   }

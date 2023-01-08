@@ -1,22 +1,22 @@
 const express = require('express');
 const router = new express.Router();
 router.use(express.json({}));
-const categoryController=require('../controller/CategoryController');
-const {validateResult} = require('../middleware/ValidateResult');
-const {verifyTokenAndAdmin} =
- require('../middleware/verifytoken');
+const categoryController = require('../controller/CategoryController');
+const { validateResult } = require('../middleware/ValidateResult');
+const { verifyTokenAndAdmin } =
+    require('../middleware/verifytoken');
 const categoryValidation = require('../validator/CategoryValidation');
-const {imageValidate, imageUpdateValidate} =
- require('../middleware/SingleImageValidator');
+const { imageValidate, imageUpdateValidate } =
+    require('../middleware/SingleImageValidator');
 
 const multer = require('multer');
-let upload = multer({dest: './asset/image/category/'});
+let upload = multer({ dest: './asset/image/category/' });
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, './asset/image/category/');
     },
-    filename: function(req, file, cb) {
-        cb(null, Date.now()+'-'+file.originalname);
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
     },
 });
 
