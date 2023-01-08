@@ -26,9 +26,10 @@ import {
 import { useAuth } from "../context/AuthContex";
 import SearchBarComponent from "./SearchBarComponent";
 
-function Header() {
+function Header({ setaddressUser }) {
   const [loginUser, setIsLoginUser] = useState(false);
   const [mySavedAddress, setmySavedAddress] = useState([]);
+  const [defaultaddress, setDefaultaddress] = useState("");
   const [formState, setFormState] = useState({
     values: {},
   });
@@ -196,6 +197,21 @@ function Header() {
         // handleRefresh()
       });
   };
+  const handleForgetPassword = (e) => {
+    e.preventDefault();
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    axios
+      .post(`https://apidevelopment.hari-bhari.com/auth/forgotpassword`, formState.values, {
+
+      })
+      .then((res) => {
+        // setcategories(res.data.info)
+        // localStorage.setItem('token', JSON.stringify(res.data.info.token))
+        toggle();
+        // handleRefresh()
+      });
+  };
 
   const handleUpdateUser = (e) => {
     e.preventDefault();
@@ -237,9 +253,14 @@ function Header() {
         // toggle()
         // handleRefresh()
         setmySavedAddress(res.data?.info);
+        setaddressUser(res.data?.info);
         toggle();
         setmyModal({ ...mymodal, addressModel: true });
-      });
+      }).catch(err => {
+
+        toggle();
+        setmyModal({ ...mymodal, addressModel: true });
+      })
   };
   const handleDeleteAddress = (id) => {
     // e.preventDefault();
@@ -367,9 +388,9 @@ function Header() {
                                 type={"password"}
                                 name="password"
                                 onChange={handleChange}
-                                // id={"login_password" + this.props.id}
-                                // value={this.state.password}
-                                // onChange={(e) => this.onInputChange(e)}
+                              // id={"login_password" + this.props.id}
+                              // value={this.state.password}
+                              // onChange={(e) => this.onInputChange(e)}
                               />
                               {/* <i className="fa fa-eye" onClick={this.toggleShow} /> */}
                             </div>
@@ -433,9 +454,9 @@ function Header() {
                               type="email"
                               name="email"
                               onChange={handleChange}
-                              // id={"login_email" + this.props.id}
-                              // value={this.state.name}
-                              // onChange={(e) => this.onInputChange(e)}
+                            // id={"login_email" + this.props.id}
+                            // value={this.state.name}
+                            // onChange={(e) => this.onInputChange(e)}
                             />
                           </FormGroup>
                           <FormGroup>
@@ -447,9 +468,9 @@ function Header() {
                                 onChange={handleChange}
                                 type={mymodal.showEye ? "text" : "password"}
                                 name="password"
-                                // id={"login_password" + this.props.id}
-                                // value={this.state.password}
-                                // onChange={(e) => this.onInputChange(e)}
+                              // id={"login_password" + this.props.id}
+                              // value={this.state.password}
+                              // onChange={(e) => this.onInputChange(e)}
                               />
                               <i
                                 className="fa fa-eye"
@@ -486,9 +507,35 @@ function Header() {
                           <Button
                             className="forget"
                             onClick={handleForgetPass}
-                            // onClick={this.showModal.bind(this, "forget")}
+                          // onClick={this.showModal.bind(this, "forget")}
                           >
                             Forget Password
+                          </Button>
+                        </Form>
+                      </ModalBody>
+                    </Modal>
+
+                    <Modal
+                      className="forgetPassword"
+                      size="md"
+                      aria-labelledby="contained-modal-title-vcenter"
+                      centered
+                      isOpen={mymodal.forgetPassModal}
+                      toggle={toggle}
+
+                    >
+                      <ModalBody>
+                        <Form>
+                          <FormGroup>
+                            <Label for="Email">Enter Your Email</Label>
+                            <Input type="email" onChange={handleChange} name="email" id="Email" />
+                          </FormGroup>
+                          <Button onClick={() => {
+
+                            toggle();
+                            setmyModal({ ...mymodal, otpModal: true });
+                          }}>
+                            Send OTP
                           </Button>
                         </Form>
                       </ModalBody>
@@ -663,7 +710,7 @@ function Header() {
                                           name="old_password"
                                           // value={this.state.password}'
                                           onChange={handleChange}
-                                          // onChange={(e) => this.onInputChange(e)}
+                                        // onChange={(e) => this.onInputChange(e)}
                                         />
                                         <i className="fa fa-eye" />
                                       </div>
@@ -676,8 +723,8 @@ function Header() {
                                           // type={this.state.hidden ? 'text' : 'password'}
                                           onChange={handleChange}
                                           name="password"
-                                          // value={this.state.password}
-                                          // onChange={(e) => this.onInputChange(e)}
+                                        // value={this.state.password}
+                                        // onChange={(e) => this.onInputChange(e)}
                                         />
                                         <i className="fa fa-eye" />
                                       </div>
@@ -766,6 +813,7 @@ function Header() {
                                       >
                                         Delete
                                       </Button>
+                                      <input type="checkbox" checked={defaultaddress == addres?._id && true} onClick={() => setDefaultaddress(addres?._id)} />
                                     </div>
                                   </div>
                                 </>
@@ -881,7 +929,7 @@ function Header() {
                                               type="radio"
                                               name="address_type"
                                             />{" "}
-                                            Work
+                                            Office
                                           </Label>
                                         </FormGroup>
                                       </FormGroup>
@@ -890,8 +938,8 @@ function Header() {
                                         onClick={(e) => {
                                           formState.values._id
                                             ? handleEditAddress(
-                                                formState.values._id
-                                              )
+                                              formState.values._id
+                                            )
                                             : handleAddressForm(e);
                                         }}
                                       >
@@ -927,7 +975,9 @@ function Header() {
                           <span className="fa fa-map-marker"></span>
                           &nbsp;Kolkata, WestBengal, India
                         </DropdownItem>
-                        <DropdownItem>
+                        <DropdownItem onClick={() => {
+                          getMyAddress();
+                        }}>
                           <span class="fa fa-map-marker"></span>&nbsp; Change
                           Your Location
                         </DropdownItem>

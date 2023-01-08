@@ -9,7 +9,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from 'reactstrap';
 
 export default class CategoryNav extends React.Component {
   constructor(props) {
@@ -27,8 +28,8 @@ export default class CategoryNav extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar className='category-nav' light expand="md">
+      <div className='pt-5'>
+        <Navbar className='category-nav mt-5' light expand="md">
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="products-nav" navbar>

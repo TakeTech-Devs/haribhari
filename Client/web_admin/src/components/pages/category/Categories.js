@@ -25,46 +25,50 @@ const Categories = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [csvData, setCsvData] = useState([]);
 	const myRefBtn = useRef(null);
+	const [categories, setcategories] = useState([]);
 
 	const productList = useSelector((state) => state.productList);
 	const { loading, error, products, numOfPages, sortBy, searchText } = productList;
 
-	let pageNum = 0;
-	let productsPerPage = 10;
-	const handlePageClick = (data) => {
-		pageNum = data.selected;
-		setCurrentPage(pageNum);
-		dispatch(listProducts(pageNum, productsPerPage, sortBy, searchText));
-	}
 
-	useEffect(() => {
-		dispatch(listProducts(pageNum, productsPerPage, sortBy, searchText));
-	}, [productsPerPage]);
 
 	//Call Function after stop typing text
+
+
+
+
+
 	useEffect(() => {
-		const delaySearchFunc = setTimeout(() => {
-			setCurrentPage(0);
-			dispatch(listProducts(pageNum, productsPerPage, sortBy, searchTerm));
-		}, 1500)
 
-		return () => clearTimeout(delaySearchFunc)
-	}, [searchTerm])
 
-	const handleSortBy = (e) => {
-		const sortByValue = e.target.value;
-		setCurrentPage(0);
-		dispatch(listProducts(pageNum, productsPerPage, sortByValue, searchText));
+		getCategories();
+	}, []);
+	const getCategories = async () => {
+		axios
+			.get("https://apidevelopment.hari-bhari.com/category", {
+				headers: {
+					Authorization: `Bearer ${JSON.parse(
+						localStorage.getItem("userInfo")
+					)}`,
+				},
+			})
+			.then((res) => {
+				setcategories(res.data.info);
+			});
+	};
+	const handleDeleteCategory = (id) => {
+		axios
+			.delete(`https://apidevelopment.hari-bhari.com/category/${id}`, {
+				headers: {
+					Authorization: `Bearer ${JSON.parse(
+						localStorage.getItem("userInfo")
+					)}`,
+				},
+			})
+			.then((res) => {
+				getCategories()
+			});
 	}
-
-	const getCsvProducts = async () => {
-		const responseData = await axios.get(`/products/all`);
-		const data = responseData.data;
-		setCsvData(data.data);
-		myRefBtn.current.link.click();
-	}
-
-
 	return (
 		<>
 			<div className="container-scroller">
@@ -77,7 +81,7 @@ const Categories = () => {
 								<div className="col-lg-12 grid-margin stretch-card">
 									<div className="card">
 										<div className="card-body">
-											<h4 className="card-title">Products</h4>
+											<h4 className="card-title">Categories</h4>
 											<div className="row">
 												<div className="col-md-12">
 													<div className="form-group row">
@@ -86,11 +90,11 @@ const Categories = () => {
 																name="search" onChange={(e) => setSearchTerm(e.target.value)} />
 														</div>
 														<div className="col-sm-3 float-right">
-															<select className="form-select form-control" aria-label="Sort By" onChange={handleSortBy}>
+															{/* <select className="form-select form-control" aria-label="Sort By" onChange={handleSortBy}>
 																<option value="">Sort By</option>
 																<option value="name">Name</option>
 																<option value="price">Price</option>
-															</select>
+															</select> */}
 														</div>
 														<div className="col-sm-2">
 															<Link to="/category/add" className="btn btn-outline-primary btn-fw float-right">
@@ -122,39 +126,45 @@ const Categories = () => {
 														<tr>
 															<th className="product-title">Title</th>
 															<th className="product-image">Image</th>
-															<th className="product-price">Price</th>
-															<th className="product-stock">Stock</th>
+
 															<th className="product-action">Action</th>
 														</tr>
 													</thead>
 													<tbody>
-														{products?.map((product) => (
-															<Product product={product} key={product._id} />
+
+
+														{categories?.map((cat) => (
+															<tr>
+																<>
+																	<td>{cat?.name}</td>
+																	<td>
+																		<img src={`https://apidevelopment.hari-bhari.com/${cat?.image}`} />
+																	</td>
+
+																	<td><Link
+																		to={`/category/edit/${cat?._id}`
+																		}
+																	>
+																		<i className="fa fa-edit"></i>
+																	</Link>
+																		<Link
+																			to="#"
+																			onClick={() => handleDeleteCategory(cat?._id)}
+																		>
+																			<i className="fa fa-trash"></i>
+																		</Link>
+																	</td>
+																</>
+															</tr>
 														))}
+
+
+
 													</tbody>
 												</table>
 											</div>
 											<div className={'mt-4' + (numOfPages ? '' : ' d-none')}>
-												<ReactPaginate
-													previousLabel={"Previous"}
-													nextLabel={"Next"}
-													breakLabel={"..."}
-													pageCount={numOfPages}
-													marginPagesDisplayed={2}
-													pageRangeDisplayed={3}
-													onPageChange={handlePageClick}
-													containerClassName={"pagination justify-content-center"}
-													pageClassName={"page-item"}
-													pageLinkClassName={"page-link"}
-													previousClassName={"page-item"}
-													previousLinkClassName={"page-link"}
-													nextClassName={"page-item"}
-													nextLinkClassName={"page-link"}
-													breakClassName={"page-item"}
-													breakLinkClassName={"page-link"}
-													activeClassName={"active"}
-													forcePage={currentPage}
-												/>
+
 											</div>
 										</div>
 									</div>
