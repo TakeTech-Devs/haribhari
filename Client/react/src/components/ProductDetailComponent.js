@@ -33,13 +33,19 @@ function ProductDetails(props) {
         });
       });
   };
-  console.log(imgDefault, "imgDefault");
+
+  const [cartSinglePd, setCartSinglePd] = useState(0)
+  useEffect(() => {
+
+    setCartSinglePd(cartItems.find(c => c?._id == id)?.qty ? cartItems.find(c => c?._id == id)?.qty : 0)
+  }, [cartItems, onAddProduct, id])
+  console.log('cartItems', cartItems)
   return (
     <>
       <Header />
 
       {Object.keys(ProductDetails).length > 0 && (
-        <div className="product-details">
+        <div className="product-details mt-5 pt-2">
           <div className="container product-desc d-flex align-items-center justify-content-around mt-4">
             <div className="row product-img">
               <div className="product-image">
@@ -75,12 +81,33 @@ function ProductDetails(props) {
                     </Button>
                   </p>
                 </div>
-                <Button
-                  className="btn"
-                  onClick={() => onAddProduct(ProductDetails)}
-                >
-                  ADD
-                </Button>
+                <div className="d-flex">
+                  {cartSinglePd > 0 && <div className="pe-4">
+                    <Button className="btn btn-primary d-flex align-items-center justify-content-around">
+                      <i
+                        className="fa fa-minus"
+                        onClick={() => onRemoveProduct(ProductDetails)}
+                      />
+                      &nbsp;
+                      {cartSinglePd}
+                      &nbsp;
+                      <i
+                        className="fa fa-plus"
+                        onClick={() => onAddProduct(ProductDetails)}
+                      />
+                    </Button>
+                  </div>}
+                  <Button
+                    className="btn"
+                    onClick={() => onAddProduct(ProductDetails, "click")}
+                  >
+                    ADD
+                  </Button>
+
+                </div>
+
+
+
                 <h3 className="mt-5">Product Details</h3>
                 <h5>Disclaimer</h5>
                 <p>

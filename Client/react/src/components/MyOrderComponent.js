@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./FooterComponent";
 import Header from "./Header";
 
 function OrderList(props) {
+    const [myOrders, setMyOrders] = useState([])
     useEffect(() => {
         getMyOrders()
     }, [])
@@ -21,7 +22,7 @@ function OrderList(props) {
             })
             .then((res) => {
                 console.log('res', res)
-                // setcategories(res.data.info)
+                setMyOrders(res.data.info)
                 // localStorage.setItem('token', JSON.stringify(res.data.info.token))
                 // toggle()
                 // handleRefresh()
@@ -45,57 +46,25 @@ function OrderList(props) {
                         <span>&#8801;</span> Filters
                     </div>
                 </div>
-                <div className="item-info-container d-flex align-items-center justify-content-evenly">
-                    <div className="item-img">
-                        <img src="assets/images/products/lady-finger.jpg" alt="" />
-                    </div>
-                    <div className="item-desc">
-                        <h4>Delivered on Oct 18</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-                    </div>
-                    <Link to="/order-details">&#9654;</Link>
-                </div>
-                <div className="item-info-container d-flex align-items-center justify-content-evenly">
-                    <div className="item-img">
-                        <img src="assets/images/products/PastsNoodles.jpg" alt="" />
-                    </div>
-                    <div className="item-desc">
-                        <h4>Delivered on Oct 18</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <Link to="/">&#9654;</Link>
-                </div>
-                <div className="item-info-container d-flex align-items-center justify-content-evenly">
-                    <div className="item-img">
-                        <img src="assets/images/products/stayfree.webp" alt="" />
-                    </div>
-                    <div className="item-desc">
-                        <h4>Delivered on Oct 18</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <Link to="/">&#9654;</Link>
-                </div>
-                <div className="item-info-container d-flex align-items-center justify-content-evenly">
-                    <div className="item-img">
-                        <img src="assets/images/products/petfood.webp" alt="" />
-                    </div>
-                    <div className="item-desc">
-                        <h4>Delivered on Oct 18</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <Link to="/">&#9654;</Link>
-                </div>
-                <div className="item-info-container d-flex align-items-center justify-content-evenly">
-                    <div className="item-img">
-                        <img src="assets/images/products/Personal.png" alt="" />
-                    </div>
-                    <div className="item-desc">
-                        <h4>Delivered on Oct 18</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <Link to="/">&#9654;</Link>
-                </div>
+                {
+                    myOrders?.map(order => (
+                        <div className="item-info-container d-flex align-items-center justify-content-evenly">
+                            <div className="item-img">
+
+                                <img src={`https://apidevelopment.hari-bhari.com/${order?.orderItems[0]?.product?.images[0]}`} alt="" />
+                            </div>
+                            <div className="item-desc">
+                                <h4>Order ID: {order?.orderId} </h4>
+                                <p> {`${order?.shippingInfo?.address?.receiver_name}  ${order?.shippingInfo?.address?.resident_name} ${order?.shippingInfo?.address?.resident_no} pin code : ${order?.shippingInfo?.pinCode}`} </p>
+
+                            </div>
+                            <Link to="/order-details">&#9654;</Link>
+                        </div>
+                    ))
+                }
+
+
             </div>
             <Footer />
         </>

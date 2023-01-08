@@ -25,7 +25,7 @@ export default function CardSlider() {
     <Carousel
       swipeable={false}
       draggable={false}
-    //   showDots={true}
+      //   showDots={true}
       responsive={responsive}
       ssr={true} // means to render carousel on server-side.
       infinite={true}
@@ -58,28 +58,7 @@ export default function CardSlider() {
       >
         Item 2
       </div>
-      <div
-        style={{
-          width: "80%",
-          marginLeft: "auto",
-          marginRight: "auto",
-          height: "200px",
-          backgroundColor: "yellow"
-        }}
-      >
-        Item 3
-      </div>
-      <div
-        style={{
-          width: "80%",
-          marginLeft: "auto",
-          marginRight: "auto",
-          height: "200px",
-          backgroundColor: "blue"
-        }}
-      >
-        Item 4
-      </div>
+
     </Carousel>
   );
 }
