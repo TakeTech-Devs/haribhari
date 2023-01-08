@@ -120,8 +120,8 @@ exports.getProduct = async (req, res, next) => {
 
 exports.findAllProductByCategory = async (req, res, next) => {
     try {
-        const categoryId = req.params.categoryId;
-        const procuctByCategory = await Product.find({ id: categoryId });
+        const categoryId = req.params.category;
+        const procuctByCategory = await Product.find({ category: categoryId });
         if (procuctByCategory.length === 0) {
             res.status(400).json({
                 success: false,
