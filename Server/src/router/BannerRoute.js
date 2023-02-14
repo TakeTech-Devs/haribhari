@@ -33,24 +33,17 @@ router.post(
     bannerController.create,
 );
 
-// router.get(
-//     '',
-//     validateResult,
-//     productController.findAllProduct,
-// );
+router.put(
+    '/enable/:id',
+    verifyTokenAndAdmin,
+    bannerController.enableBanner,
+);
 
-// router.get(
-//     '/:id',
-//     validateResult,
-//     productController.getProduct,
-// );
-
-// router.get(
-//     '/find/:category',
-//     // verifyToken,
-//     validateResult,
-//     productController.findAllProductByCategory,
-// );
+router.put(
+    '/disable/:id',
+    verifyTokenAndAdmin,
+    bannerController.disableBanner,
+);
 
 router.delete(
     '/:id',
