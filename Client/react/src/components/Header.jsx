@@ -25,8 +25,8 @@ import {
 } from "reactstrap";
 import { useAuth } from "../context/AuthContex";
 import SearchBarComponent from "./SearchBarComponent";
-
-function Header({ setaddressUser }) {
+import toast, { Toaster } from 'react-hot-toast';
+function Header() {
   const [loginUser, setIsLoginUser] = useState(false);
   const [mySavedAddress, setmySavedAddress] = useState([]);
   const [defaultaddress, setDefaultaddress] = useState("");
@@ -130,6 +130,7 @@ function Header({ setaddressUser }) {
         localStorage.setItem("token", JSON.stringify(res.data.info.token));
         toggle();
         navigate("/shop");
+        toast.success('Login success')
         // handleRefresh()
       });
   };
@@ -253,7 +254,6 @@ function Header({ setaddressUser }) {
         // toggle()
         // handleRefresh()
         setmySavedAddress(res.data?.info);
-        setaddressUser(res.data?.info);
         toggle();
         setmyModal({ ...mymodal, addressModel: true });
       }).catch(err => {

@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { Button, Card, CardImg, CardBody, CardTitle } from "reactstrap";
 import { useAuth } from "../context/AuthContex";
 function CategoryProducts(props) {
+
+
+
   const [products, setproducts] = useState([]);
-  const [categoryAll, setcategoryAll] = useState([]);
-  const { onAddProduct, onRemoveProduct, cartItems, setCartItems } = useAuth();
+
+  const { onAddProduct, onRemoveProduct, cartItems, setCartItems, categoryAll } = useAuth();
 
   useEffect(() => {
     getProducts(categoryAll[0]?._id);
   }, [categoryAll]);
-  useEffect(() => {
-    getAllCategoris()
-  }, [])
+
   const getProducts = (id) => {
     // const token = JSON.parse(localStorage.getItem('token'))
     // console.log(token)
@@ -27,30 +28,20 @@ function CategoryProducts(props) {
         }
       )
       .then((res) => {
-        console.log(res, "resd");
+
         setproducts(res.data.info);
       });
   };
-  const getAllCategoris = () => {
-    // const token = JSON.parse(localStorage.getItem('token'))
-    // console.log(token)
-    axios
-      .get(
-        "https://apidevelopment.hari-bhari.com/category",
-        {
-          headers: {
-            // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res, "resd");
-        setcategoryAll(res.data.info);
-      });
-  };
+
   const handleFilterPdwthCat = (id) => {
     getProducts(id)
+    setActiveCategory(id)
   }
+  const [activeCategory, setActiveCategory] = useState("")
+  useEffect(() => {
+    setActiveCategory(categoryAll[0]?._id)
+  }, [categoryAll])
+  console.log('activeCategory', activeCategory)
   return (
     <div className="products-category">
       <div className="mx-4">
@@ -60,9 +51,9 @@ function CategoryProducts(props) {
               <CardBody className="category-button">
                 {
                   categoryAll?.map(cate => (
-                    <button onClick={() => handleFilterPdwthCat(cate?._id)}>
-                      <img src="assets/images/combo.jpg" alt="" />
-                      Combo Offer
+                    <button onClick={() => handleFilterPdwthCat(cate?._id)} className={activeCategory == cate?._id && "active"}>
+                      <img src={`https://apidevelopment.hari-bhari.com/${cate?.image}`} alt="" />
+                      {cate?.name}
                     </button>
                   ))
                 }
@@ -95,286 +86,7 @@ function CategoryProducts(props) {
               </Card>
             </div>
           ))}
-          <div className="row col-12 col-md-3 col-sm-1">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/cauliflower.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/bringle.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/broccoli.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/onion.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/potatoes.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/garlic.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/beans.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/carrot.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/lady-finger.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/Bittermelon.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/cabbage.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/ginger.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/kale.jpg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-          <div className="row col-12 col-md-3 col-sm-1 mt-4">
-            <Card className="filter-products">
-              <CardBody>
-                <CardImg
-                  src="assets/images/products/pepper.webp"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body-bottom">
-                  <CardTitle className="text-left">
-                    Lorem ipsum dolor sit amet lorem ipsum dolor sit amet,
-                  </CardTitle>
-                  <div className="add-button  d-flex justify-content-between align-items-bottom">
-                    <p>$20</p>
-                    <Button>Add</Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
+
         </div>
       </div>
     </div>

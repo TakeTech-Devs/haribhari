@@ -21,7 +21,7 @@ const CategoryComponents = () => {
                 }
             )
             .then((res) => {
-                console.log(res, "resd");
+
                 setcategoryAll(res.data.info);
             });
     };
@@ -33,7 +33,7 @@ const CategoryComponents = () => {
 
                         <div className="row m-auto">
                             <Card style={{ border: 'none' }}>
-                                <CardImg src="assets/images/products/vegetables.png" class="card-img-top" alt="..." />
+                                <CardImg src={`https://apidevelopment.hari-bhari.com/${cate?.image}`} class="card-img-top" alt="..." />
                                 <CardBody>
                                     <CardTitle className='text-center'>{cate?.name}</CardTitle>
                                 </CardBody>

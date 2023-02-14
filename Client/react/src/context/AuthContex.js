@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import toast from 'react-hot-toast';
 
 const AuthContext = React.createContext([]);
 export function useAuth() {
@@ -8,9 +9,11 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [categoryAll, setcategoryAll] = useState([]);
+
   const [UserInfo, setUserInfo] = useState([]);
   const [billingInfo, setbillingInfo] = useState({});
-  const onAddProduct = (product) => {
+  const onAddProduct = (product, click) => {
     const exist = cartItems.find((x) => x._id === product._id);
     const token = JSON.parse(localStorage.getItem("token"));
 
@@ -20,26 +23,44 @@ export function AuthProvider({ children }) {
           x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
         )
       );
-      axios.post(
-        "https://apidevelopment.hari-bhari.com/cart/",
-        { qty: exist.qty, product_id: product._id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      if (click == "click") {
+        axios.post(
+          "https://apidevelopment.hari-bhari.com/cart/",
+          { qty: exist.qty, product_id: product._id },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ).then(res => {
+          toast.success(`${product.name} added suucessfully`)
+
+        }).catch(err => {
+          toast.error(`${product.name} added fails`)
+
+        })
+      }
+
     } else {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
-      axios.post(
-        "https://apidevelopment.hari-bhari.com/cart/",
-        { qty: 1, product_id: product._id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      if (click == "click") {
+        axios.post(
+          "https://apidevelopment.hari-bhari.com/cart/",
+          { qty: 1, product_id: product._id },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ).then(res => {
+          toast.success(`${product.name} added suucessfully`)
+
+        }).catch(err => {
+          toast.error(`${product.name}  added fails`)
+
+        })
+      }
+
     }
   };
   const onRemoveProduct = (product) => {
@@ -57,6 +78,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     getUserDetails();
+    getAllCategoris()
     document.body.classList.remove("stop-scrolling");
   }, []);
   useEffect(() => {
@@ -107,6 +129,24 @@ export function AuthProvider({ children }) {
     handleRefresh();
   };
 
+
+  const getAllCategoris = () => {
+
+    axios
+      .get(
+        "https://apidevelopment.hari-bhari.com/category",
+        {
+          headers: {
+            // Authorization: `Bearer ${token}`639a0c0e56faa05e018e85ec
+          },
+        }
+      )
+      .then((res) => {
+
+        setcategoryAll(res.data.info);
+      });
+  };
+
   const value = {
     onAddProduct,
     onRemoveProduct,
@@ -120,6 +160,7 @@ export function AuthProvider({ children }) {
     UserInfo,
     setUserInfo,
     getUserDetails,
+    categoryAll
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
