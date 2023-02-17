@@ -33,6 +33,18 @@ router.post(
     bannerController.create,
 );
 
+router.get(
+    '',
+    verifyTokenAndAdmin, 
+    bannerController.find,
+);
+
+router.get(
+    '/:id',
+    verifyTokenAndAdmin, 
+    bannerController.get,
+);
+
 router.put(
     '/enable/:id',
     verifyTokenAndAdmin,

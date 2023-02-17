@@ -20,6 +20,45 @@ exports.create = async(req, res, next) =>{
     }
 }
 
+exports.find = async(req, res, next) =>{
+    try {
+        const banner = await Banner.find();
+        if(banner.length === 0){
+            return res.status(404).json({
+                success: false,
+                errors: { error: 'No data found' },
+            })
+        } else {
+            res.status(200).json({
+                success: true,
+                info: banner,
+            }); 
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.get = async(req, res, next) =>{
+    try {
+        const id = req.params.id;
+        const banner = await Banner.findOne({_id:id});
+        if(!banner){
+            return res.status(404).json({
+                success: false,
+                errors: { error: 'No data found' },
+            })
+        } else {
+            res.status(200).json({
+                success: true,
+                info: banner,
+            }); 
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
 exports.delete = async(req, res, next) =>{
     try {
         const id = req.params.id;
