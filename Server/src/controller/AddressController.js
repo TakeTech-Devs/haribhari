@@ -6,6 +6,7 @@ exports.addAddress = async (req, res, next) => {
         const residentNo = req.body.resident_no;
         const residentName = req.body.resident_name;
         const addressType = req.body.address_type;
+        const isDefault = req.body.default;
         const user = req.user._id;
         const address = new Address({
             user: user,
@@ -13,6 +14,7 @@ exports.addAddress = async (req, res, next) => {
             resident_no: residentNo,
             resident_name: residentName,
             address_type: addressType,
+            is_default: isDefault,
         });
         await address.save();
         res.status(201).json({
@@ -128,6 +130,24 @@ exports.deleteAddress = async (req, res, next) => {
                     errors: { error: 'No address found' },
                 });
             }
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.getDefaultAddress = async (req, res, next) => {
+    try {
+        const userId = req.user._id;
+        const address = await Address
+            .findOne({ $and: [{ user: userId }, {is_default: true}] });
+        if (!address) {
+            res.status(400).json({
+                success: false,
+                errors: { error: 'No address found' },
+            });
+        } else {
+            res.status(200).json({ success: true, info: address });
         }
     } catch (error) {
         next(error);

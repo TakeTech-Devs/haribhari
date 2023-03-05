@@ -27,6 +27,10 @@ const addressSchema= new mongoose.Schema({
         type: String,
         // required: true,
     },
+    is_default: {
+        type: Boolean,
+        // required: true,
+    },
 }, {
     timestamps: true,
 });

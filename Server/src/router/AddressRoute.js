@@ -37,4 +37,10 @@ router.delete(
     addressController.deleteAddress,
 );
 
+router.get(
+    '/default/address',
+    verifyToken,
+    addressController.getDefaultAddress,
+);
+
 module.exports = router;
