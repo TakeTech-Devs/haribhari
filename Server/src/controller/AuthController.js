@@ -213,6 +213,7 @@ exports.sendUserPasswordReset = async (req, res, next) => {
                 res.status(200).json({
                     success: true,
                     info: {
+                        id: user._id,
                         messaage: `OTP Sent To ${user.email}`,
                     },
                 });
